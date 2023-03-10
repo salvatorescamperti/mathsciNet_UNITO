@@ -44,6 +44,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 import openpyxl
+import xlsxwriter
 #Finestra on top alert
 def info(message, title="ShowInfo"):
     root = tk.Tk()
@@ -322,18 +323,18 @@ def controllorows(rows,file):
         # reprint(row)
         # reprint(len(row))
         if len(row[0]) != 0 or len(row[1]) != 0 or len(row[2]) != 0 or len(row[3]) == 0:
-            if len(row[0]) < 1:
-                reprint("Il file " + file + " ha una riga senza il titolo della rivista\n")
-                return False
+            # if len(row[0]) < 1:
+            #     reprint("Il file " + file + " ha una riga senza il titolo della rivista\n")
+            #     return False
             # if len(row[1]) < 1:
             #     reprint("Il file " + file + " ha una riga senza il Source ID\n")
             #     return False
             # if not isfloat(row[2]):
             #     reprint("Il file " + file + " ha una riga con MCQ sbagliato\n")
             #     return False
-            # if len(row[3]) < 1 and len(row[4]) < 3:
-            #     reprint("Il file " + file + " ha una riga senza p_issn e e_issn\n")
-            #     return False
+            if len(row[3]) < 1 and len(row[4]) < 3:
+                 reprint("Il file " + file + " ha una riga senza p_issn e e_issn\n")
+                 return False
             newrows.append(row)        
     return newrows
 
@@ -417,8 +418,8 @@ def caricamentoriviste(con):
             try:
                 dfs = pd.read_excel(files[key],sheet_name=None)
                 rows = []
-                for key in dfs.keys():
-                    for index, row in dfs[key].iterrows():
+                for keyinn in dfs.keys():
+                    for index, row in dfs[keyinn].iterrows():
                         if [str(row[colonnaTitolo]), row[colonna_pISSN], row[colonna_eISSN]] not in rows:
                             rows.append([str(row[colonnaTitolo]), row[colonna_pISSN], row[colonna_eISSN]])
             except:
@@ -474,41 +475,40 @@ def backupdb(con):
         writer.writerow(['title','p_issn','e_issn','MCQ','anno','sector'])
         writer.writerows(data)
         f.close()
-    for anno in anniSelezionati:
-        for i in range(9):
-            data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
-            pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\inforiviste' + str(anno) + '.csv'
-            pathFilexlsx=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\inforiviste' + str(anno) + '.xlsx'
-            with open(pathFile, 'w') as f:
-                writer = csv.writer(f)
-                writer.writerow(['title','p_issn','e_issn','MCQ'])
-                writer.writerows(data)
-            f.close()
-
-            
-            df = pd.read_csv(pathFile,sep=",")
-            #print(f"Pandas:\n{df}")
-            total=len(df.index)
-            vettorePercentili = []
-            for i in range(total):
-                vettorePercentili.append("00")
-            for i in range(total):
-                if i+1 <= math.ceil(total*10/100):
-                    vettorePercentili[i]="10% TOP- Q1"
-                if i+1 > math.ceil(total*10/100):
-                    vettorePercentili[i]="Q1"
-                if i+1 > math.ceil(total*25/100):
-                    vettorePercentili[i]="Q2"
-                if i+1 > math.ceil(total*50/100):
-                    vettorePercentili[i]="Q3"
-                if i+1 > math.ceil(total*75/100):
-                    vettorePercentili[i]="Q4"
-            df['Percentile'] = vettorePercentili
-            df.to_csv(pathFile,index=False,sep=",",mode='w')
-            df_new = pd.read_csv(pathFile)
-            GFG = pd.ExcelWriter(pathFilexlsx)
-            df_new.to_excel(GFG, index=False)
-            GFG.close()
+    for i in range(9):
+        pathFilexlsx=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\inforiviste.xlsx'
+        with pd.ExcelWriter(pathFilexlsx, engine='xlsxwriter') as writer:
+            for anno in anniSelezionati:
+                rereprint(f"Salvo anno {anno} per MAT0{str(i+1)}")
+                data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
+                pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\inforiviste' + str(anno) + '.csv'
+                with open(pathFile, 'w') as f:
+                    wrt = csv.writer(f)
+                    wrt.writerow(['title','p_issn','e_issn','MCQ'])
+                    wrt.writerows(data)
+                
+                df = pd.read_csv(pathFile,sep=",")
+                #print(f"Pandas:\n{df}")
+                total=len(df.index)
+                vettorePercentili = []
+                for j in range(total):
+                    vettorePercentili.append("00")
+                for j in range(total):
+                    if j+1 <= math.ceil(total*10/100):
+                        vettorePercentili[j]="10% TOP- Q1"
+                    if j+1 > math.ceil(total*10/100):
+                        vettorePercentili[j]="Q1"
+                    if j+1 > math.ceil(total*25/100):
+                        vettorePercentili[j]="Q2"
+                    if j+1 > math.ceil(total*50/100):
+                        vettorePercentili[j]="Q3"
+                    if j+1 > math.ceil(total*75/100):
+                        vettorePercentili[j]="Q4"
+                df['Percentile'] = vettorePercentili
+                df.to_csv(pathFile,index=False,sep=",",mode='w')
+                df.to_excel(writer, sheet_name=str(anno), index=False)
+                
+        
             
 
     reprint(' Salvataggio dei MCQ avvenuto con successo!\n')
@@ -683,34 +683,34 @@ def search(driver,row):
         #controllo se la ricerca ha dato un buon risultato
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             return
-        link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
-        driver.get(link)
-        time.sleep(3)
-        #controllo se la ricerca ha dato un buon risultato
-        if "groupId" in driver.current_url or "journalId" in driver.current_url:
-            return
-        else:
-            #verifico se ci sono stati dei match altrimenti proverò con e_issn
-            rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 1 - linea373")
-            time.sleep(2)
-            try:
-                driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text
-            except:
-                print("Provato la ricerca di un elemento per ricaricare la pagina")
-            if "groupId" in driver.current_url or "journalId" in driver.current_url:
-                return
-            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
-            rereprint("Sono prima dell'if - linea 378")
-            if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
-                rereprint("Sto per cliccare il primo risultato")
-                time.sleep(1)
-                if "groupId" in driver.current_url or "journalId" in driver.current_url:
-                    return
-                WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
-                link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-                driver.get(link)
-                rereprint(f"Opero driver.get per {link}")
-                return       
+        # link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
+        # driver.get(link)
+        # time.sleep(3)
+        # #controllo se la ricerca ha dato un buon risultato
+        # if "groupId" in driver.current_url or "journalId" in driver.current_url:
+        #     return
+        # else:
+        #     #verifico se ci sono stati dei match altrimenti proverò con e_issn
+        #     rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 1 - linea373")
+        #     time.sleep(2)
+        #     try:
+        #         driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text
+        #     except:
+        #         print("Provato la ricerca di un elemento per ricaricare la pagina")
+        #     if "groupId" in driver.current_url or "journalId" in driver.current_url:
+        #         return
+        #     WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
+        #     rereprint("Sono prima dell'if - linea 378")
+        #     if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
+        #         rereprint("Sto per cliccare il primo risultato")
+        #         time.sleep(1)
+        #         if "groupId" in driver.current_url or "journalId" in driver.current_url:
+        #             return
+        #         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
+        #         link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
+        #         driver.get(link)
+        #         rereprint(f"Opero driver.get per {link}")
+                # return       
     if(len(row[2])>5):
         #provo con e_issn se riesco a trovare dei risultati
         link = config['LINK']['link_search'].replace("???VARIABILE???",row[2][0:4] + '-' + row[2][4:])
@@ -719,39 +719,39 @@ def search(driver,row):
         #controllo se la ricerca ha dato un buon risultato
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             return
-        else:
-            rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 2")
-            #verifico se ci sono stati dei match altrimenti proverò col titolo
-            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
-            time.sleep(1)
-            if "groupId" in driver.current_url or "journalId" in driver.current_url:
-                return
-            if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
-                rereprint("Sto per cliccare il primo risultato")
-                WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
-                time.sleep(1)
-                link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-                driver.get(link)
-                rereprint(f"Opero driver.get per {link}")
-                return       
+        # else:
+    #         rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 2")
+    #         #verifico se ci sono stati dei match altrimenti proverò col titolo
+    #         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
+    #         time.sleep(1)
+    #         if "groupId" in driver.current_url or "journalId" in driver.current_url:
+    #             return
+    #         if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
+    #             rereprint("Sto per cliccare il primo risultato")
+    #             WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
+    #             time.sleep(1)
+    #             link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
+    #             driver.get(link)
+    #             rereprint(f"Opero driver.get per {link}")
+    #             return       
 
-    #provo se col titolo riesco ad ottenere dei risultati
-    link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
-    driver.get(link)
-    time.sleep(3)
-    #controllo se la ricerca ha dato un buon risultato
-    if "groupId" in driver.current_url or "journalId" in driver.current_url:
-        return
-    else:
-        #verifico se ci sono stati dei match altrimentisi interromperà
-        WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
-        time.sleep(1)
-        if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
-            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
-            link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-            driver.get(link)
-            rereprint(f"Opero driver.get per {link}")
-            return       
+    # #provo se col titolo riesco ad ottenere dei risultati
+    # link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
+    # driver.get(link)
+    # time.sleep(3)
+    # #controllo se la ricerca ha dato un buon risultato
+    # if "groupId" in driver.current_url or "journalId" in driver.current_url:
+    #     return
+    # else:
+    #     #verifico se ci sono stati dei match altrimentisi interromperà
+    #     WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
+    #     time.sleep(1)
+    #     if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
+    #         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
+    #         link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
+    #         driver.get(link)
+    #         rereprint(f"Opero driver.get per {link}")
+    #         return       
 
 
 
@@ -1043,14 +1043,16 @@ class Maths(QWidget):
 
 
         self.lista = QLabel(self.testo)
-        self.lista.setMinimumHeight(300)
-        self.lista.setMinimumWidth(500)
+        
+        # self.lista.setMinimumHeight(300)
+        # self.lista.setMinimumWidth(500)
         self.lista.setStyleSheet("QLabel""{""font-weight: 450;background-color:white;margin:2px;padding:2px;border-color: red 1.5px solid""}")
         self.lista.setFont(QFont('Times', 9))
-        vbox.addWidget(self.lista)
+        vbox.addWidget(self.lista, stretch=4)
+        # self.widget_inscroll.maximumHeight()
         self.bottoneAzzera = Bottone("Azzera Lista")
         self.bottoneAzzera.bottone.pressed.connect(lambda: self.azzeraLista())
-        self.boxRicerca = BoxTabs(f"Seleziona i file di {self.fullTitle}",[self.bottoneRicerca.bottone,self.listaFileslabel,self.scrollw,self.bottoneAzzera.bottone])
+        self.boxRicerca = BoxTabs(f"Seleziona i file di {self.fullTitle}",[self.bottoneRicerca.bottone,self.bottoneAzzera.bottone,self.listaFileslabel,self.scrollw])
         self.layout_tab.addWidget(self.boxRicerca.widget)
         
     #dialogo per trovare un file
@@ -1116,11 +1118,15 @@ class BoxTabs(QWidget):
         #self.widgetElement.setMinimumSize(500,450)
         self.layout_widgetElement=QVBoxLayout(self.widgetElement)
         self.layout_widgetElement.addWidget(self.nome_widget,stretch=1,alignment=Qt.AlignTop)
-        self.layout_widgetElement.setSpacing(15)
+        self.layout_widgetElement.setSpacing(0)
         for e in elementi:
             if type(e) is QScrollArea:
-                e.setMinimumHeight(500)
-                self.layout_widgetElement.addWidget(e, stretch=2,alignment=Qt.AlignTop)
+                e.setMinimumHeight(400)
+                self.layout_widgetElement.addWidget(e, stretch=4,alignment=Qt.AlignTop)
+                e.maximumHeight()
+                self.layout_widgetElement.addWidget(QWidget(), stretch=2,alignment=Qt.AlignTop)
+                self.layout_widgetElement.addWidget(QWidget(), stretch=2,alignment=Qt.AlignTop)
+
             else:
                 self.layout_widgetElement.addWidget(e, stretch=1,alignment=Qt.AlignTop)
 
@@ -1201,16 +1207,102 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("University of Turin - Department of Mathematics \"G. Peano\" - MATHSCINET WebScraping")
         self.setWindowIcon(QtGui.QIcon('dip_mate.png'))
-        self.setMinimumSize(1600, 900)
+        # self.setMinimumSize(1600, 900)
 
         #Parte oggetti
 
-        self.finestraPrincipale = QWidget()
+        self.finestraPrincipale = QTabWidget()
+        self.finestraPrincipale.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: rgb(3, 47, 83);color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
+            width: 100px;
+        }
 
-        layout_finestraPrincipale = QHBoxLayout(self.finestraPrincipale)
+        QTabBar QToolButton { /* the scroll buttons are tool buttons */
+            border-width: 2px;
+            background: black;
+        }
+
+        QTabBar QToolButton::right-arrow { /* the arrow mark in the tool buttons */
+            image: url('./frecciasupng.png');
+        }
+
+        QTabBar QToolButton::left-arrow {
+            image: url('./frecciagiupng.png');
+        }""")
+
+        
         self.finestraPrincipale.maximumSize()
+        scroll_grigliaSecondaria = QScrollArea()
+        scroll_grigliaSecondaria.setStyleSheet("""
+ 
+        /* VERTICAL */
+        QScrollBar:vertical {
+            border: red;
+            background: white;
+            width: 15px;
+            margin: 26px 0 26px 0;
+        }
 
-        widgetGrigliaSecondaria= QWidget()
+        QScrollBar::handle:vertical {
+            background: rgb(3, 47, 83);
+            min-height: 26px;
+            border-radius: 5%;
+        }
+
+        QScrollBar::add-line:vertical {
+            background: none;
+            height: 26px;
+            subcontrol-position: bottom;
+            subcontrol-origin: margin;
+        }
+
+        QScrollBar::sub-line:vertical {
+            background: none;
+            height: 26px;
+            subcontrol-position: top left;
+            subcontrol-origin: margin;
+            position: absolute;
+        }
+
+        QScrollBar:up-arrow:vertical {
+            width: 20px;
+            height: 20px;
+            background: none;
+            image: url('./frecciasu.png');
+        }
+        QScrollBar::down-arrow:vertical {
+            width: 20px;
+            height: 20px;
+            background: none;
+            image: url('./frecciagiu.png');
+        }
+
+
+
+        QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+            background: none;
+        }
+
+    """)
+        widgetGrigliaSecondaria = QWidget()
+        
+         
+        
+
+        #Scroll Area Properties
+        scroll_grigliaSecondaria.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        scroll_grigliaSecondaria.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll_grigliaSecondaria.setWidgetResizable(True)
+        scroll_grigliaSecondaria.setWidget(widgetGrigliaSecondaria)
+
+
+
+
+
+
+
+
+
+        
         widgetGrigliaSecondaria.setStyleSheet("QWidget""{""border:2px solid rgb(3, 47, 83);border-radius: 5%;margin:5px;""}""")
         #widgetGrigliaSecondaria.setMinimumSize(630,600)
         layout_GrigliaSecondaria = QGridLayout(widgetGrigliaSecondaria)
@@ -1262,7 +1354,12 @@ class MainWindow(QMainWindow):
         self.listaSizeText.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
         self.listaSizeText.setFont(QFont('Times', 9))
         self.listaSizeText.currentTextChanged.connect(lambda: self.chageSizeText())
-        box_bottone_sizeText = BoxNMS("",[self.listaSizeText])
+        self.filesArea = QComboBox()
+        self.filesArea.addItems(["Modifica Area lista Files","50px","100px","150px","200px", "300px","400px"])
+        self.filesArea.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.filesArea.setFont(QFont('Times', 9))
+        self.filesArea.currentTextChanged.connect(lambda: self.chageAreaFiles())
+        box_bottone_sizeText = BoxNMS("",[self.listaSizeText,self.filesArea])
         box_bottone_sizeText.widget.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
         box_bottone_sizeText.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
         #box_bottone_sizeText.widgetElement.setFixedHeight(60)
@@ -1301,7 +1398,7 @@ class MainWindow(QMainWindow):
         self.textBoxcarattereDelimitatorecsv.setText(carattereDelimitatorecsv)
         self.textBoxcarattereDelimitatorecsv.setToolTip("Immettere carattere che il programma si deve aspettare come separatore/delimitatore nei csv")
         box_datiFiles = BoxH("Proprietà dei files",[self.textBoxcolonnaTitolo,self.textBoxcolonna_eISSN,self.textBoxcolonna_pISSN,self.textBoxcarattereDelimitatorecsv])
-        layout_GrigliaSecondaria.addWidget(box_datiFiles.widget,3,0,1,2) 
+        
 
 
         #Griglia opzioni
@@ -1339,10 +1436,11 @@ class MainWindow(QMainWindow):
             widgetTabsinside.addTab(self.maths[n-1].tab,self.maths[n-1].titleTab)
 
 
+        layout_widgetTabs.addWidget(widgetTabsinside, stretch=4)
+        layout_widgetTabs.addWidget(box_datiFiles.widget, stretch=1) 
+        self.finestraPrincipale.addTab(scroll_grigliaSecondaria, "Settings")
+        self.finestraPrincipale.addTab(widgetTabs, "Files")
         
-        layout_widgetTabs.addWidget(widgetTabsinside)
-        layout_finestraPrincipale.addWidget(widgetGrigliaSecondaria, stretch=1)
-        layout_finestraPrincipale.addWidget(widgetTabs, stretch=1)
         
        
 
@@ -1443,6 +1541,45 @@ class MainWindow(QMainWindow):
             rereprint("Cambio grandezza testo a 14")
             for widget in self.findChildren(QWidget):
                 widget.setFont(QFont('Times', 14))
+
+    def chageAreaFiles(self):
+
+        if self.filesArea.currentText() == "50px":
+            rereprint("Cambio grandezza testo a 9")
+            for widget in self.findChildren(QWidget):
+                if type(widget) is QScrollArea:
+                    widget.setMinimumHeight(50)
+
+        if self.filesArea.currentText() == "100px":
+            rereprint("Cambio grandezza testo a 10")
+            for widget in self.findChildren(QWidget):
+                if type(widget) is QScrollArea:
+                    widget.setMinimumHeight(100)
+
+        if self.filesArea.currentText() == "150px":
+            rereprint("Cambio grandezza testo a 11")
+            for widget in self.findChildren(QWidget):
+                if type(widget) is QScrollArea:
+                    widget.setMinimumHeight(150)
+
+        if self.filesArea.currentText() == "200px":
+            rereprint("Cambio grandezza testo a 12")
+            for widget in self.findChildren(QWidget):
+                if type(widget) is QScrollArea:
+                    widget.setMinimumHeight(200)
+        
+        if self.filesArea.currentText() == "300px":
+            rereprint("Cambio grandezza testo a 12")
+            for widget in self.findChildren(QWidget):
+                if type(widget) is QScrollArea:
+                    widget.setMinimumHeight(300)
+        
+        if self.filesArea.currentText() == "400px":
+            rereprint("Cambio grandezza testo a 12")
+            for widget in self.findChildren(QWidget):
+                if type(widget) is QScrollArea:
+                    widget.setMinimumHeight(400)
+
 
 
 
