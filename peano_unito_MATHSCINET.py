@@ -77,9 +77,9 @@ def checkdriver(nome):
             return determinopathini()+"/drivers/Chrome/chromedriver.exe"
         else:
             return False
-    elif nome == "Morzilla":
-        if path.exists(determinopathini()+"/drivers/Morzilla/morzilladriver.exe"):
-            return determinopathini()+"/drivers/Morzilla/morzilladriver.exe"
+    elif nome == "Mozilla Firefox":
+        if path.exists(determinopathini()+"/drivers/Mozilla/mozilladriver.exe"):
+            return determinopathini()+"/drivers/Mozilla/mozilladriver.exe"
         else:
             return False
     else:
@@ -859,7 +859,7 @@ def webScraping():
                 Driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
             except:
                 Driver = webdriver.Chrome(driverPath) 
-        elif (browser == "Morzilla"):
+        elif (browser == "Mozilla Firefox"):
             try:
                 Driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
             except:
@@ -1309,7 +1309,7 @@ class MainWindow(QMainWindow):
 
         #elementi nella griglia secondaria
         self.lista = QComboBox()
-        self.lista.addItems(["Nessuno","Edge","Chrome","Morzilla"])
+        self.lista.addItems(["Nessuno","Edge","Chrome","Mozilla Firefox"])
         self.lista.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
         self.lista.setFont(QFont('Times', 9))
         self.lista.currentTextChanged.connect(lambda: self.defaultDriver())
