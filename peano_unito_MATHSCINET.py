@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys, stat
 import os.path
 from os import path
@@ -19,7 +21,8 @@ from PyQt5.QtWidgets import (
     QLabel,
     QCheckBox,
     QProgressBar,
-    QLineEdit
+    QLineEdit,
+    QSizePolicy
 )
 import logging
 import time
@@ -45,6 +48,24 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 import openpyxl
 import xlsxwriter
+import pyinstaller_versionfile
+
+
+pyinstaller_versionfile.create_versionfile(
+    output_file="versionfile.txt",
+    version="1.0.6",
+    company_name="Università degli Studi di Torino",
+    file_description="WebScraping per Mathscinet",
+    internal_name="WebMathscinet App",
+    legal_copyright="© Università degli Studi di Torino. All rights reserved.",
+    original_filename="peano_unito_MATHSCINET.exe",
+    product_name="WebMathscinet App",
+    translations=[0, 1200]
+)
+
+
+
+
 #Finestra on top alert
 def info(message, title="ShowInfo"):
     root = tk.Tk()
@@ -985,26 +1006,26 @@ class Maths(QWidget):
         QScrollBar:vertical {
             border: red;
             background: white;
-            width: 15px;
-            margin: 26px 0 26px 0;
+            width: 10px;
+            margin: 20px 0 26px 0;
         }
 
         QScrollBar::handle:vertical {
-            background: rgb(3, 47, 83);
-            min-height: 26px;
+            background: red;
+            min-height: 20px;
             border-radius: 5%;
         }
 
         QScrollBar::add-line:vertical {
             background: none;
-            height: 26px;
+            height: 20px;
             subcontrol-position: bottom;
             subcontrol-origin: margin;
         }
 
         QScrollBar::sub-line:vertical {
             background: none;
-            height: 26px;
+            height: 20px;
             subcontrol-position: top left;
             subcontrol-origin: margin;
             position: absolute;
@@ -1101,22 +1122,22 @@ class BoxTabs(QWidget):
     def __init__(self,titolo,elementi):
         super().__init__()
         self.widget = QWidget()
-        self.widget.maximumSize()
+        self.widget.setMinimumSize(self.widget.maximumSize())
         self.widget.setStyleSheet("QWidget""{""background-color: rgb(214, 213, 213);border-color: rgb(173, 173, 173) 1.5px solid; border-radius: 5%;margin:5px;""}""")
         #self.widget.setStyleSheet("QWidget""{""background-color: red; border-color: black 2px solid; border-radius: 5%;margin:5px;""}""")
         #self.widget.setMinimumSize(50,50)
         self.nome_widget = QLabel(titolo)
-        self.nome_widget.setMinimumWidth(700)
+        # self.nome_widget.setMinimumWidth(700)
         self.nome_widget.setStyleSheet("QLabel""{""border-color: none;color: black;padding:5px;font-weight: 700;""}")
         self.nome_widget.setFont(QFont('Times', 11))
         #self.nome_widget.move(5,5)
-        self.widgetElement = QWidget(self.widget)
-        self.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none; border-radius: 5%;margin:5px;""}""")
+        # self.widgetElement = QWidget(self.widget)
+        # self.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none; border-radius: 5%;margin:5px;""}""")
         #self.widgetElement.setStyleSheet("QWidget""{""background-color: black;border-color: black 1.5px solid; border-radius: 5%;margin:5px;""}""")
         #self.widgetElement.move(50,40)
         #self.widgetElement.setMinimumSize(300,600)
         #self.widgetElement.setMinimumSize(500,450)
-        self.layout_widgetElement=QVBoxLayout(self.widgetElement)
+        self.layout_widgetElement=QVBoxLayout(self.widget)
         self.layout_widgetElement.addWidget(self.nome_widget,stretch=1,alignment=Qt.AlignTop)
         self.layout_widgetElement.setSpacing(0)
         for e in elementi:
@@ -1136,23 +1157,24 @@ class Box(QWidget):
     def __init__(self,titolo,elementi):
         super().__init__()
         self.widget = QWidget()
-        self.widget.setStyleSheet("QWidget""{""background-color: rgb(214, 213, 213);border-color: rgb(173, 173, 173) 1.5px solid; border-radius: 5%;margin:5px;""}""")
+        self.widget.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
+        self.widget.setStyleSheet("QWidget""{""background-color: rgb(214, 213, 213);border-color: none; border-radius: 5%;margin:5px;""}""")
         self.widget.setMinimumSize(350,325)
-        self.nome_widget = QLabel(titolo)
+        self.nome_widget = QLabel(titolo,self.widget)
+        self.nome_widget.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
         self.nome_widget.setMaximumHeight(50)
         self.nome_widget.setStyleSheet("QLabel""{""border-color: none;color: black;padding:5px;font-weight: 700;""}")
         self.nome_widget.setFont(QFont('Times', 11))
         # self.nome_widget.move(5,5)
-        self.widgetElement = QWidget(self.widget)
-        self.widgetElement.setMinimumSize(350,325)
-        self.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none; border-radius: 5%;margin:5px;""}""")
         #self.widgetElement.move(10,35)
-        self.widgetElement.maximumSize()
-        self.layout_widgetElement=QVBoxLayout(self.widgetElement)
-        self.layout_widgetElement.addWidget(self.nome_widget,stretch=1,alignment=Qt.AlignTop)
+        
+        self.layout_widgetElement=QVBoxLayout(self.widget)
+        # self.layout_widgetElement.sizeHint()
+        self.layout_widgetElement.addWidget(self.nome_widget,alignment=Qt.AlignTop)
         self.layout_widgetElement.setSpacing(0)
         for e in elementi:
             self.layout_widgetElement.addWidget(e, stretch=1,alignment=Qt.AlignTop)
+            e.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
 
 class BoxNMS(QWidget):
     def __init__(self,titolo,elementi):
@@ -1161,12 +1183,12 @@ class BoxNMS(QWidget):
         self.widget.setStyleSheet("QWidget""{""background-color: rgb(214, 213, 213);border-color: rgb(173, 173, 173) 1.5px solid; border-radius: 5%;margin:5px;""}""")
         self.widget.setMinimumSize(350,100)
         # self.nome_widget.move(5,5)
-        self.widgetElement = QWidget(self.widget)
-        self.widgetElement.setMinimumSize(350,100)
-        self.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none; border-radius: 5%;margin:5px;""}""")
+        # self.widgetElement = QWidget(self.widget)
+        # self.widgetElement.setMinimumSize(350,100)
+        # self.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none; border-radius: 5%;margin:5px;""}""")
         #self.widgetElement.move(10,35)
-        self.widgetElement.maximumSize()
-        self.layout_widgetElement=QVBoxLayout(self.widgetElement)
+        # self.widgetElement.maximumSize()
+        self.layout_widgetElement=QVBoxLayout(self.widget)
         self.layout_widgetElement.setSpacing(0)
         for e in elementi:
             self.layout_widgetElement.addWidget(e, stretch=1,alignment=Qt.AlignTop)
@@ -1204,7 +1226,7 @@ class MainWindow(QMainWindow):
         self.selectedDriver="None"
         self.selectedBrowser="None"
         self.selectedOutput= "None"
-
+        self.setStyleSheet("background-color: black;")
         self.setWindowTitle("University of Turin - Department of Mathematics \"G. Peano\" - MATHSCINET WebScraping")
         self.setWindowIcon(QtGui.QIcon('dip_mate.png'))
         # self.setMinimumSize(1600, 900)
@@ -1212,7 +1234,7 @@ class MainWindow(QMainWindow):
         #Parte oggetti
 
         self.finestraPrincipale = QTabWidget()
-        self.finestraPrincipale.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: rgb(3, 47, 83);color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
+        self.finestraPrincipale.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: red;color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
             width: 100px;
         }
 
@@ -1229,7 +1251,7 @@ class MainWindow(QMainWindow):
             image: url('./frecciagiupng.png');
         }""")
 
-        
+        self.finestraPrincipale.setFont(QFont('Times', 9))
         self.finestraPrincipale.maximumSize()
         scroll_grigliaSecondaria = QScrollArea()
         scroll_grigliaSecondaria.setStyleSheet("""
@@ -1238,26 +1260,26 @@ class MainWindow(QMainWindow):
         QScrollBar:vertical {
             border: red;
             background: white;
-            width: 15px;
-            margin: 26px 0 26px 0;
+            width: 5px;
+            margin: 10px 0 10px 0;
         }
 
         QScrollBar::handle:vertical {
-            background: rgb(3, 47, 83);
-            min-height: 26px;
+            background: red;
+            min-height: 10px;
             border-radius: 5%;
         }
 
         QScrollBar::add-line:vertical {
             background: none;
-            height: 26px;
+            height: 10px;
             subcontrol-position: bottom;
             subcontrol-origin: margin;
         }
 
         QScrollBar::sub-line:vertical {
             background: none;
-            height: 26px;
+            height: 10px;
             subcontrol-position: top left;
             subcontrol-origin: margin;
             position: absolute;
@@ -1303,7 +1325,7 @@ class MainWindow(QMainWindow):
 
 
         
-        widgetGrigliaSecondaria.setStyleSheet("QWidget""{""border:2px solid rgb(3, 47, 83);border-radius: 5%;margin:5px;""}""")
+        widgetGrigliaSecondaria.setStyleSheet("QWidget""{""border:2px solid red;border-radius: 5%;margin:5px;""}""")
         #widgetGrigliaSecondaria.setMinimumSize(630,600)
         layout_GrigliaSecondaria = QGridLayout(widgetGrigliaSecondaria)
 
@@ -1323,6 +1345,7 @@ class MainWindow(QMainWindow):
 
         widgetanni = QWidget()
         boxAnni = QGridLayout(widgetanni)
+        widgetanni.setStyleSheet("QGridLayout""{""background-color: none;border-color: none;""}""")
         self.anni = []
         today = datetime.date.today()
 
@@ -1346,7 +1369,7 @@ class MainWindow(QMainWindow):
         #box_bottone_quit.widget.setFixedHeight(60)
         #box_bottone_quit.widgetElement.move(20,0)
         box_bottone_quit.widget.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
-        box_bottone_quit.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
+        # box_bottone_quit.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
         layout_GrigliaSecondaria.addWidget(box_bottone_quit.widget,4,0) 
 
         self.listaSizeText = QComboBox()
@@ -1361,7 +1384,7 @@ class MainWindow(QMainWindow):
         self.filesArea.currentTextChanged.connect(lambda: self.chageAreaFiles())
         box_bottone_sizeText = BoxNMS("",[self.listaSizeText,self.filesArea])
         box_bottone_sizeText.widget.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
-        box_bottone_sizeText.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
+        # box_bottone_sizeText.widgetElement.setStyleSheet("QWidget""{""background-color: none;border-color: none;""}""")
         #box_bottone_sizeText.widgetElement.setFixedHeight(60)
         #box_bottone_sizeText.widget.setFixedHeight(60)
         #box_bottone_sizeText.widgetElement.move(20,0)
@@ -1369,10 +1392,11 @@ class MainWindow(QMainWindow):
         
 
         self.etichetta_Driver = QLabel("Percorso Driver: ")
+        self.etichetta_Driver.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
         self.etichetta_Driver.setWordWrap(True)
         self.etichetta_Driver.setStyleSheet("QLabel""{""border-color: white;color: black;padding:5px;font-weight: 400;""}")
         self.etichetta_Driver.setFont(QFont('Times', 9))
-        self.etichetta_Driver.setMinimumWidth(700)
+        self.etichetta_Driver.setMinimumWidth(widgetGrigliaSecondaria.width())
         # self.etichetta_Driver.setMaximumWidth(600)
         self.etichetta_Driver.setMinimumHeight(70)
         self.etichetta_Output = QLabel("Percorso Output: ")
@@ -1382,6 +1406,7 @@ class MainWindow(QMainWindow):
         self.etichetta_Output.setStyleSheet("QLabel""{""border-color: white;color: black;padding:5px;font-weight: 400;""}")
         self.etichetta_Output.setFont(QFont('Times', 9))
         box_verificaSelezioni = Box("Verifica Input Browser e Output",[self.etichetta_Driver,self.etichetta_Output])
+        box_verificaSelezioni.widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         layout_GrigliaSecondaria.addWidget(box_verificaSelezioni.widget,2,0,1,2) 
 
  
@@ -1406,10 +1431,10 @@ class MainWindow(QMainWindow):
 
         widgetTabs = QWidget()
         layout_widgetTabs = QVBoxLayout(widgetTabs)
-        widgetTabs.setStyleSheet("QWidget""{""border:2px solid rgb(3, 47, 83);border-radius: 5%;margin:5px;""}""")
+        widgetTabs.setStyleSheet("QWidget""{""border:2px solid red;border-radius: 5%;margin:5px;""}""")
         #widgetTabs.setMinimumSize(630,600)
         widgetTabsinside = QTabWidget()
-        widgetTabsinside.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: rgb(3, 47, 83);color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
+        widgetTabsinside.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: red;color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
             width: 100px;
         }
 
