@@ -787,7 +787,7 @@ def get_MCQ(titolo,p_issn,e_issn,con):
     except Exception as e:
         rereprint(f"Non è riuscito a cliccare il bottone della tabella\n{e}")
         with con:
-                for i in range(1999,2060):
+                for i in anniSelezionati:
                     query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
                     con.execute(query)
 
@@ -807,7 +807,7 @@ def get_MCQ(titolo,p_issn,e_issn,con):
             rereprint(f"Non ho trovato l'header della tabella {p_issn}")
             rereprint("Non sono riuscito a trovare il bottone della tabella, qualcosa è andato storto.")
             with con:
-                    for i in range(1999,2060):
+                    for i in anniSelezionati:
                         query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
                         con.execute(query)
             return
@@ -1123,7 +1123,7 @@ class BoxTabs(QWidget):
         super().__init__()
         self.widget = QWidget()
         self.widget.setMinimumSize(self.widget.maximumSize())
-        self.widget.setStyleSheet("QWidget""{""background-color: rgb(214, 213, 213);border-color: rgb(173, 173, 173) 1.5px solid; border-radius: 5%;margin:5px;""}""")
+        self.widget.setStyleSheet("QWidget""{""background-color: rgb(214, 213, 213);border-color: rgb(173, 173, 173) 1px solid; border-radius: 5%;margin:5px;""}""")
         #self.widget.setStyleSheet("QWidget""{""background-color: red; border-color: black 2px solid; border-radius: 5%;margin:5px;""}""")
         #self.widget.setMinimumSize(50,50)
         self.nome_widget = QLabel(titolo)
@@ -1451,7 +1451,8 @@ class MainWindow(QMainWindow):
 
         QTabBar QToolButton::left-arrow {
             image: url('./frecciagiupng.png');
-        }""")
+        }
+        QTabWidget>QWidget>QWidget{background: gray;}""")
         widgetTabsinside.setFont(QFont('Times', 9))
         self.maths=[]
         settoriScientifici = {"MAT01":"Logica Matematica", "MAT02":"Algebra", "MAT03":"Geometria", "MAT04":"Matematiche Complementari", "MAT05":"Analisi Matematica", "MAT06":"Probabilità e Statistica Matematica", "MAT07":"Fisica Matematica", "MAT08":"Analisi Numerica", "MAT09":"Ricerca Operativa"}
