@@ -52,17 +52,7 @@ import pyinstaller_versionfile
 import setuptools
 
 
-pyinstaller_versionfile.create_versionfile(
-    output_file="versionfile.txt",
-    version="1.0.6",
-    company_name="Università degli Studi di Torino",
-    file_description="WebScraping per Mathscinet",
-    internal_name="WebMathscinet App",
-    legal_copyright="© Università degli Studi di Torino. All rights reserved.",
-    original_filename="peano_unito_MATHSCINET.exe",
-    product_name="WebMathscinet App",
-    translations=[0, 1200]
-)
+
 
 
 
@@ -477,6 +467,9 @@ def backupdb(con):
     if not os.path.exists(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\'):
             os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\')
             os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\',stat.S_IRWXO)
+    if not os.path.exists(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\'):
+            os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\')
+            os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\',stat.S_IRWXO)
     for i in range(9):
         if not os.path.exists(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\'):
             os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\')
@@ -486,21 +479,37 @@ def backupdb(con):
             os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL')
             os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL',stat.S_IRWXO)
     data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title")
+    results = data.fetchall()
+    rereprint(f"Risultati query:{results}")
     with open(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\inforiviste' + today + '.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerow(['title','p_issn','e_issn','MCQ','anno','sector'])
-        writer.writerows(data)
+        writer.writerows(results)
         f.close()
         df_new = pd.read_csv(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\inforiviste' + today + '.csv')
         GFG = pd.ExcelWriter(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\inforiviste' + today + '.xlsx')
         df_new.to_excel(GFG, index=False)
         GFG.close()
+    
         
     with open(determinopathini() + '\\bkup\\inforiviste' + today + '.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerow(['title','p_issn','e_issn','MCQ','anno','sector'])
         writer.writerows(data)
         f.close()
+    
+    data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title Where inforiviste.MCQ='Not Found'")
+    results = data.fetchall()
+    rereprint(f"Risultati query:{results}")
+    with open(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\inforiviste' + today + '.csv', 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(['title','p_issn','e_issn','MCQ','anno','sector'])
+        writer.writerows(results)
+        f.close()
+        df_new = pd.read_csv(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\inforiviste' + today + '.csv')
+        GFG = pd.ExcelWriter(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\inforiviste' + today + '.xlsx')
+        df_new.to_excel(GFG, index=False)
+        GFG.close()
     for i in range(9):
         pathFilexlsx=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL\\inforiviste.xlsx'
         
@@ -511,11 +520,13 @@ def backupdb(con):
                 for anno in anniSelezionati:
                     rereprint(f"Salvo anno {anno} per MAT0{str(i+1)}")
                     data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
+                    results = data.fetchall()
+                    rereprint(f"Risultati query:{results}")
                     pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV\\inforiviste' + str(anno) + '.csv'
                     with open(pathFile, 'w') as f:
                         wrt = csv.writer(f)
                         wrt.writerow(['title','p_issn','e_issn','MCQ'])
-                        wrt.writerows(data)
+                        wrt.writerows(results)
                     
                     df = pd.read_csv(pathFile,sep=",")
                     #print(f"Pandas:\n{df}")
@@ -569,7 +580,7 @@ class RicercaMCQ(QWidget):
         self.windowLayout.setSpacing(0)
         # setting window action
         self.setWindowTitle("Progression Webscraping")
-        self.bottoneCimprovvisa=Bottone("Chiusura Improvvisa - Salva i dati parziali raccolti")
+        self.bottoneCimprovvisa=Bottone("Chiusura Improvvisa - Salva i dati parziali raccolti - clicca tante volte")
         self.windowLayout.addWidget(self.bottoneCimprovvisa.bottone)
         self.bottoneCimprovvisa.bottone.pressed.connect(lambda: self.chiusuraImprovvisa())
   
@@ -612,10 +623,15 @@ class RicercaMCQ(QWidget):
                     rereprint(f"La funzione ricercaMCQ ha presentato un errore\n{e}\nvado avanti")
             else:
                 try:
-                    search(driver,row)
+                    search(driver,row,con)
                     prendiidati(driver, row, NULL,con)
                 except Exception as e:
                     rereprint(f"La funzione ricercaMCQ ha presentato un errore\n{e}\nvado avanti")
+                    for anno in anniSelezionati:
+                        with con:
+                                query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                                rereprint(f"Query per rivista {row[0]}\n{query}")
+                                con.execute(query)      
             i = i+1
         self.close()
 
@@ -765,7 +781,7 @@ def search(driver,row,con):
         #         rereprint(f"Opero driver.get per {link}")
                 # return       
     if(len(row[2])>5):
-        if row[2][5] == "-":
+        if row[2][4] == "-":
             #provo con e_issn se riesco a trovare dei risultati
             link = config['LINK']['link_search'].replace("???VARIABILE???",row[2])
         else:
@@ -784,10 +800,11 @@ def search(driver,row,con):
                     return
             except:
                 rereprint("La verfica non è andata a buon fine, provedo")
-        #salvo che non ho trovato il link
-        with con:
-                for i in anniSelezionati:
-                    query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\","+"Not found"+",\""+str(i)+"\");"
+    #salvo che non ho trovato il link
+        for anno in anniSelezionati:
+            with con:
+                    query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                    rereprint(f"Query per rivista {row[0]}\n{query}")
                     con.execute(query)
         # else:
     #         rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 2")
@@ -892,6 +909,7 @@ def get_MCQ(titolo,p_issn,e_issn,con):
                 if str(anno) not in anniTrovati:
                     with con:
                         query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                        rereprint(f"Query per rivista {titolo}\n{query}")
                         con.execute(query)
 
 
