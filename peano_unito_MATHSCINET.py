@@ -268,6 +268,7 @@ colonna_eISSN = "e_issn"
 colonna_pISSN = "p_issn"
 colonnaTitolo = "Source Title"
 carattereDelimitatorecsv = ";"
+
 #######################Funzioni programma
 logging.basicConfig(filename="log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
 logging.debug("Debug logging test...")
@@ -480,6 +481,10 @@ def backupdb(con):
         if not os.path.exists(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\'):
             os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\')
             os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\',stat.S_IRWXO)
+            os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV')
+            os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV',stat.S_IRWXO)
+            os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL')
+            os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL',stat.S_IRWXO)
     data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title")
     with open(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\inforiviste' + today + '.csv', 'w') as f:
         writer = csv.writer(f)
@@ -497,37 +502,41 @@ def backupdb(con):
         writer.writerows(data)
         f.close()
     for i in range(9):
-        pathFilexlsx=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\inforiviste.xlsx'
-        with pd.ExcelWriter(pathFilexlsx, engine='xlsxwriter') as writer:
-            for anno in anniSelezionati:
-                rereprint(f"Salvo anno {anno} per MAT0{str(i+1)}")
-                data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
-                pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\inforiviste' + str(anno) + '.csv'
-                with open(pathFile, 'w') as f:
-                    wrt = csv.writer(f)
-                    wrt.writerow(['title','p_issn','e_issn','MCQ'])
-                    wrt.writerows(data)
-                
-                df = pd.read_csv(pathFile,sep=",")
-                #print(f"Pandas:\n{df}")
-                total=len(df.index)
-                vettorePercentili = []
-                for j in range(total):
-                    vettorePercentili.append("00")
-                for j in range(total):
-                    if j+1 <= math.ceil(total*10/100):
-                        vettorePercentili[j]="10% TOP- Q1"
-                    if j+1 > math.ceil(total*10/100):
-                        vettorePercentili[j]="Q1"
-                    if j+1 > math.ceil(total*25/100):
-                        vettorePercentili[j]="Q2"
-                    if j+1 > math.ceil(total*50/100):
-                        vettorePercentili[j]="Q3"
-                    if j+1 > math.ceil(total*75/100):
-                        vettorePercentili[j]="Q4"
-                df['Percentile'] = vettorePercentili
-                df.to_csv(pathFile,index=False,sep=",",mode='w')
-                df.to_excel(writer, sheet_name=str(anno), index=False)
+        pathFilexlsx=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL\\inforiviste.xlsx'
+        
+        rereprint(f"Lista files keys: {list(files.keys())}")
+        if f"MAT0{str(i+1)}0" in list(files.keys()):
+            rereprint(f"Sto memorizzando MAT0{str(i+1)}")    
+            with pd.ExcelWriter(pathFilexlsx, engine='xlsxwriter') as writer:
+                for anno in anniSelezionati:
+                    rereprint(f"Salvo anno {anno} per MAT0{str(i+1)}")
+                    data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
+                    pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV\\inforiviste' + str(anno) + '.csv'
+                    with open(pathFile, 'w') as f:
+                        wrt = csv.writer(f)
+                        wrt.writerow(['title','p_issn','e_issn','MCQ'])
+                        wrt.writerows(data)
+                    
+                    df = pd.read_csv(pathFile,sep=",")
+                    #print(f"Pandas:\n{df}")
+                    total=len(df.index)
+                    vettorePercentili = []
+                    for j in range(total):
+                        vettorePercentili.append("00")
+                    for j in range(total):
+                        if j+1 <= math.ceil(total*10/100):
+                            vettorePercentili[j]="10% TOP- Q1"
+                        if j+1 > math.ceil(total*10/100):
+                            vettorePercentili[j]="Q1"
+                        if j+1 > math.ceil(total*25/100):
+                            vettorePercentili[j]="Q2"
+                        if j+1 > math.ceil(total*50/100):
+                            vettorePercentili[j]="Q3"
+                        if j+1 > math.ceil(total*75/100):
+                            vettorePercentili[j]="Q4"
+                    df['Percentile'] = vettorePercentili
+                    df.to_csv(pathFile,index=False,sep=",",mode='w')
+                    df.to_excel(writer, sheet_name=str(anno), index=False)
                 
         
             
@@ -560,11 +569,18 @@ class RicercaMCQ(QWidget):
         self.windowLayout.setSpacing(0)
         # setting window action
         self.setWindowTitle("Progression Webscraping")
+        self.bottoneCimprovvisa=Bottone("Chiusura Improvvisa - Salva i dati parziali raccolti")
+        self.windowLayout.addWidget(self.bottoneCimprovvisa.bottone)
+        self.bottoneCimprovvisa.bottone.pressed.connect(lambda: self.chiusuraImprovvisa())
   
         # showing all the widgets
         self.show()
         self.activateWindow()
   
+    def chiusuraImprovvisa(self):
+        backupdb(con)
+        sys.exit("Chiusura Improvvisa attivata")
+
     def ricercaMCQ(self,driver,rows,con):
         #info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
         info = self.recuperoinfopagina()
@@ -574,9 +590,12 @@ class RicercaMCQ(QWidget):
         i = 0
         if tempo == 0:
             tempo = round((numerototale*10)/60)
-            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato: "+ str(tempo)+" minuti\nOra inizio: "+ ora.strftime("%X"))
+            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato (connessione media): "+ str(tempo)+" minuti\nOra inizio: "+ ora.strftime("%X"))
         else:
-            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato: "+ str(tempo)+" ore")
+            minuti = round((numerototale*10)/60) - 60*tempo
+            if minuti < 0:
+                minuti = (-1)*minuti
+            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ. Tempo stimato: (connessione media)"+ str(tempo)+" ore e " + str(minuti) + "minuti\nIn caso di connessione veloce dimezzare il tempo stimato. Ora inizio: "+ ora.strftime("%X"))
         for row in rows:
             os.system('cls')
             rereprint(f"Row:{row}")
@@ -639,19 +658,20 @@ class RicercaMCQ(QWidget):
 
 def loginmathscinet(driver,config):
     driver.get(config['LINK']['lista'])
-    info("Cliccare OK una volta effettuato l'accesso se richiesto dalla finestra del browser aperta dalla procedura","Waiting")
+    info("Cliccare OK una volta effettuato l'accesso (se richiesto). Dopo aver cliccato OK, se il browser automatico è stato iconizzato, espanderlo di nuovo.","Waiting")
+    time.sleep(5)
     WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['testolista'])))
 
 
 def prendiidati(driver,row,info,con):
     QApplication.processEvents()
     if info is NULL:
-        search(driver,row)
+        search(driver,row,con)
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             rereprint("Siamo riusciti a caricare la pagina della rivista")
         else:
             rereprint("Non siamo riusciti a caricare la pagina della rivista, riprovo")
-            search(driver,row)
+            search(driver,row,con)
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             rereprint("Siamo riusciti a caricare la pagina della rivista")
         else:
@@ -663,12 +683,12 @@ def prendiidati(driver,row,info,con):
         link = get_link(row,info)
         if (link == "false"):
             reprint("Link registrato non ha dato risultati, provo con e_issn oppure con search")
-            search(driver,row)
+            search(driver,row,con)
             if "groupId" in driver.current_url or "journalId" in driver.current_url:
                 rereprint("Siamo riusciti a caricare la pagina della rivista")
             else:
                 rereprint("Non siamo riusciti a caricare la pagina della rivista, riprovo")
-                search(driver,row)
+                search(driver,row,con)
             if "groupId" in driver.current_url or "journalId" in driver.current_url:
                 rereprint("Siamo riusciti a caricare la pagina della rivista")
             else:
@@ -694,16 +714,28 @@ def prendiidati(driver,row,info,con):
             return
 
 #serve per trovare la rivista tramite e_issn
-def search(driver,row):
+def search(driver,row,con):
     #controllo se posso cercare con p_issn
     QApplication.processEvents()
     if len(row[1])>5:
-        link = config['LINK']['link_search'].replace("???VARIABILE???",row[1][0:4] + '-' + row[1][4:])
+        if row[1][4] == "-":
+            link = config['LINK']['link_search'].replace("???VARIABILE???",row[1])
+        else:
+            link = config['LINK']['link_search'].replace("???VARIABILE???",row[1][0:4] + '-' + row[1][4:])
         driver.get(link)
         time.sleep(3)
         #controllo se la ricerca ha dato un buon risultato
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             return
+        else:
+            rereprint("Verifico se non ne ha trovati due, clicco il primo")
+            try:
+                link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
+                driver.get(link)
+                if "groupId" in driver.current_url or "journalId" in driver.current_url:
+                    return
+            except:
+                rereprint("La verfica non è andata a buon fine, provedo")
         # link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
         # driver.get(link)
         # time.sleep(3)
@@ -733,13 +765,30 @@ def search(driver,row):
         #         rereprint(f"Opero driver.get per {link}")
                 # return       
     if(len(row[2])>5):
-        #provo con e_issn se riesco a trovare dei risultati
-        link = config['LINK']['link_search'].replace("???VARIABILE???",row[2][0:4] + '-' + row[2][4:])
+        if row[2][5] == "-":
+            #provo con e_issn se riesco a trovare dei risultati
+            link = config['LINK']['link_search'].replace("???VARIABILE???",row[2])
+        else:
+            link = config['LINK']['link_search'].replace("???VARIABILE???",row[2][0:4] + '-' + row[2][4:])
         driver.get(link)
         time.sleep(2)
         #controllo se la ricerca ha dato un buon risultato
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             return
+        else:
+            rereprint("Verifico se non ne ha trovati due, clicco il primo")
+            try:
+                link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
+                driver.get(link)
+                if "groupId" in driver.current_url or "journalId" in driver.current_url:
+                    return
+            except:
+                rereprint("La verfica non è andata a buon fine, provedo")
+        #salvo che non ho trovato il link
+        with con:
+                for i in anniSelezionati:
+                    query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\","+"Not found"+",\""+str(i)+"\");"
+                    con.execute(query)
         # else:
     #         rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 2")
     #         #verifico se ci sono stati dei match altrimenti proverò col titolo
@@ -864,7 +913,7 @@ def get_link(row,info):
 #programma principale
 
 def webScraping():
-        if browser=="" or driverPath=="" or files == {} or outputPath=="" or anniSelezionati == []:
+        if browser=="" or driverPath=="" or files == {} or outputPath=="None" or outputPath=="" or anniSelezionati == []:
             rereprint(f"Una delle variabili globali ha un valore che non può essere accettato. Il programma termina!\nBrowser: {browser}\ndriverPath: {driverPath}\nfiles: {files}\n outputPath={outputPath}\n anniSelezionati={anniSelezionati}")
             return
         aperturadb(con)
@@ -922,14 +971,15 @@ def webScraping():
         info("Fine Webscraping.","End")
         con.close()
         driver.close()
+        sys.exit(0)
 #funzioni webscraping
 #classe bottone
 class Bottone(QWidget):
     def __init__(self,titolo):
         self.bottone = QPushButton(titolo)
-        self.bottone.setMaximumWidth(450)
+        # self.bottone.setMaximumWidth(450)
         #self.bottone.setMaximumWidth(160)
-        if titolo == "Azzera Lista":
+        if titolo == "Azzera Lista" or titolo=="Chiusura Improvvisa - Salva i dati parziali raccolti (clicca molte volte)":
             self.bottone.setStyleSheet("""
             QPushButton{
                 border-color: rgb(74, 213, 255);
