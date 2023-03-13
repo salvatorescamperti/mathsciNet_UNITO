@@ -49,6 +49,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 import openpyxl
 import xlsxwriter
 import pyinstaller_versionfile
+import setuptools
 
 
 pyinstaller_versionfile.create_versionfile(
@@ -62,7 +63,6 @@ pyinstaller_versionfile.create_versionfile(
     product_name="WebMathscinet App",
     translations=[0, 1200]
 )
-
 
 
 
@@ -927,7 +927,7 @@ def webScraping():
 class Bottone(QWidget):
     def __init__(self,titolo):
         self.bottone = QPushButton(titolo)
-        self.bottone.setMinimumWidth(270)
+        self.bottone.setMaximumWidth(450)
         #self.bottone.setMaximumWidth(160)
         if titolo == "Azzera Lista":
             self.bottone.setStyleSheet("""
@@ -1138,6 +1138,7 @@ class BoxTabs(QWidget):
         #self.widgetElement.setMinimumSize(300,600)
         #self.widgetElement.setMinimumSize(500,450)
         self.layout_widgetElement=QVBoxLayout(self.widget)
+        self.layout_widgetElement.setAlignment(Qt.AlignCenter)
         self.layout_widgetElement.addWidget(self.nome_widget,stretch=1,alignment=Qt.AlignTop)
         self.layout_widgetElement.setSpacing(0)
         for e in elementi:
@@ -1169,6 +1170,7 @@ class Box(QWidget):
         #self.widgetElement.move(10,35)
         
         self.layout_widgetElement=QVBoxLayout(self.widget)
+        self.layout_widgetElement.setAlignment(Qt.AlignCenter)
         # self.layout_widgetElement.sizeHint()
         self.layout_widgetElement.addWidget(self.nome_widget,alignment=Qt.AlignTop)
         self.layout_widgetElement.setSpacing(0)

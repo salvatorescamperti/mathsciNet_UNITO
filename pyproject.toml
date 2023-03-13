@@ -1,0 +1,14 @@
+[project]
+name = "WebScraping Mathscinet"
+version = "0.0.1"
+authors = [
+  { name="Salvatore Scamperti", email="scampertisalvatore@gmail.com" },
+]
+description = "A Software for Webscraping for the University of Turin"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
