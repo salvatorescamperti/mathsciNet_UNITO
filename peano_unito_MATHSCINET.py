@@ -523,31 +523,32 @@ def backupdb(conInt):
                     results = data.fetchall()
                     rereprint(f"Risultati query:{results}")
                     pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV\\inforiviste' + str(anno) + '.csv'
-                    with open(pathFile, 'w') as f:
-                        wrt = csv.writer(f)
-                        wrt.writerow(['title','p_issn','e_issn','MCQ'])
-                        wrt.writerows(results)
-                    
-                    df = pd.read_csv(pathFile,sep=",")
-                    #print(f"Pandas:\n{df}")
-                    total=len(df.index)
-                    vettorePercentili = []
-                    for j in range(total):
-                        vettorePercentili.append("00")
-                    for j in range(total):
-                        if j+1 <= math.ceil(total*10/100):
-                            vettorePercentili[j]="10% TOP- Q1"
-                        if j+1 > math.ceil(total*10/100):
-                            vettorePercentili[j]="Q1"
-                        if j+1 > math.ceil(total*25/100):
-                            vettorePercentili[j]="Q2"
-                        if j+1 > math.ceil(total*50/100):
-                            vettorePercentili[j]="Q3"
-                        if j+1 > math.ceil(total*75/100):
-                            vettorePercentili[j]="Q4"
-                    df['Percentile'] = vettorePercentili
-                    df.to_csv(pathFile,index=False,sep=",",mode='w')
-                    df.to_excel(writer, sheet_name=str(anno), index=False)
+                    if len(results)>0:
+                        with open(pathFile, 'w') as f:
+                            wrt = csv.writer(f)
+                            wrt.writerow(['title','p_issn','e_issn','MCQ'])
+                            wrt.writerows(results)
+                        
+                        df = pd.read_csv(pathFile,sep=",")
+                        #print(f"Pandas:\n{df}")
+                        total=len(df.index)
+                        vettorePercentili = []
+                        for j in range(total):
+                            vettorePercentili.append("00")
+                        for j in range(total):
+                            if j+1 <= math.ceil(total*10/100):
+                                vettorePercentili[j]="10% TOP- Q1"
+                            if j+1 > math.ceil(total*10/100):
+                                vettorePercentili[j]="Q1"
+                            if j+1 > math.ceil(total*25/100):
+                                vettorePercentili[j]="Q2"
+                            if j+1 > math.ceil(total*50/100):
+                                vettorePercentili[j]="Q3"
+                            if j+1 > math.ceil(total*75/100):
+                                vettorePercentili[j]="Q4"
+                        df['Percentile'] = vettorePercentili
+                        df.to_csv(pathFile,index=False,sep=",",mode='w')
+                        df.to_excel(writer, sheet_name=str(anno), index=False)
                 
         
             
@@ -654,6 +655,8 @@ class Worker(QObject):
         #cur serve per stampare i dati del db
         curInt = conInt.cursor()
         rereprint(f"Sono in Run")
+        driver.maximize_window()
+        driver.minimize_window()
         try:
             long_process(self.update_progress,conInt)
         except Exception as e:
@@ -1550,7 +1553,7 @@ class MainWindow(QMainWindow):
         self.etichetta_sopra = QLabel("")
         self.etichetta_sopra.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: black;padding:5px;font-weight: 700;""}")
         self.etichetta_sopra.setFont(QFont('Times', 11))
-        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non iconizzare il browser che è comparso automaticamente</li><li> Non bloccare la sessione utente</li><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso e la sessione sbloccata.</li></ul></html>")
+        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non bloccare la sessione utente</li><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso<br> e la sessione sbloccata.</li></ul></html>")
         self.etichetta_warning.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: red;padding:5px;font-weight: 500;""}")
         self.etichetta_warning.setFont(QFont('Times', 11))
         self.pbar = QProgressBar()
@@ -1558,8 +1561,9 @@ class MainWindow(QMainWindow):
         # setting alignment to center
         self.pbar.setAlignment(Qt.AlignCenter)
         self.button = Bottone("Dopo aver fatto l'accesso (se richiesto) Start WebScraping")
+        self.buttonCI = Bottone("Termina e salva quanto fatto")
         
-        w= Box("Pagina Finale",[self.etichetta_sopra,self.etichetta_warning,self.pbar,self.button.bottone])
+        w= Box("Pagina Finale",[self.etichetta_sopra,self.etichetta_warning,self.pbar,self.button.bottone,self.buttonCI.bottone])
         self.pbar.setValue(0)
         self.pbar.setGeometry(20,30,200,50)
         # setting window action
@@ -1571,12 +1575,23 @@ class MainWindow(QMainWindow):
 
         
         self.button.bottone.clicked.connect(self.execute)
+        self.buttonCI.bottone.clicked.connect(self.terminaCI)
         self.indexWebscraping = self.finestraPrincipale.addTab(w.widget, "Webscraping")
         
         self.finestraPrincipale.setTabEnabled(self.indexWebscraping,False)
         
 
-        
+    def terminaCI(self):
+        conCI = sl.connect(determinopathini()+"\mathscinet_databse.db")
+        #cur serve per stampare i dati del db
+        curCI = con.cursor()
+        backupdb(conCI)
+        self.thread.quit
+        self.worker.deleteLater
+        self.thread.deleteLater
+        driver.close()
+        sys.exit(1)
+
     
     def execute(self):
         rereprint(f"In function execute")
@@ -1585,6 +1600,7 @@ class MainWindow(QMainWindow):
             WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['testolista'])))
         except:
             rereprint("Non riconosciuta la prima pagina di inizio, termino!!!")
+            driver.close()
             sys.exit("Chiusura Improvvisa attivata")
         numerototale = len(rows)
         tempo = round((numerototale*10)/3600)  
@@ -1673,7 +1689,7 @@ class MainWindow(QMainWindow):
         self.finestraPrincipale.setCurrentIndex(self.indexWebscraping)
         self.setStyleSheet("background-color: white;")
         self.setMinimumHeight(200)
-        self.resize(250,400)
+        self.resize(250,450)
         
         
     
