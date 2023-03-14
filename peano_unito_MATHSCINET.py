@@ -3,7 +3,7 @@
 import sys, stat
 import os.path
 from os import path
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
 from PyQt5 import QtGui
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (
@@ -258,7 +258,7 @@ colonna_eISSN = "e_issn"
 colonna_pISSN = "p_issn"
 colonnaTitolo = "Source Title"
 carattereDelimitatorecsv = ";"
-
+rows=[]
 #######################Funzioni programma
 logging.basicConfig(filename="log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
 logging.debug("Debug logging test...")
@@ -446,10 +446,10 @@ def caricamentoriviste(con):
                     con.execute(query)
 
 #funzione per salvare i dati nella cartella di salvataggio
-def backupdb(con):
+def backupdb(conInt):
     current_time = datetime.datetime.now()
     today = str(current_time.year) + str(current_time.month) + str(current_time.day)
-    data = con.execute("SELECT title,p_issn,e_issn,sector FROM general")
+    data = conInt.execute("SELECT title,p_issn,e_issn,sector FROM general")
     if not os.path.exists(determinopathini() + '\\bkup\\'):
         os.makedirs(determinopathini() + '\\bkup\\')
         os.chmod(determinopathini() + '\\bkup\\',stat.S_IRWXO)
@@ -478,7 +478,7 @@ def backupdb(con):
             os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV',stat.S_IRWXO)
             os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL')
             os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\EXCEL',stat.S_IRWXO)
-    data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title")
+    data = conInt.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title")
     results = data.fetchall()
     rereprint(f"Risultati query:{results}")
     with open(outputPath + '\\mathscinetWebscraping'+today+'\\tabellaGenerale\\inforiviste' + today + '.csv', 'w') as f:
@@ -498,7 +498,7 @@ def backupdb(con):
         writer.writerows(data)
         f.close()
     
-    data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title Where inforiviste.MCQ='Not Found'")
+    data = conInt.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ,inforiviste.anno,general.sector FROM general JOIN inforiviste ON inforiviste.titolo = general.title Where inforiviste.MCQ='Not Found'")
     results = data.fetchall()
     rereprint(f"Risultati query:{results}")
     with open(outputPath + '\\mathscinetWebscraping'+today+'\\NotFound\\inforiviste' + today + '.csv', 'w') as f:
@@ -519,7 +519,7 @@ def backupdb(con):
             with pd.ExcelWriter(pathFilexlsx, engine='xlsxwriter') as writer:
                 for anno in anniSelezionati:
                     rereprint(f"Salvo anno {anno} per MAT0{str(i+1)}")
-                    data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
+                    data = conInt.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='MAT0"+str(i+1) +"' ORDER BY inforiviste.MCQ DESC")
                     results = data.fetchall()
                     rereprint(f"Risultati query:{results}")
                     pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\MAT0'+str(i+1)+'\\CSV\\inforiviste' + str(anno) + '.csv'
@@ -556,91 +556,54 @@ def backupdb(con):
     reprint(' I dati sono stati salvati nel file al seguente percorso ' + outputPath + '\\mathscinetWebscraping'+today)
 
 
-class RicercaMCQ(QWidget):
-    def __init__(self):
-        super().__init__()
+def long_process(update_ui,conInt):
+#info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
+    info = recuperoinfopagina()
+    numerototale = len(rows)
+    tempo = round((numerototale*10)/3600)  
         
-  
-        # setting window geometry
-        self.setMinimumSize(400, 300)
-        self.windowLayout = QVBoxLayout()
-        self.setLayout(self.windowLayout)
-        self.etichetta_sopra = QLabel("Barra di Progressione")
-        self.etichetta_sopra.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: black;padding:5px;font-weight: 700;""}")
-        self.etichetta_sopra.setFont(QFont('Times', 11))
-        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non iconizzare il browser che è comparso automaticamente</li><li> Non bloccare la sessione utente</li><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso e la sessione sbloccata.</li></ul></html>")
-        self.etichetta_warning.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: red;padding:5px;font-weight: 500;""}")
-        self.etichetta_warning.setFont(QFont('Times', 11))
-        self.pbar = QProgressBar()
-        self.windowLayout.addWidget(self.etichetta_sopra)
-        self.windowLayout.addWidget(self.etichetta_warning)
-        self.windowLayout.addWidget(self.pbar)
-        self.pbar.setValue(0)
-        self.pbar.setGeometry(20,30,200,50)
-        self.windowLayout.setSpacing(0)
-        # setting window action
-        self.setWindowTitle("Progression Webscraping")
-        self.bottoneCimprovvisa=Bottone("Chiusura Improvvisa - Salva i dati parziali raccolti - clicca tante volte")
-        self.windowLayout.addWidget(self.bottoneCimprovvisa.bottone)
-        self.bottoneCimprovvisa.bottone.pressed.connect(lambda: self.chiusuraImprovvisa())
-  
-        # showing all the widgets
-        self.show()
-        self.activateWindow()
-  
-    def chiusuraImprovvisa(self):
-        backupdb(con)
-        sys.exit("Chiusura Improvvisa attivata")
-
-    def ricercaMCQ(self,driver,rows,con):
-        #info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
-        info = self.recuperoinfopagina()
-        numerototale = len(rows)
-        tempo = round((numerototale*10)/3600)  
-        ora = datetime.datetime.now()     
-        i = 0
-        if tempo == 0:
-            tempo = round((numerototale*10)/60)
-            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato (connessione media): "+ str(tempo)+" minuti\nOra inizio: "+ ora.strftime("%X"))
+    i = 0
+    rereprint(f"rows:{rows}")
+    for row in rows:
+        os.system('cls')
+        rereprint(f"Row:{row}")
+        for j in range(3):
+            pyautogui.press('shift')
+        reprint("Stiamo prendendo MCQ.\nTempo stimato: "+ str(tempo)+" ore\nAnalizzati " + str(i+1) + " su " + str(numerototale) + "...\n")
+        update_ui(round((i+1)/numerototale*100))
+        
+        reprint("Rivista corrente: " + row[0])
+        if len(row[1])>5:
+            try:
+                prendiidati(driver, row, info,conInt)
+            except Exception as e:
+                rereprint(f"La funzione run ha presentato un errore\n{e}\nvado avanti")
         else:
-            minuti = round((numerototale*10)/60) - 60*tempo
-            if minuti < 0:
-                minuti = (-1)*minuti
-            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ. Tempo stimato: (connessione media)"+ str(tempo)+" ore e " + str(minuti) + "minuti\nIn caso di connessione veloce dimezzare il tempo stimato. Ora inizio: "+ ora.strftime("%X"))
-        for row in rows:
-            os.system('cls')
-            rereprint(f"Row:{row}")
-            for j in range(3):
-                pyautogui.press('shift')
-            reprint("Stiamo prendendo MCQ.\nTempo stimato: "+ str(tempo)+" ore o minuti\nAnalizzati " + str(i+1) + " su " + str(numerototale) + "...\n")
-            self.pbar.setValue(round((i+1)/numerototale*100))
-            QApplication.processEvents()
-            reprint("Rivista corrente: " + row[0])
-            if len(row[1])>5:
-                try:
-                    prendiidati(driver, row, info,con)
-                except Exception as e:
-                    rereprint(f"La funzione ricercaMCQ ha presentato un errore\n{e}\nvado avanti")
-            else:
-                try:
-                    search(driver,row,con)
-                    prendiidati(driver, row, NULL,con)
-                except Exception as e:
-                    rereprint(f"La funzione ricercaMCQ ha presentato un errore\n{e}\nvado avanti")
-                    for anno in anniSelezionati:
-                        with con:
-                                query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
-                                rereprint(f"Query per rivista {row[0]}\n{query}")
-                                con.execute(query)      
-            i = i+1
-        self.close()
-
-
-        # driver.get("https://mathscinet-ams-org.bibliopass.unito.it/mathscinet/search/journal/profile?groupId=33")
-        # time.sleep(5)
-        return NULL
+            try:
+                search(driver,row,conInt)
+                prendiidati(driver, row, NULL,conInt)
+            except Exception as e:
+                rereprint(f"La funzione run ha presentato un errore\n{e}\nvado avanti")
+                for anno in anniSelezionati:
+                    with conInt:
+                            query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                            rereprint(f"Query per rivista {row[0]}\n{query}")
+                            conInt.execute(query)      
+        i = i+1
     
-    def recuperoinfopagina(self):
+
+
+    # driver.get("https://mathscinet-ams-org.bibliopass.unito.it/mathscinet/search/journal/profile?groupId=33")
+    # time.sleep(5)
+    #salvataggio dati
+    backupdb(conInt)
+
+
+    
+    conInt.close()
+    
+
+def recuperoinfopagina():
         dati = []
         try:
             WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['lista_riviste_prima_tabella'])))
@@ -671,46 +634,78 @@ class RicercaMCQ(QWidget):
         #time.sleep(15)
         return dati
 
+class Worker(QObject):
+    
+
+    finished = pyqtSignal(int)
+    progress = pyqtSignal(int)
+    closesome = pyqtSignal(int)
+        
+  
+        
+    def update_progress(self, percent):
+        self.progress.emit(percent)
+        
+  
+    
+
+    def run(self):
+        conInt = sl.connect(determinopathini()+"\mathscinet_databse.db")
+        #cur serve per stampare i dati del db
+        curInt = conInt.cursor()
+        rereprint(f"Sono in Run")
+        try:
+            long_process(self.update_progress,conInt)
+        except Exception as e:
+            rereprint(f"Eccezione long_process:{e}")
+
+        rereprint(f"Fine Long Process")
+        driver.close()
+        self.finished.emit(100)
+        self.closesome.emit(100)
+        sys.exit(0)
+        
+    
+    
+
 
 def loginmathscinet(driver,config):
     driver.get(config['LINK']['lista'])
-    info("Cliccare OK una volta effettuato l'accesso (se richiesto). Dopo aver cliccato OK, se il browser automatico è stato iconizzato, espanderlo di nuovo.","Waiting")
-    time.sleep(5)
-    WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['testolista'])))
+    
 
 
-def prendiidati(driver,row,info,con):
-    QApplication.processEvents()
+def prendiidati(driver,row,info,conInt):
+    
     if info is NULL:
-        search(driver,row,con)
+        search(driver,row,conInt)
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             rereprint("Siamo riusciti a caricare la pagina della rivista")
         else:
             rereprint("Non siamo riusciti a caricare la pagina della rivista, riprovo")
-            search(driver,row,con)
+            search(driver,row,conInt)
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             rereprint("Siamo riusciti a caricare la pagina della rivista")
         else:
             rereprint("Non siamo riusciti a caricare la pagina della rivista, salto questa rivista")
             return
-        get_MCQ(row[0],row[1],row[2],con)
+        get_MCQ(row[0],row[1],row[2],conInt)
         return
     else:
         link = get_link(row,info)
         if (link == "false"):
             reprint("Link registrato non ha dato risultati, provo con e_issn oppure con search")
-            search(driver,row,con)
+            search(driver,row,conInt)
             if "groupId" in driver.current_url or "journalId" in driver.current_url:
                 rereprint("Siamo riusciti a caricare la pagina della rivista")
             else:
                 rereprint("Non siamo riusciti a caricare la pagina della rivista, riprovo")
-                search(driver,row,con)
+                search(driver,row,conInt)
             if "groupId" in driver.current_url or "journalId" in driver.current_url:
                 rereprint("Siamo riusciti a caricare la pagina della rivista")
             else:
                 rereprint("Non siamo riusciti a caricare la pagina della rivista, salto questa rivista")
                 return
-            get_MCQ(row[0],row[1],row[2],con)
+            get_MCQ(row[0],row[1],row[2],conInt)
             return
         else:
             driver.get(link)
@@ -726,13 +721,13 @@ def prendiidati(driver,row,info,con):
             else:
                 rereprint("Non siamo riusciti a caricare la pagina della rivista, salto questa rivista")
                 return
-            get_MCQ(row[0],row[1],row[2],con)
+            get_MCQ(row[0],row[1],row[2],conInt)
             return
 
 #serve per trovare la rivista tramite e_issn
-def search(driver,row,con):
+def search(driver,row,conInt):
     #controllo se posso cercare con p_issn
-    QApplication.processEvents()
+    
     if len(row[1])>5:
         if row[1][4] == "-":
             link = config['LINK']['link_search'].replace("???VARIABILE???",row[1])
@@ -802,10 +797,10 @@ def search(driver,row,con):
                 rereprint("La verfica non è andata a buon fine, provedo")
     #salvo che non ho trovato il link
         for anno in anniSelezionati:
-            with con:
+            with conInt:
                     query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
                     rereprint(f"Query per rivista {row[0]}\n{query}")
-                    con.execute(query)
+                    conInt.execute(query)
         # else:
     #         rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 2")
     #         #verifico se ci sono stati dei match altrimenti proverò col titolo
@@ -844,7 +839,7 @@ def search(driver,row,con):
 
 #carichiamo i dati degli ultimi 5 anni della rivista corrente
 
-def get_MCQ(titolo,p_issn,e_issn,con):
+def get_MCQ(titolo,p_issn,e_issn,conInt):
     #clicco il bottone per far comparire la tabella
     rereprint("Clicco il bottone della tabella")
     try:
@@ -852,10 +847,10 @@ def get_MCQ(titolo,p_issn,e_issn,con):
         driver.find_element(By.XPATH,config['HTML']['bottonetabella']).click()
     except Exception as e:
         rereprint(f"Non è riuscito a cliccare il bottone della tabella\n{e}")
-        with con:
+        with conInt:
                 for i in anniSelezionati:
                     query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
-                    con.execute(query)
+                    conInt.execute(query)
 
     #prendo gli ultimi cinque 5 anni mcq
     rereprint(f"Prendo gli MCQ per {p_issn}")
@@ -872,10 +867,10 @@ def get_MCQ(titolo,p_issn,e_issn,con):
         except:
             rereprint(f"Non ho trovato l'header della tabella {p_issn}")
             rereprint("Non sono riuscito a trovare il bottone della tabella, qualcosa è andato storto.")
-            with con:
+            with conInt:
                     for i in anniSelezionati:
                         query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
-                        con.execute(query)
+                        conInt.execute(query)
             return
 
     header = testa.get_attribute('innerHTML')
@@ -900,17 +895,17 @@ def get_MCQ(titolo,p_issn,e_issn,con):
         anniTrovati.append(element[index_anno])
     for element in lista:
         if element[index_anno] != "" and element[index_mcq] != "" and element[index_anno] != NULL and element[index_mcq] != NULL:
-            with con:
+            with conInt:
                 
                 query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+str(element[index_mcq])+",\""+element[index_anno]+"\");"
                 rereprint(f"Query per rivista {titolo}\n{query}")
-                con.execute(query)
+                conInt.execute(query)
             for anno in anniSelezionati:
                 if str(anno) not in anniTrovati:
-                    with con:
+                    with conInt:
                         query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
                         rereprint(f"Query per rivista {titolo}\n{query}")
-                        con.execute(query)
+                        conInt.execute(query)
 
 
     rereprint("Da fare la funzione che verifica che i dati acquisiti abbiano senso?")
@@ -931,6 +926,7 @@ def get_link(row,info):
 #programma principale
 
 def webScraping():
+        global rows
         if browser=="" or driverPath=="" or files == {} or outputPath=="None" or outputPath=="" or anniSelezionati == []:
             rereprint(f"Una delle variabili globali ha un valore che non può essere accettato. Il programma termina!\nBrowser: {browser}\ndriverPath: {driverPath}\nfiles: {files}\n outputPath={outputPath}\n anniSelezionati={anniSelezionati}")
             return
@@ -975,21 +971,11 @@ def webScraping():
 
 
 
-        ricercaMCQ = RicercaMCQ()
-        ricercaMCQ.ricercaMCQ(driver,rows,con)
+        
+        
 
 
-        #salvataggio dati
-        backupdb(con)
-
-
-        current_time = datetime.datetime.now()
-        today = str(current_time.year) + str(current_time.month) + str(current_time.day)
-            
-        info("Fine Webscraping.","End")
-        con.close()
-        driver.close()
-        sys.exit(0)
+        
 #funzioni webscraping
 #classe bottone
 class Bottone(QWidget):
@@ -1011,6 +997,11 @@ class Bottone(QWidget):
                 }
                 QPushButton::pressed{
                     background-color: red;
+                }
+                QPushButton::disabled{
+                    border-color: rgb(214, 213, 213);
+                    color: rgb(214, 213, 213);
+                    background-color: rgb(214, 213, 213);
                 }
                 QWidget
                 {
@@ -1038,6 +1029,11 @@ class Bottone(QWidget):
                 {
                     border:2px solid rgb(74, 213, 255);
                     border-radius: 5%;margin:5px;
+                }
+                QPushButton::disabled{
+                    border-color: rgb(214, 213, 213);
+                    color: rgb(214, 213, 213);
+                    background-color: rgb(214, 213, 213);
                 }
             """)
             self.bottone.setFont(QFont('Times', 9))
@@ -1296,6 +1292,7 @@ class MainWindow(QMainWindow):
         self.selectedDriver="None"
         self.selectedBrowser="None"
         self.selectedOutput= "None"
+        
         self.setStyleSheet("background-color: black;")
         self.setWindowTitle("University of Turin - Department of Mathematics \"G. Peano\" - MATHSCINET WebScraping")
         self.setWindowIcon(QtGui.QIcon('dip_mate.png'))
@@ -1431,9 +1428,9 @@ class MainWindow(QMainWindow):
 
         bottone_quit = Bottone("Chiudi")
         bottone_quit.bottone.clicked.connect(self.close)
-        bottone_start = Bottone("Start Now")
-        bottone_start.bottone.clicked.connect(self.closeE)
-        box_bottone_quit = BoxNMS("",[bottone_start.bottone,bottone_quit.bottone])
+        self.bottone_start = Bottone("Start Now")
+        self.bottone_start.bottone.clicked.connect(self.closeE)
+        box_bottone_quit = BoxNMS("",[self.bottone_start.bottone,bottone_quit.bottone])
         # box_bottone_quit.widgetElement.setMinimumWidth(200)
         #box_bottone_quit.widgetElement.setFixedHeight(60)
         #box_bottone_quit.widget.setFixedHeight(60)
@@ -1534,14 +1531,110 @@ class MainWindow(QMainWindow):
 
         layout_widgetTabs.addWidget(widgetTabsinside, stretch=4)
         layout_widgetTabs.addWidget(box_datiFiles.widget, stretch=1) 
-        self.finestraPrincipale.addTab(scroll_grigliaSecondaria, "Settings")
-        self.finestraPrincipale.addTab(widgetTabs, "Files")
+        self.indexSettings=self.finestraPrincipale.addTab(scroll_grigliaSecondaria, "Settings")
+        self.indexFiles=self.finestraPrincipale.addTab(widgetTabs, "Files")
         
         
        
 
         # Set the central widget of the Window.
         self.setCentralWidget(self.finestraPrincipale)
+
+        #ultimo tab
+        
+        
+        # setting window geometry
+        
+        
+        
+        self.etichetta_sopra = QLabel("")
+        self.etichetta_sopra.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: black;padding:5px;font-weight: 700;""}")
+        self.etichetta_sopra.setFont(QFont('Times', 11))
+        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non iconizzare il browser che è comparso automaticamente</li><li> Non bloccare la sessione utente</li><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso e la sessione sbloccata.</li></ul></html>")
+        self.etichetta_warning.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: red;padding:5px;font-weight: 500;""}")
+        self.etichetta_warning.setFont(QFont('Times', 11))
+        self.pbar = QProgressBar()
+        self.pbar.setFont(QFont('Times', 11))
+        # setting alignment to center
+        self.pbar.setAlignment(Qt.AlignCenter)
+        self.button = Bottone("Dopo aver fatto l'accesso (se richiesto) Start WebScraping")
+        
+        w= Box("Pagina Finale",[self.etichetta_sopra,self.etichetta_warning,self.pbar,self.button.bottone])
+        self.pbar.setValue(0)
+        self.pbar.setGeometry(20,30,200,50)
+        # setting window action
+        self.setWindowTitle("Progression Webscraping")
+        #self.bottoneCimprovvisa=Bottone("Chiusura Improvvisa - Salva i dati parziali raccolti - clicca tante volte")
+        # self.windowLayout.addWidget(self.bottoneCimprovvisa.bottone)
+        # self.bottoneCimprovvisa.bottone.pressed.connect(lambda: self.chiusuraImprovvisa())
+        
+
+        
+        self.button.bottone.clicked.connect(self.execute)
+        self.indexWebscraping = self.finestraPrincipale.addTab(w.widget, "Webscraping")
+        
+        self.finestraPrincipale.setTabEnabled(self.indexWebscraping,False)
+        
+
+        
+    
+    def execute(self):
+        rereprint(f"In function execute")
+        try:
+            # time.sleep(5)
+            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['testolista'])))
+        except:
+            rereprint("Non riconosciuta la prima pagina di inizio, termino!!!")
+            sys.exit("Chiusura Improvvisa attivata")
+        numerototale = len(rows)
+        tempo = round((numerototale*10)/3600)  
+        ora = datetime.datetime.now()     
+        
+        if tempo == 0:
+            tempo = round((numerototale*10)/60)
+            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato (connessione media): "+ str(tempo)+" minuti\nOra inizio: "+ ora.strftime("%X"))
+        else:
+            minuti = round((numerototale*10)/60) - 60*tempo
+            if minuti < 0:
+                minuti = (-1)*minuti
+            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ. Tempo stimato: (connessione media)"+ str(tempo)+" ore e " + str(minuti) + "minuti\nIn caso di connessione veloce dimezzare il tempo stimato. Ora inizio: "+ ora.strftime("%X"))
+        self.update_progress(0)
+        self.thread = QThread()
+        self.worker = Worker()
+        rereprint(f"Creazioni classi")
+        self.worker.moveToThread(self.thread)
+        rereprint(f"messo worker nel thread")
+        self.thread.started.connect(self.worker.run)
+        self.worker.finished.connect(lambda: rereprint(f"è stato inviato il segnale di finished"))
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.worker.progress.connect(self.update_progress)
+        self.worker.progress.connect(self.update_testo)
+        self.worker.finished.connect(lambda: self.close())
+        self.worker.finished.connect(lambda: sys.exit(0))
+        rereprint(f"Create le connessioni")
+
+        self.thread.start()
+        rereprint(f"Fine execute")
+        self.button.bottone.setEnabled(False)
+        
+    
+    def update_progress(self, progress):
+        self.pbar.setValue(progress)
+
+    
+    def update_testo(self,progress):
+        if progress == 100:
+            self.etichetta_warning.setText("Attendere la chiusura automatica del browser,\n prima di chiudere questa finestra!!")
+            
+    # def chiusuraImprovvisa(self):
+    #     backupdb(con)
+    #     self.thread.quit
+    #     self.worker.deleteLater
+    #     self.thread.deleteLater
+    #     sys.exit("Chiusura Improvvisa attivata")
+
 
     def closeE(self):
         global browser
@@ -1570,8 +1663,20 @@ class MainWindow(QMainWindow):
         colonna_pISSN = self.textBoxcolonna_pISSN.text()
         colonna_eISSN = self.textBoxcolonna_eISSN.text()
         carattereDelimitatorecsv = self.textBoxcarattereDelimitatorecsv.text()
-        self.close()
+        self.bottone_start.bottone.setEnabled(False)
+        self.finestraPrincipale.setTabEnabled(self.indexFiles,False)
+        self.finestraPrincipale.setTabEnabled(self.indexSettings,False)
+        
         webScraping()
+        
+        self.finestraPrincipale.setTabEnabled(self.indexWebscraping,True)
+        self.finestraPrincipale.setCurrentIndex(self.indexWebscraping)
+        self.setStyleSheet("background-color: white;")
+        self.setMinimumHeight(200)
+        self.resize(250,400)
+        
+        
+    
     
     #ricerca automatica driver
     def defaultDriver(self):
@@ -1688,6 +1793,7 @@ app = QApplication(sys.argv)
 
 
 window = MainWindow()
+
 window.show()
 
 app.exec()
