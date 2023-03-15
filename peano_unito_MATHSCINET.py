@@ -561,7 +561,7 @@ def long_process(update_ui,conInt):
 #info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
     info = recuperoinfopagina()
     numerototale = len(rows)
-    tempo = round((numerototale*10)/3600)  
+    tempo = round((numerototale*8)/3600)  
         
     i = 0
     rereprint(f"rows:{rows}")
@@ -1553,7 +1553,7 @@ class MainWindow(QMainWindow):
         self.etichetta_sopra = QLabel("")
         self.etichetta_sopra.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: black;padding:5px;font-weight: 700;""}")
         self.etichetta_sopra.setFont(QFont('Times', 11))
-        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non bloccare la sessione utente</li><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso<br> e la sessione sbloccata.</li></ul></html>")
+        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso.</li></ul></html>")
         self.etichetta_warning.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: red;padding:5px;font-weight: 500;""}")
         self.etichetta_warning.setFont(QFont('Times', 11))
         self.pbar = QProgressBar()
@@ -1603,17 +1603,17 @@ class MainWindow(QMainWindow):
             driver.close()
             sys.exit("Chiusura Improvvisa attivata")
         numerototale = len(rows)
-        tempo = round((numerototale*10)/3600)  
+        tempo = (numerototale*8)/3600
         ora = datetime.datetime.now()     
         
-        if tempo == 0:
-            tempo = round((numerototale*10)/60)
+        if tempo < 1:
+            tempo = round((numerototale*8)/60)
             self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato (connessione media): "+ str(tempo)+" minuti\nOra inizio: "+ ora.strftime("%X"))
         else:
-            minuti = round((numerototale*10)/60) - 60*tempo
+            minuti = round((numerototale*8)/60) - 60*int(tempo)
             if minuti < 0:
                 minuti = (-1)*minuti
-            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ. Tempo stimato: (connessione media)"+ str(tempo)+" ore e " + str(minuti) + "minuti\nIn caso di connessione veloce dimezzare il tempo stimato. Ora inizio: "+ ora.strftime("%X"))
+            self.etichetta_sopra.setText("Stiamo acquisendo i MCQ. \nTempo stimato: (connessione media)"+ str(int(tempo))+" ore e " + str(minuti) + "minuti\nIn caso di connessione veloce dimezzare il tempo stimato. \nOra inizio: "+ ora.strftime("%X"))
         self.update_progress(0)
         self.thread = QThread()
         self.worker = Worker()
@@ -1628,7 +1628,7 @@ class MainWindow(QMainWindow):
         self.worker.progress.connect(self.update_progress)
         self.worker.progress.connect(self.update_testo)
         self.worker.finished.connect(lambda: self.close())
-        self.worker.finished.connect(lambda: sys.exit(0))
+        #self.worker.finished.connect(lambda: sys.exit(0))
         rereprint(f"Create le connessioni")
 
         self.thread.start()
@@ -1690,6 +1690,7 @@ class MainWindow(QMainWindow):
         self.setStyleSheet("background-color: white;")
         self.setMinimumHeight(200)
         self.resize(250,450)
+        self.activateWindow()
         
         
     
