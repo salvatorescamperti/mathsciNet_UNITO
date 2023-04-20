@@ -257,7 +257,7 @@ divisionePercentile = True
 colonna_eISSN = "e_issn"
 colonna_pISSN = "p_issn"
 colonnaTitolo = "Source Title"
-carattereDelimitatorecsv = ";"
+carattereDelimitatorecsv = ","
 rows=[]
 #######################Funzioni programma
 logging.basicConfig(filename="log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
@@ -326,15 +326,19 @@ def checkheader(header, testo):
             return i
     return False
 #questa funzione serve per vedere che tutte le righe abbiano le informazioni giuste
-def controllorows(rows,file):
+def controllorows(rows,file, indexsHeaders):
     # reprint(type(rows[0]))
     newrows = []
     for row in rows:
         # reprint(row)
         row = arriamoheader(row)
-        # reprint(row)
-        # reprint(len(row))
-        if len(row[0]) != 0 or len(row[1]) != 0 or len(row[2]) != 0 or len(row[3]) == 0:
+        reprint(row)
+        reprint(len(row))
+        if len(row) <3:
+            reprint("Il file " + file + " ha una riga con qualche carattere particolare che non permette lo split della riga come vettore, ma la riconosce come tutta una riga testuale, oppure è stato sbagliato il caratte di divisione del csv\n")
+            info("Il file " + file + " ha una riga con qualche carattere particolare che non permette lo split della riga come vettore, ma la riconosce come tutta una riga testuale, oppure è stato sbagliato il caratte di divisione del csv!","End")
+            return False
+        #if len(row[0]) != 0 or len(row[1]) != 0 or len(row[2]) != 0 or len(row[3]) == 0:
             # if len(row[0]) < 1:
             #     reprint("Il file " + file + " ha una riga senza il titolo della rivista\n")
             #     return False
@@ -344,9 +348,10 @@ def controllorows(rows,file):
             # if not isfloat(row[2]):
             #     reprint("Il file " + file + " ha una riga con MCQ sbagliato\n")
             #     return False
-            if len(row[3]) < 1 and len(row[4]) < 3:
-                 reprint("Il file " + file + " ha una riga senza p_issn e e_issn\n")
-                 return False
+        if len(row[indexsHeaders[1]]) < 1 and len(row[indexsHeaders[2]]) < 3:
+                reprint("Il file " + file + " ha una riga senza p_issn e e_issn\n")
+                return False
+        else:
             newrows.append(row)        
     return newrows
 
@@ -399,7 +404,7 @@ def caricamentoriviste(con):
         if ".csv" in files[key]:
             # reprint(value)
             file = open(files[key])
-            csvreader = csv.reader(file, delimiter=carattereDelimitatorecsv)
+            csvreader = csv.reader(file, delimiter=carattereDelimitatorecsv, quoting=csv.QUOTE_ALL)
             header = []
             header = next(csvreader)
             header = arriamoheader(header)
@@ -413,14 +418,25 @@ def caricamentoriviste(con):
             rows = []
             for row in csvreader:
                 rows.append(row)
-            rows = controllorows(rows, files[key])
+            rows = controllorows(rows, files[key],indexsHeaders)
             file.close()
             if rows == False:
                 exit()
             # reprint(rows)
             #carico la riga nel database
             for row in rows:
-                query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ row[indexsHeaders[0]] + "\",\"" + row[indexsHeaders[1]] + "\",\"" + row[indexsHeaders[2]] + "\",\"" + key[0:5] + "\")"
+                if len(row[indexsHeaders[1]])>4:
+                    if row[indexsHeaders[1]][4]!= "-":
+                        pissn = row[indexsHeaders[1]][0:4] + "-" + row[indexsHeaders[1]][4:]
+                else:
+                    pissn = row[indexsHeaders[1]]
+                if len(row[indexsHeaders[2]])>4:
+                    if row[indexsHeaders[2]][4]!= "-":
+                        eissn = row[indexsHeaders[2]][0:4] + "-" + row[indexsHeaders[2]][4:]
+                else:
+                    eissn = row[indexsHeaders[2]]
+
+                query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ row[indexsHeaders[0]].replace(';','') + "\",\"" + pissn + "\",\"" + eissn + "\",\"" + key[0:5] + "\")"
                 rereprint(f"Query:{query}")
                 rereprint(f"row:{row}")
                 #time.sleep(10)
@@ -428,17 +444,27 @@ def caricamentoriviste(con):
                     con.execute(query)
         if ".xlsx" in files[key]:
             try:
-                dfs = pd.read_excel(files[key],sheet_name=None)
+                dfs = pd.read_excel(files[key],sheet_name=None, dtype=str,converters={colonnaTitolo:str,colonna_pISSN:str,colonna_eISSN:str})
                 rows = []
                 for keyinn in dfs.keys():
                     for index, row in dfs[keyinn].iterrows():
-                        if [str(row[colonnaTitolo]), row[colonna_pISSN], row[colonna_eISSN]] not in rows:
-                            rows.append([str(row[colonnaTitolo]), row[colonna_pISSN], row[colonna_eISSN]])
+                        if [str(row[colonnaTitolo]), str(row[colonna_pISSN]), str(row[colonna_eISSN])] not in rows:
+                            rows.append([str(row[colonnaTitolo]), str(row[colonna_pISSN]), str(row[colonna_eISSN])])
             except:
                 info(f"Nel file {files[key]} le colonne non erano denominate nel modo in cui ci si aspettava.\nIl programma termina, correggere e riprovare","Error")
                 exit()
             for row in rows:
-                query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ str(row[0]) + "\",\"" + str(row[1]) + "\",\"" + str(row[2]) + "\",\"" + key[0:5] + "\")"
+                if len(str(row[1]))>4:
+                    if str(row[1])[4]!= "-":
+                        pissn = str(row[1])[0:4] + "-" + str(row[1])[4:]
+                else:
+                    pissn = str(row[1])
+                if len(str(row[2]))>4:
+                    if str(row[2])[4]!= "-":
+                        eissn = str(row[2])[0:4] + "-" + str(row[2])[4:]
+                else:
+                    eissn = str(row[2])
+                query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ str(row[0]).replace(';','') + "\",\"" + pissn + "\",\"" + eissn + "\",\"" + key[0:5] + "\")"
                 rereprint(f"Query:{query}")
                 rereprint(f"row:{row}")
                 #time.sleep(10)
@@ -562,10 +588,9 @@ def long_process(update_ui,conInt):
     info = recuperoinfopagina()
     numerototale = len(rows)
     tempo = round((numerototale*8)/3600)  
-        
-    i = 0
     rereprint(f"rows:{rows}")
-    for row in rows:
+    for i in range(0,numerototale):
+        row = rows[i]
         os.system('cls')
         rereprint(f"Row:{row}")
         for j in range(3):
@@ -579,6 +604,11 @@ def long_process(update_ui,conInt):
                 prendiidati(driver, row, info,conInt)
             except Exception as e:
                 rereprint(f"La funzione run ha presentato un errore\n{e}\nvado avanti")
+                for anno in anniSelezionati:
+                    with conInt:
+                            query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                            rereprint(f"Query per rivista {row[0]}\n{query}")
+                            conInt.execute(query)   
         else:
             try:
                 search(driver,row,conInt)
@@ -590,7 +620,6 @@ def long_process(update_ui,conInt):
                             query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
                             rereprint(f"Query per rivista {row[0]}\n{query}")
                             conInt.execute(query)      
-        i = i+1
     
 
 
@@ -690,6 +719,11 @@ def prendiidati(driver,row,info,conInt):
             rereprint("Siamo riusciti a caricare la pagina della rivista")
         else:
             rereprint("Non siamo riusciti a caricare la pagina della rivista, salto questa rivista")
+            for anno in anniSelezionati:
+                    with conInt:
+                            query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                            rereprint(f"Query per rivista {row[0]}\n{query}")
+                            conInt.execute(query)
             return
         get_MCQ(row[0],row[1],row[2],conInt)
         return
@@ -707,6 +741,11 @@ def prendiidati(driver,row,info,conInt):
                 rereprint("Siamo riusciti a caricare la pagina della rivista")
             else:
                 rereprint("Non siamo riusciti a caricare la pagina della rivista, salto questa rivista")
+                for anno in anniSelezionati:
+                    with conInt:
+                            query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                            rereprint(f"Query per rivista {row[0]}\n{query}")
+                            conInt.execute(query)
                 return
             get_MCQ(row[0],row[1],row[2],conInt)
             return
@@ -723,6 +762,11 @@ def prendiidati(driver,row,info,conInt):
                 
             else:
                 rereprint("Non siamo riusciti a caricare la pagina della rivista, salto questa rivista")
+                for anno in anniSelezionati:
+                    with conInt:
+                            query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                            rereprint(f"Query per rivista {row[0]}\n{query}")
+                            conInt.execute(query)
                 return
             get_MCQ(row[0],row[1],row[2],conInt)
             return
@@ -742,10 +786,14 @@ def search(driver,row,conInt):
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             return
         else:
-            rereprint("Verifico se non ne ha trovati due, clicco il primo")
+            rereprint("Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato")
             try:
-                link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-                driver.get(link)
+                #clicco il primo che è ancora indicizzato
+                elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
+                for element in elements:
+                    print(element.text)
+                    if config['HTML']['Noindexresearch'] not in element.find_element(By.XPATH,".//span").text:
+                        driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
                 if "groupId" in driver.current_url or "journalId" in driver.current_url:
                     return
             except:
@@ -790,10 +838,14 @@ def search(driver,row,conInt):
         if "groupId" in driver.current_url or "journalId" in driver.current_url:
             return
         else:
-            rereprint("Verifico se non ne ha trovati due, clicco il primo")
+            rereprint("Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato")
             try:
-                link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-                driver.get(link)
+                #clicco il primo che è ancora indicizzato
+                elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
+                for element in elements:
+                    print(element.text)
+                    if config['HTML']['Noindexresearch'] not in element.find_element(By.XPATH,".//span").text:
+                        driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
                 if "groupId" in driver.current_url or "journalId" in driver.current_url:
                     return
             except:
@@ -1668,7 +1720,7 @@ class MainWindow(QMainWindow):
         for element in self.anni:
             if (element.isChecked()):
                 anniSelezionati.append(element.text())
-        if self.selectedBrowser=="" or self.selectedDriver=="" or files == {} or self.selectedOutput=="" or len(anniSelezionati)==0:
+        if self.selectedBrowser=="" or self.selectedBrowser=="None" or files == {} or self.selectedOutput=="" or self.selectedOutput=="None" or len(anniSelezionati)==0:
             rereprint(f"Una delle variabili globali ha un valore che non può essere accettato.\nBrowser: {browser}\ndriverPath: {driverPath}\nfiles: {files}\n outputPath={outputPath}\nanniSelezionati={anniSelezionati}")
             info("Assicurarsi di aver selezionato Browser, Driver, Cartella di output, almeno un anno ed almeno un file prima di avviare il Webscraping!","Warning")
             return
