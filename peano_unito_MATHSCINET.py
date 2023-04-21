@@ -242,13 +242,13 @@ driverPath = ""
 files = {}
 #queste due righe servono per inizializzare le informazioni dal file delle risorse
 config = configparser.ConfigParser()
-config_name = '\\variabili.ini'
+config_name = '\\risorse\\variabili.ini'
 config.read(determinopathini()+config_name)
 outputPath = ""
 #Creazioni connessioni col DB
 #reprint(str(config['DATABASE']['default_path']))
 print(f"path_app:{determinopathini()}")
-con = sl.connect(determinopathini()+"\mathscinet_databse.db")
+con = sl.connect(determinopathini()+"\\risorse\\mathscinet_databse.db")
 #cur serve per stampare i dati del db
 cur = con.cursor()
 driver=""
@@ -680,7 +680,7 @@ class Worker(QObject):
     
 
     def run(self):
-        conInt = sl.connect(determinopathini()+"\mathscinet_databse.db")
+        conInt = sl.connect(determinopathini()+"\\risorse\\mathscinet_databse.db")
         #cur serve per stampare i dati del db
         curInt = conInt.cursor()
         rereprint(f"Sono in Run")
@@ -1350,7 +1350,7 @@ class MainWindow(QMainWindow):
         
         self.setStyleSheet("background-color: black;")
         self.setWindowTitle("University of Turin - Department of Mathematics \"G. Peano\" - MATHSCINET WebScraping")
-        self.setWindowIcon(QtGui.QIcon('dip_mate.png'))
+        self.setWindowIcon(QtGui.QIcon('./risorse/dip_mate.png'))
         # self.setMinimumSize(1600, 900)
 
         #Parte oggetti
@@ -1366,11 +1366,11 @@ class MainWindow(QMainWindow):
         }
 
         QTabBar QToolButton::right-arrow { /* the arrow mark in the tool buttons */
-            image: url('./frecciasupng.png');
+            image: url('./risorse/frecciasupng.png');
         }
 
         QTabBar QToolButton::left-arrow {
-            image: url('./frecciagiupng.png');
+            image: url('./risorse/frecciagiupng.png');
         }""")
 
         self.finestraPrincipale.setFont(QFont('Times', 9))
@@ -1411,13 +1411,13 @@ class MainWindow(QMainWindow):
             width: 20px;
             height: 20px;
             background: none;
-            image: url('./frecciasu.png');
+            image: url('./risorse/frecciasu.png');
         }
         QScrollBar::down-arrow:vertical {
             width: 20px;
             height: 20px;
             background: none;
-            image: url('./frecciagiu.png');
+            image: url('./risorse/frecciagiu.png');
         }
 
 
@@ -1454,7 +1454,7 @@ class MainWindow(QMainWindow):
         #elementi nella griglia secondaria
         self.lista = QComboBox()
         self.lista.addItems(["Nessuno","Edge","Chrome","Mozilla Firefox"])
-        self.lista.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.lista.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
         self.lista.setFont(QFont('Times', 9))
         self.lista.currentTextChanged.connect(lambda: self.defaultDriver())
         bottone_cercaDriver = Bottone("Cerca Driver")
@@ -1496,12 +1496,12 @@ class MainWindow(QMainWindow):
 
         self.listaSizeText = QComboBox()
         self.listaSizeText.addItems(["Modifica dimensione testo Interfaccia","8","9","10","11","12","14"])
-        self.listaSizeText.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.listaSizeText.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
         self.listaSizeText.setFont(QFont('Times', 9))
         self.listaSizeText.currentTextChanged.connect(lambda: self.chageSizeText())
         self.filesArea = QComboBox()
         self.filesArea.addItems(["Modifica Area lista Files","50px","100px","150px","200px", "300px","400px"])
-        self.filesArea.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.filesArea.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
         self.filesArea.setFont(QFont('Times', 9))
         self.filesArea.currentTextChanged.connect(lambda: self.chageAreaFiles())
         box_bottone_sizeText = BoxNMS("",[self.listaSizeText,self.filesArea])
@@ -1566,11 +1566,11 @@ class MainWindow(QMainWindow):
         }
 
         QTabBar QToolButton::right-arrow { /* the arrow mark in the tool buttons */
-            image: url('./frecciasupng.png');
+            image: url('./risorse/frecciasupng.png');
         }
 
         QTabBar QToolButton::left-arrow {
-            image: url('./frecciagiupng.png');
+            image: url('./risorse/frecciagiupng.png');
         }
         QTabWidget>QWidget>QWidget{background: gray;}""")
         widgetTabsinside.setFont(QFont('Times', 9))
@@ -1634,7 +1634,7 @@ class MainWindow(QMainWindow):
         
 
     def terminaCI(self):
-        conCI = sl.connect(determinopathini()+"\mathscinet_databse.db")
+        conCI = sl.connect(determinopathini()+"\\risorse\\mathscinet_databse.db")
         #cur serve per stampare i dati del db
         curCI = con.cursor()
         backupdb(conCI)
