@@ -791,11 +791,12 @@ def search(driver,row,conInt):
                 #clicco il primo che è ancora indicizzato
                 elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
                 for element in elements:
-                    print(element.text)
-                    if config['HTML']['Noindexresearch'] not in element.find_element(By.XPATH,".//span").text:
+                    rereprint(f'Elemento della lista risultati: {element.text}')
+                    if config['HTML']['Noindexresearch'] not in element.text:
                         driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
-                if "groupId" in driver.current_url or "journalId" in driver.current_url:
-                    return
+                        if "groupId" in driver.current_url or "journalId" in driver.current_url:
+                            return
+                    rereprint("Tutti gli elementi della lista dei risultati apparentemente sono non idonei")
             except:
                 rereprint("La verfica non è andata a buon fine, provedo")
         # link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
@@ -843,11 +844,12 @@ def search(driver,row,conInt):
                 #clicco il primo che è ancora indicizzato
                 elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
                 for element in elements:
-                    print(element.text)
-                    if config['HTML']['Noindexresearch'] not in element.find_element(By.XPATH,".//span").text:
+                    rereprint(f'Elemento della lista risultati: {element.text}')
+                    if config['HTML']['Noindexresearch'] not in element.text:
                         driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
-                if "groupId" in driver.current_url or "journalId" in driver.current_url:
-                    return
+                        if "groupId" in driver.current_url or "journalId" in driver.current_url:
+                            return
+                rereprint("Tutti gli elementi della lista dei risultati apparentemente sono non idonei")
             except:
                 rereprint("La verfica non è andata a buon fine, provedo")
     #salvo che non ho trovato il link
