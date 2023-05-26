@@ -933,3 +933,4 @@ def webScraping():
 
 
 webScraping()
+driver.close()
