@@ -3,9 +3,6 @@
 import sys, stat
 import os.path
 from os import path
-# from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
-# from PyQt5 import QtGui
-# from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (
      QFileDialog
 )
@@ -23,7 +20,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import csv
-import datetime
 import tkinter as tk
 from tkinter import messagebox, filedialog
 import pyautogui
@@ -33,8 +29,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 import openpyxl
 import xlsxwriter
-# import pyinstaller_versionfile
-# import setuptools
+
 
 
 
@@ -250,9 +245,6 @@ filesCounter=0
 logging.basicConfig(filename="log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
 logging.debug("Debug logging test...")
 
-#######################Funzioni programma
-logging.basicConfig(filename="log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
-logging.debug("Debug logging test...")
 
 #questa funzione serve per reprintare in debug
 def reprint(stringa):
@@ -347,16 +339,6 @@ def controllorows(rows,file, indexsHeaders):
             reprint("Il file " + file + " ha una riga con qualche carattere particolare che non permette lo split della riga come vettore, ma la riconosce come tutta una riga testuale, oppure è stato sbagliato il caratte di divisione del csv\n")
             info("Il file " + file + " ha una riga con qualche carattere particolare che non permette lo split della riga come vettore, ma la riconosce come tutta una riga testuale, oppure è stato sbagliato il caratte di divisione del csv!","End")
             return False
-        #if len(row[0]) != 0 or len(row[1]) != 0 or len(row[2]) != 0 or len(row[3]) == 0:
-            # if len(row[0]) < 1:
-            #     reprint("Il file " + file + " ha una riga senza il titolo della rivista\n")
-            #     return False
-            # if len(row[1]) < 1:
-            #     reprint("Il file " + file + " ha una riga senza il Source ID\n")
-            #     return False
-            # if not isfloat(row[2]):
-            #     reprint("Il file " + file + " ha una riga con MCQ sbagliato\n")
-            #     return False
         if len(row[indexsHeaders[1]]) < 1 and len(row[indexsHeaders[2]]) < 3:
                 reprint("Il file " + file + " ha una riga senza p_issn e e_issn\n")
                 return False
@@ -630,9 +612,6 @@ def long_process():
                             con.execute(query)      
     
 
-
-    # driver.get("https://mathscinet-ams-org.bibliopass.unito.it/mathscinet/search/journal/profile?groupId=33")
-    # time.sleep(5)
     #salvataggio dati
     backupdb()
 
@@ -776,34 +755,7 @@ def search(driver,row,con):
                     rereprint("Tutti gli elementi della lista dei risultati apparentemente sono non idonei")
             except:
                 rereprint("La verfica non è andata a buon fine, provedo")
-        # link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
-        # driver.get(link)
-        # time.sleep(3)
-        # #controllo se la ricerca ha dato un buon risultato
-        # if "groupId" in driver.current_url or "journalId" in driver.current_url:
-        #     return
-        # else:
-        #     #verifico se ci sono stati dei match altrimenti proverò con e_issn
-        #     rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 1 - linea373")
-        #     time.sleep(2)
-        #     try:
-        #         driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text
-        #     except:
-        #         print("Provato la ricerca di un elemento per ricaricare la pagina")
-        #     if "groupId" in driver.current_url or "journalId" in driver.current_url:
-        #         return
-        #     WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
-        #     rereprint("Sono prima dell'if - linea 378")
-        #     if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
-        #         rereprint("Sto per cliccare il primo risultato")
-        #         time.sleep(1)
-        #         if "groupId" in driver.current_url or "journalId" in driver.current_url:
-        #             return
-        #         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
-        #         link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-        #         driver.get(link)
-        #         rereprint(f"Opero driver.get per {link}")
-                # return       
+    
     if(len(row[2])>5):
         if row[2][4] == "-":
             #provo con e_issn se riesco a trovare dei risultati
@@ -835,39 +787,6 @@ def search(driver,row,con):
                     query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+row[0]+"\",\""+row[1]+"\",\""+row[2]+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
                     rereprint(f"Query per rivista {row[0]}\n{query}")
                     con.execute(query)
-        # else:
-    #         rereprint("Vediamo se abbiamo trovato risultati e clicchiamo il primo - parte 2")
-    #         #verifico se ci sono stati dei match altrimenti proverò col titolo
-    #         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
-    #         time.sleep(1)
-    #         if "groupId" in driver.current_url or "journalId" in driver.current_url:
-    #             return
-    #         if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
-    #             rereprint("Sto per cliccare il primo risultato")
-    #             WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
-    #             time.sleep(1)
-    #             link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-    #             driver.get(link)
-    #             rereprint(f"Opero driver.get per {link}")
-    #             return       
-
-    # #provo se col titolo riesco ad ottenere dei risultati
-    # link = config['LINK']['link_search'].replace("???VARIABILE???",row[0])
-    # driver.get(link)
-    # time.sleep(3)
-    # #controllo se la ricerca ha dato un buon risultato
-    # if "groupId" in driver.current_url or "journalId" in driver.current_url:
-    #     return
-    # else:
-    #     #verifico se ci sono stati dei match altrimentisi interromperà
-    #     WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['mactchessearch'])))
-    #     time.sleep(1)
-    #     if config['HTML']['result0serch'] != driver.find_element(By.XPATH,config['HTML']['mactchessearch']).text:
-    #         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['firstitemsearch'])))
-    #         link = driver.find_element(By.XPATH,config['HTML']['firstitemsearch']).get_attribute('href')
-    #         driver.get(link)
-    #         rereprint(f"Opero driver.get per {link}")
-    #         return       
 
 
 
