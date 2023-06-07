@@ -50,7 +50,7 @@ import openpyxl
 import xlsxwriter
 import pyinstaller_versionfile
 import setuptools
-
+from selenium.webdriver.common.keys import Keys
 
 
 
@@ -59,9 +59,9 @@ import setuptools
 #Finestra on top alert
 def info(message, title="ShowInfo"):
     root = tk.Tk()
-    root.overrideredirect(1)
     root.lift()
     root.withdraw()
+    root.iconify()
     messagebox.showinfo(title, message)
     root.destroy()
 # funzioni in generale
@@ -170,6 +170,7 @@ def dividiTH(element):
     return tupla
 
 def dividiHTMLmcq(lista):
+    rereprint(f"Inizio funzione dividiHTMLmcq, la lista:\n{lista}")
     div_terminale = []
     tupla=[]
     for element in lista:
@@ -181,30 +182,62 @@ def dividiHTMLmcq(lista):
 
 def dividiTDmcq(element):
     tupla = []
-    lista = element.split("<td>")
+    if "<td>" in element or "thead" in element or "<th" in element:
+        lista = element.split("<td>")    
+    else: 
+        lista = element.split("<td ")
     #print(f"lista: {lista}")
     for parte in lista:
         #print(type(parte))
         for pezzetto in parte.split("<span>"):
             for pezzettino in pezzetto.split("</span>"):
                 #print(f"Analisi pezzetto\n{pezzettino}")
-                if "class=" not in pezzettino:
-                    if "style=" not in pezzettino:
-                        pezzettino = pezzettino.replace('\\n','')
-                        pezzettino = pezzettino.replace('\\t','')
-                        pezzettino = pezzettino.replace('\n','')
-                        pezzettino = pezzettino.replace('\t','')
-                        pezzettino = pezzettino.replace('</span>','')
-                        pezzettino = pezzettino.replace('\"','')
-                        pezzettino = pezzettino.replace('</tr','')
-                        pezzettino = pezzettino.replace('>','')
-                        pezzettino = pezzettino.replace('<tr','')
-                        pezzettino = pezzettino.replace('</td','')
-                        pezzettino = pezzettino.replace('<td','')
-                        pezzettino = pezzettino.replace('</tbody','')
-                        pezzettino = pezzettino.replace('</td</tr','')
-                        if len(pezzettino.strip())>0:
-                            tupla.append(pezzettino.strip())
+                pezzettino = pezzettino.replace('\\n','')
+                pezzettino = pezzettino.replace('style=','')
+                pezzettino = pezzettino.replace('class=','')
+                pezzettino = pezzettino.replace('\\t','')
+                pezzettino = pezzettino.replace('\n','')
+                pezzettino = pezzettino.replace('\t','')
+                pezzettino = pezzettino.replace('</span>','')
+                pezzettino = pezzettino.replace('\"','')
+                pezzettino = pezzettino.replace('</tr','')
+                pezzettino = pezzettino.replace('>','')
+                pezzettino = pezzettino.replace('<tr','')
+                pezzettino = pezzettino.replace('</td','')
+                pezzettino = pezzettino.replace('<td','')
+                pezzettino = pezzettino.replace('</tbody','')
+                pezzettino = pezzettino.replace('\\n','')
+                pezzettino = pezzettino.replace('\\t','')
+                pezzettino = pezzettino.replace('\n','')
+                pezzettino = pezzettino.replace('\t','')
+                pezzettino = pezzettino.replace('</span>','')
+                pezzettino = pezzettino.replace('\"','')
+                pezzettino = pezzettino.replace('</tr','')
+                pezzettino = pezzettino.replace('>','')
+                pezzettino = pezzettino.replace('<tr','')
+                pezzettino = pezzettino.replace('</td','')
+                pezzettino = pezzettino.replace('<td','')
+                pezzettino = pezzettino.replace('</tbody','')
+                pezzettino = pezzettino.replace('<thead','')
+                pezzettino = pezzettino.replace('/thead','')
+                pezzettino = pezzettino.replace('tbody','')
+                pezzettino = pezzettino.replace('body','')
+                pezzettino = pezzettino.replace('data-v-2666a86c=','')
+                pezzettino = pezzettino.replace('</td</tr','')
+                pezzettino = pezzettino.replace('class=""','')
+                pezzettino = pezzettino.replace('"rightAligned"','')
+                pezzettino = pezzettino.replace('""','')
+                pezzettino = pezzettino.replace('<','')
+                pezzettino = pezzettino.replace('/','')
+                pezzettino = pezzettino.replace('</td</tr','')
+                pezzettino = pezzettino.replace('data-v-2666a86c="" class=','')                                
+                pezzettino = pezzettino.replace('rightAligned','')
+                pezzettino = pezzettino.replace('right','')
+                pezzettino = pezzettino.replace('Aligned','')
+                pezzettino = pezzettino.replace('left','')
+                pezzettino = pezzettino.replace('span','')
+                if len(pezzettino.strip())>0:
+                    tupla.append(pezzettino.strip())
     return tupla
 
 def determinoHeader(header):
@@ -229,6 +262,29 @@ def determinoHeader(header):
                         pezzettino = pezzettino.replace('</th','')
                         pezzettino = pezzettino.replace('<td','')
                         pezzettino = pezzettino.replace('</tbody','')
+                        pezzettino = pezzettino.replace('\\n','')
+                        pezzettino = pezzettino.replace('\\t','')
+                        pezzettino = pezzettino.replace('\n','')
+                        pezzettino = pezzettino.replace('\t','')
+                        pezzettino = pezzettino.replace('</span>','')
+                        pezzettino = pezzettino.replace('\"','')
+                        pezzettino = pezzettino.replace('</tr','')
+                        pezzettino = pezzettino.replace('>','')
+                        pezzettino = pezzettino.replace('<tr','')
+                        pezzettino = pezzettino.replace('</td','')
+                        pezzettino = pezzettino.replace('<td','')
+                        pezzettino = pezzettino.replace('</tbody','')
+                        pezzettino = pezzettino.replace('<thead','')
+                        pezzettino = pezzettino.replace('/thead','')
+                        pezzettino = pezzettino.replace('tbody','')
+                        pezzettino = pezzettino.replace('body','')
+                        pezzettino = pezzettino.replace('data-v-2666a86c=','')
+                        pezzettino = pezzettino.replace('</td</tr','')
+                        pezzettino = pezzettino.replace('class=""','')
+                        pezzettino = pezzettino.replace('"rightAligned"','')
+                        pezzettino = pezzettino.replace('""','')
+                        pezzettino = pezzettino.replace('<','')
+                        pezzettino = pezzettino.replace('/','')
                         pezzettino = pezzettino.replace('</th','')
                         pezzettino = pezzettino.replace('</tr','')
                         if len(pezzettino.strip())>0:
@@ -425,17 +481,18 @@ def caricamentoriviste(con):
             # reprint(rows)
             #carico la riga nel database
             for row in rows:
+                pissn = ""
+                eissn = ""
                 if len(row[indexsHeaders[1]])>4:
                     if row[indexsHeaders[1]][4]!= "-":
                         pissn = row[indexsHeaders[1]][0:4] + "-" + row[indexsHeaders[1]][4:]
-                else:
-                    pissn = row[indexsHeaders[1]]
+                    else:
+                        pissn = row[indexsHeaders[1]]
                 if len(row[indexsHeaders[2]])>4:
                     if row[indexsHeaders[2]][4]!= "-":
                         eissn = row[indexsHeaders[2]][0:4] + "-" + row[indexsHeaders[2]][4:]
-                else:
-                    eissn = row[indexsHeaders[2]]
-
+                    else:
+                        eissn = row[indexsHeaders[2]]
                 query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ row[indexsHeaders[0]].replace(';','') + "\",\"" + pissn + "\",\"" + eissn + "\",\"" + key[0:5] + "\")"
                 rereprint(f"Query:{query}")
                 rereprint(f"row:{row}")
@@ -454,16 +511,18 @@ def caricamentoriviste(con):
                 info(f"Nel file {files[key]} le colonne non erano denominate nel modo in cui ci si aspettava.\nIl programma termina, correggere e riprovare","Error")
                 exit()
             for row in rows:
+                pissn = ""
+                eissn = ""
                 if len(str(row[1]))>4:
                     if str(row[1])[4]!= "-":
                         pissn = str(row[1])[0:4] + "-" + str(row[1])[4:]
-                else:
-                    pissn = str(row[1])
+                    else:
+                        pissn = str(row[1])
                 if len(str(row[2]))>4:
                     if str(row[2])[4]!= "-":
                         eissn = str(row[2])[0:4] + "-" + str(row[2])[4:]
-                else:
-                    eissn = str(row[2])
+                    else:
+                        eissn = str(row[2])
                 query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ str(row[0]).replace(';','') + "\",\"" + pissn + "\",\"" + eissn + "\",\"" + key[0:5] + "\")"
                 rereprint(f"Query:{query}")
                 rereprint(f"row:{row}")
@@ -587,7 +646,13 @@ def long_process(update_ui,conInt):
 #info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
     info = recuperoinfopagina()
     numerototale = len(rows)
-    tempo = round((numerototale*8)/3600)  
+    tempo = round((numerototale*11)/3600)  
+    minuti = (numerototale*11)/3600 - tempo
+    if minuti < 0:
+        tempo = tempo - 1
+        minuti = round(((numerototale*11)/3600 - tempo)*60)    
+    else:
+        minuti = round(minuti*60)
     rereprint(f"rows:{rows}")
     for i in range(0,numerototale):
         row = rows[i]
@@ -595,7 +660,7 @@ def long_process(update_ui,conInt):
         rereprint(f"Row:{row}")
         for j in range(3):
             pyautogui.press('shift')
-        reprint("Stiamo prendendo MCQ.\nTempo stimato: "+ str(tempo)+" ore\nAnalizzati " + str(i+1) + " su " + str(numerototale) + "...\n")
+        reprint("Stiamo prendendo MCQ.\nTempo stimato: "+ str(tempo)+" ore e "+str(minuti)+" minuti \nAnalizzati " + str(i+1) + " su " + str(numerototale) + "...\n")
         update_ui(round((i+1)/numerototale*100))
         
         reprint("Rivista corrente: " + row[0])
@@ -792,7 +857,7 @@ def search(driver,row,conInt):
                 elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
                 for element in elements:
                     rereprint(f'Elemento della lista risultati: {element.text}')
-                    if config['HTML']['Noindexresearch'] not in element.text:
+                    if config['HTML']['Noindexresearch'].lower() not in element.text.lower():
                         driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
                         if "groupId" in driver.current_url or "journalId" in driver.current_url:
                             return
@@ -845,7 +910,7 @@ def search(driver,row,conInt):
                 elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
                 for element in elements:
                     rereprint(f'Elemento della lista risultati: {element.text}')
-                    if config['HTML']['Noindexresearch'] not in element.text:
+                    if config['HTML']['Noindexresearch'].lower() not in element.text.lower():
                         driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
                         if "groupId" in driver.current_url or "journalId" in driver.current_url:
                             return
@@ -899,28 +964,45 @@ def search(driver,row,conInt):
 def get_MCQ(titolo,p_issn,e_issn,conInt):
     #clicco il bottone per far comparire la tabella
     rereprint("Clicco il bottone della tabella")
+    caso = 0
     try:
         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['bottonetabella'])))
-        driver.find_element(By.XPATH,config['HTML']['bottonetabella']).click()
+        driver.find_element(By.XPATH,config['HTML']['bottonetabella']).send_keys(Keys.ENTER)
+        caso = 1
     except Exception as e:
-        rereprint(f"Non è riuscito a cliccare il bottone della tabella\n{e}")
-        with conInt:
-                for i in anniSelezionati:
-                    query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
-                    conInt.execute(query)
-
+        rereprint(f"Non e' riuscito a cliccare il bottone della tabella al primo tentativo\n{e}")
+        try:
+            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['bottonetabellasecondo'])))
+            driver.find_element(By.XPATH,config['HTML']['bottonetabellasecondo']).send_keys(Keys.ENTER)
+            caso = 2
+        except Exception as e:
+            rereprint(f"Non e' riuscito a cliccare il bottone della tabella al secondo tentativo\n{e}")
+            with conInt:
+                    for i in anniSelezionati:
+                        query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
+                        conInt.execute(query)
+            caso = 0
+            return
     #prendo gli ultimi cinque 5 anni mcq
     rereprint(f"Prendo gli MCQ per {p_issn}")
     time.sleep(2)
     try:
         rereprint(f"Controllo l'header della tabella {p_issn}")
-        WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, "//h5[contains(text(),'MCQ for')]//..//table/thead")))
-        testa = driver.find_element(By.XPATH,config["HTML"]["headerTabellamcq"])
+        if caso == 2:
+            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['headerTabellamcq2'])))
+            testa = driver.find_element(By.XPATH,config["HTML"]["headerTabellamcq2"])
+        else:
+            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['headerTabellamcq'])))
+            testa = driver.find_element(By.XPATH,config["HTML"]["headerTabellamcq"])
     except Exception as e:
         try:
             rereprint(f"Controllo l'header della tabella {p_issn}")
-            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['headerTabellamcq'])))
-            testa = driver.find_element(By.XPATH,config["HTML"]["headerTabellamcq"])
+            if caso == 2:
+                WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['headerTabellamcq2'])))
+                testa = driver.find_element(By.XPATH,config["HTML"]["headerTabellamcq2"])
+            else:
+                WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['headerTabellamcq'])))
+                testa = driver.find_element(By.XPATH,config["HTML"]["headerTabellamcq"])
         except:
             rereprint(f"Non ho trovato l'header della tabella {p_issn}")
             rereprint("Non sono riuscito a trovare il bottone della tabella, qualcosa è andato storto.")
@@ -929,17 +1011,18 @@ def get_MCQ(titolo,p_issn,e_issn,conInt):
                         query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
                         conInt.execute(query)
             return
-
     header = testa.get_attribute('innerHTML')
     #print(f"Header\n{header}")
     header = determinoHeader(header)
     #print(f"header\n{header}")
-    element = driver.find_element(By.XPATH,config["HTML"]["tabellaMCQ"])
+    if caso == 2:
+        element = driver.find_element(By.XPATH,config["HTML"]["tabellaMCQ2"])
+    else:
+        element = driver.find_element(By.XPATH,config["HTML"]["tabellaMCQ"])
     HTML = str(element.get_attribute('innerHTML'))
     #print(HTML)
     #time.sleep(10)
-    lista = HTML.split("<tr>")
-    #print(f"Lista prima di divsione\n{lista}")
+    lista = HTML.split("tr")
     lista = dividiHTMLmcq(lista)
     rereprint("Ho completato la presa dati per questa rivista, li salvo nel db")
     for i in range(0,len(header)):
@@ -948,6 +1031,14 @@ def get_MCQ(titolo,p_issn,e_issn,conInt):
         if header[i] == "MCQ":
             index_mcq = i
     anniTrovati = []
+    rereprint(f"Lista dopo di divisione per la rivista {titolo} \n{lista}")
+    if lista == []:
+        rereprint(f"Qualcosa e' andato storto, lista vuota!")
+        with conInt:
+                    for i in anniSelezionati:
+                        query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
+                        conInt.execute(query)
+        return
     for element in lista:
         anniTrovati.append(element[index_anno])
     for element in lista:
@@ -957,12 +1048,12 @@ def get_MCQ(titolo,p_issn,e_issn,conInt):
                 query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+str(element[index_mcq])+",\""+element[index_anno]+"\");"
                 rereprint(f"Query per rivista {titolo}\n{query}")
                 conInt.execute(query)
-            for anno in anniSelezionati:
-                if str(anno) not in anniTrovati:
-                    with conInt:
-                        query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
-                        rereprint(f"Query per rivista {titolo}\n{query}")
-                        conInt.execute(query)
+    for anno in anniSelezionati:
+        if str(anno) not in anniTrovati:
+            with conInt:
+                query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                rereprint(f"Query per rivista {titolo}\n{query}")
+                conInt.execute(query)
 
 
     rereprint("Da fare la funzione che verifica che i dati acquisiti abbiano senso?")
@@ -1350,7 +1441,7 @@ class MainWindow(QMainWindow):
         self.selectedBrowser="None"
         self.selectedOutput= "None"
         
-        self.setStyleSheet("background-color: black;")
+        self.setStyleSheet("background-color: rgb(7, 98, 134);")
         self.setWindowTitle("University of Turin - Department of Mathematics \"G. Peano\" - MATHSCINET WebScraping")
         self.setWindowIcon(QtGui.QIcon('./risorse/dip_mate.png'))
         # self.setMinimumSize(1600, 900)
@@ -1358,7 +1449,7 @@ class MainWindow(QMainWindow):
         #Parte oggetti
 
         self.finestraPrincipale = QTabWidget()
-        self.finestraPrincipale.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: red;color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
+        self.finestraPrincipale.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: rgb(8, 33, 53);color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
             width: 100px;
         }
 
@@ -1449,14 +1540,14 @@ class MainWindow(QMainWindow):
 
 
         
-        widgetGrigliaSecondaria.setStyleSheet("QWidget""{""border:2px solid red;border-radius: 5%;margin:5px;""}""")
+        widgetGrigliaSecondaria.setStyleSheet("QWidget""{""border:2px solid rgb(8, 33, 53);border-radius: 5%;margin:5px;""}""")
         #widgetGrigliaSecondaria.setMinimumSize(630,600)
         layout_GrigliaSecondaria = QGridLayout(widgetGrigliaSecondaria)
 
         #elementi nella griglia secondaria
         self.lista = QComboBox()
         self.lista.addItems(["Nessuno","Edge","Chrome","Mozilla Firefox"])
-        self.lista.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.lista.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: rgb(8, 33, 53);""}")
         self.lista.setFont(QFont('Times', 9))
         self.lista.currentTextChanged.connect(lambda: self.defaultDriver())
         bottone_cercaDriver = Bottone("Cerca Driver")
@@ -1498,12 +1589,12 @@ class MainWindow(QMainWindow):
 
         self.listaSizeText = QComboBox()
         self.listaSizeText.addItems(["Modifica dimensione testo Interfaccia","8","9","10","11","12","14"])
-        self.listaSizeText.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.listaSizeText.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: rgb(8, 33, 53);""}")
         self.listaSizeText.setFont(QFont('Times', 9))
         self.listaSizeText.currentTextChanged.connect(lambda: self.chageSizeText())
         self.filesArea = QComboBox()
         self.filesArea.addItems(["Modifica Area lista Files","50px","100px","150px","200px", "300px","400px"])
-        self.filesArea.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: red;""}")
+        self.filesArea.setStyleSheet("QComboBox::drop-down""{""border: 0px;""}""QComboBox::down-arrow""{""image:url(./risorse/freccia.png);width: 14px;height:14px;""}""QComboBox""{""background-color: white; border-color: rgb(87, 86, 86) 2px solid; border-radius: 0%;font-weight: 400;""}""QComboBox::hover""{""border-color: rgb(8, 33, 53);""}")
         self.filesArea.setFont(QFont('Times', 9))
         self.filesArea.currentTextChanged.connect(lambda: self.chageAreaFiles())
         box_bottone_sizeText = BoxNMS("",[self.listaSizeText,self.filesArea])
@@ -1555,10 +1646,10 @@ class MainWindow(QMainWindow):
 
         widgetTabs = QWidget()
         layout_widgetTabs = QVBoxLayout(widgetTabs)
-        widgetTabs.setStyleSheet("QWidget""{""border:2px solid red;border-radius: 5%;margin:5px;""}""")
+        widgetTabs.setStyleSheet("QWidget""{""border:2px solid rgb(8, 33, 53);border-radius: 5%;margin:5px;""}""")
         #widgetTabs.setMinimumSize(630,600)
         widgetTabsinside = QTabWidget()
-        widgetTabsinside.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: red;color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
+        widgetTabsinside.setStyleSheet("""QTabWidget{font-weight: 700;}QTabBar::tab:selected{background: rgb(8, 33, 53);color:white;}QWidget{border:auto;}QTabBar::scroller { /* the width of the scroll buttons */
             width: 100px;
         }
 
@@ -1607,7 +1698,7 @@ class MainWindow(QMainWindow):
         self.etichetta_sopra = QLabel("")
         self.etichetta_sopra.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: black;padding:5px;font-weight: 700;""}")
         self.etichetta_sopra.setFont(QFont('Times', 11))
-        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Durante tutta la procedura lo schermo deve rimanere acceso.</li></ul></html>")
+        self.etichetta_warning=QLabel("Mentre il Webscraping è in corso: <html><ul><li> Non mettere in modalità sleep il computer</li><li> Non chiudere lo schermo (se è un portatile)</li><li>Bloccare il computer e spegnere lo schermo potrebbe portare<br>all'interruzione del programma.</li></ul></html>")
         self.etichetta_warning.setStyleSheet("QLabel""{""border-color: rgb(214, 213, 213);color: red;padding:5px;font-weight: 500;""}")
         self.etichetta_warning.setFont(QFont('Times', 11))
         self.pbar = QProgressBar()
@@ -1657,14 +1748,14 @@ class MainWindow(QMainWindow):
             driver.close()
             sys.exit("Chiusura Improvvisa attivata")
         numerototale = len(rows)
-        tempo = (numerototale*8)/3600
+        tempo = (numerototale * 11)/3600
         ora = datetime.datetime.now()     
         
         if tempo < 1:
-            tempo = round((numerototale*8)/60)
+            tempo = round((numerototale *11)/60)
             self.etichetta_sopra.setText("Stiamo acquisendo i MCQ.\nTempo stimato (connessione media): "+ str(tempo)+" minuti\nOra inizio: "+ ora.strftime("%X"))
         else:
-            minuti = round((numerototale*8)/60) - 60*int(tempo)
+            minuti = round((numerototale*11)/60) - 60*int(tempo)
             if minuti < 0:
                 minuti = (-1)*minuti
             self.etichetta_sopra.setText("Stiamo acquisendo i MCQ. \nTempo stimato: (connessione media)"+ str(int(tempo))+" ore e " + str(minuti) + "minuti\nIn caso di connessione veloce dimezzare il tempo stimato. \nOra inizio: "+ ora.strftime("%X"))

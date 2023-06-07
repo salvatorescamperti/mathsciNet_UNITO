@@ -166,50 +166,52 @@ def dividiTDmcq(element):
         for pezzetto in parte.split("<span"):
             for pezzettino in pezzetto.split("</span>"):
                 #print(f"Analisi pezzetto\n{pezzettino}")
-                if "class=" not in pezzettino:
-                    if "style=" not in pezzettino:
-                        pezzettino = pezzettino.replace('\\n','')
-                        pezzettino = pezzettino.replace('\\t','')
-                        pezzettino = pezzettino.replace('\n','')
-                        pezzettino = pezzettino.replace('\t','')
-                        pezzettino = pezzettino.replace('</span>','')
-                        pezzettino = pezzettino.replace('\"','')
-                        pezzettino = pezzettino.replace('</tr','')
-                        pezzettino = pezzettino.replace('>','')
-                        pezzettino = pezzettino.replace('<tr','')
-                        pezzettino = pezzettino.replace('</td','')
-                        pezzettino = pezzettino.replace('<td','')
-                        pezzettino = pezzettino.replace('</tbody','')
-                        pezzettino = pezzettino.replace('\\n','')
-                        pezzettino = pezzettino.replace('\\t','')
-                        pezzettino = pezzettino.replace('\n','')
-                        pezzettino = pezzettino.replace('\t','')
-                        pezzettino = pezzettino.replace('</span>','')
-                        pezzettino = pezzettino.replace('\"','')
-                        pezzettino = pezzettino.replace('</tr','')
-                        pezzettino = pezzettino.replace('>','')
-                        pezzettino = pezzettino.replace('<tr','')
-                        pezzettino = pezzettino.replace('</td','')
-                        pezzettino = pezzettino.replace('<td','')
-                        pezzettino = pezzettino.replace('</tbody','')
-                        pezzettino = pezzettino.replace('<thead','')
-                        pezzettino = pezzettino.replace('/thead','')
-                        pezzettino = pezzettino.replace('tbody','')
-                        pezzettino = pezzettino.replace('body','')
-                        pezzettino = pezzettino.replace('data-v-2666a86c=','')
-                        pezzettino = pezzettino.replace('</td</tr','')
-                        pezzettino = pezzettino.replace('class=""','')
-                        pezzettino = pezzettino.replace('"rightAligned"','')
-                        pezzettino = pezzettino.replace('""','')
-                        pezzettino = pezzettino.replace('<','')
-                        pezzettino = pezzettino.replace('/','')
-                        pezzettino = pezzettino.replace('</td</tr','')
-                        pezzettino = pezzettino.replace('data-v-2666a86c="" class=','')
-                        pezzettino = pezzettino.replace('"rightAligned"','')
-                        pezzettino = pezzettino.replace('""','')
-                        pezzettino = pezzettino.replace('<','')
-                        if len(pezzettino.strip())>0:
-                            tupla.append(pezzettino.strip())
+                pezzettino = pezzettino.replace('\\n','')
+                pezzettino = pezzettino.replace('style=','')
+                pezzettino = pezzettino.replace('class=','')
+                pezzettino = pezzettino.replace('\\t','')
+                pezzettino = pezzettino.replace('\n','')
+                pezzettino = pezzettino.replace('\t','')
+                pezzettino = pezzettino.replace('</span>','')
+                pezzettino = pezzettino.replace('\"','')
+                pezzettino = pezzettino.replace('</tr','')
+                pezzettino = pezzettino.replace('>','')
+                pezzettino = pezzettino.replace('<tr','')
+                pezzettino = pezzettino.replace('</td','')
+                pezzettino = pezzettino.replace('<td','')
+                pezzettino = pezzettino.replace('</tbody','')
+                pezzettino = pezzettino.replace('\\n','')
+                pezzettino = pezzettino.replace('\\t','')
+                pezzettino = pezzettino.replace('\n','')
+                pezzettino = pezzettino.replace('\t','')
+                pezzettino = pezzettino.replace('</span>','')
+                pezzettino = pezzettino.replace('\"','')
+                pezzettino = pezzettino.replace('</tr','')
+                pezzettino = pezzettino.replace('>','')
+                pezzettino = pezzettino.replace('<tr','')
+                pezzettino = pezzettino.replace('</td','')
+                pezzettino = pezzettino.replace('<td','')
+                pezzettino = pezzettino.replace('</tbody','')
+                pezzettino = pezzettino.replace('<thead','')
+                pezzettino = pezzettino.replace('/thead','')
+                pezzettino = pezzettino.replace('tbody','')
+                pezzettino = pezzettino.replace('body','')
+                pezzettino = pezzettino.replace('data-v-2666a86c=','')
+                pezzettino = pezzettino.replace('</td</tr','')
+                pezzettino = pezzettino.replace('class=""','')
+                pezzettino = pezzettino.replace('"rightAligned"','')
+                pezzettino = pezzettino.replace('""','')
+                pezzettino = pezzettino.replace('<','')
+                pezzettino = pezzettino.replace('/','')
+                pezzettino = pezzettino.replace('</td</tr','')
+                pezzettino = pezzettino.replace('data-v-2666a86c="" class=','')                                
+                pezzettino = pezzettino.replace('rightAligned','')
+                pezzettino = pezzettino.replace('right','')
+                pezzettino = pezzettino.replace('Aligned','')
+                pezzettino = pezzettino.replace('left','')
+                pezzettino = pezzettino.replace('span','')
+                if len(pezzettino.strip())>0:
+                    tupla.append(pezzettino.strip())
     return tupla
 
 def determinoHeader(header):
@@ -259,10 +261,28 @@ def determinoHeader(header):
                         pezzettino = pezzettino.replace('/','')
                         pezzettino = pezzettino.replace('</th','')
                         pezzettino = pezzettino.replace('</tr','')
+                        pezzettino = pezzettino.replace('"rightAligned"','')
+                        pezzettino = pezzettino.replace('""','')
+                        pezzettino = pezzettino.replace('<','')
+                        pezzettino = pezzettino.replace('/','')
+                        pezzettino = pezzettino.replace('</td</tr','')
+                        pezzettino = pezzettino.replace('data-v-2666a86c="" class=','')                                
+                        pezzettino = pezzettino.replace('rightAligned','')
+                        pezzettino = pezzettino.replace('right','')
+                        pezzettino = pezzettino.replace('Aligned','')
+                        pezzettino = pezzettino.replace('left','')
+                        pezzettino = pezzettino.replace('span','')
                         if len(pezzettino.strip())>0:
                             tupla.append(pezzettino.strip())
     return tupla
 
+#funzione che controlla se è un numero
+def isfloat(testo):
+    try:
+        float(testo)
+        return True
+    except:
+        return False
 #variabili globali
 pyautogui.FAILSAFE = False
 
@@ -298,7 +318,10 @@ rows=[]
 filesCounter=0
 
 #######################Funzioni programma
-logging.basicConfig(filename="log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
+f = open(f"{determinopathini()}/log.txt", "w")
+
+f.close()
+logging.basicConfig(filename=f"{determinopathini()}/log.txt", level=logging.DEBUG,format="%(asctime)s \n\tMessage: %(message)s", filemode="w")
 logging.debug("Debug logging test...")
 
 
@@ -503,16 +526,18 @@ def caricamentoriviste(con):
                 info(f"Nel file {files[key]} le colonne non erano denominate nel modo in cui ci si aspettava.\nIl programma termina, correggere e riprovare","Error")
                 exit()
             for row in rows:
+                pissn = ""
+                eissn = ""
                 if len(str(row[1]))>4:
                     if str(row[1])[4]!= "-":
                         pissn = str(row[1])[0:4] + "-" + str(row[1])[4:]
-                else:
-                    pissn = str(row[1])
+                    else:
+                        pissn = str(row[1])
                 if len(str(row[2]))>4:
                     if str(row[2])[4]!= "-":
                         eissn = str(row[2])[0:4] + "-" + str(row[2])[4:]
-                else:
-                    eissn = str(row[2])
+                    else:
+                        eissn = str(row[2])
                 query = "INSERT INTO general (title,p_issn,e_issn,sector) values(\""+ str(row[0]).replace(';','') + "\",\"" + pissn + "\",\"" + eissn + "\",\"" + key[0:5] + "\")"
                 rereprint(f"Query:{query}")
                 rereprint(f"row:{row}")
@@ -636,10 +661,11 @@ def long_process():
 #info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
     info = recuperoinfopagina()
     numerototale = len(rows)
-    tempo = round((numerototale*8)/3600)
-    minuti = (numerototale*8)/3600 - tempo
+    tempo = round((numerototale*11)/3600)
+    minuti = (numerototale*11)/3600 - tempo
     if minuti < 0:
-        minuti = round((-1)*minuti*60)
+        tempo = tempo - 1
+        minuti = round(((numerototale*11)/3600 - tempo)*60)
     else:
         minuti = round(minuti*60)
     rereprint(f"rows:{rows}")
@@ -811,13 +837,13 @@ def search(driver,row,con):
                 elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
                 for element in elements:
                     rereprint(f'Elemento della lista risultati: {element.text}')
-                    if config['HTML']['Noindexresearch'] not in element.text:
+                    if config['HTML']['Noindexresearch'].lower() not in element.text.lower():
                         driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
                         if "groupId" in driver.current_url or "journalId" in driver.current_url:
                             return
                     rereprint("Tutti gli elementi della lista dei risultati apparentemente sono non idonei")
             except:
-                rereprint("La verfica non è andata a buon fine, provedo")
+                rereprint("La verfica non è andata a buon fine")
     
     if(len(row[2])>5):
         if row[2][4] == "-":
@@ -837,7 +863,7 @@ def search(driver,row,con):
                 elements = driver.find_elements(By.XPATH,config['HTML']['MoreresultsSearch'])
                 for element in elements:
                     rereprint(f'Elemento della lista risultati: {element.text}')
-                    if config['HTML']['Noindexresearch'] not in element.text:
+                    if config['HTML']['Noindexresearch'].lower() not in element.text.lower():
                         driver.get(element.find_element(By.XPATH,".//a").get_attribute('href'))
                         if "groupId" in driver.current_url or "journalId" in driver.current_url:
                             return
@@ -928,24 +954,29 @@ def get_MCQ(titolo,p_issn,e_issn,con):
             index_mcq = i
     anniTrovati = []
     rereprint(f"Lista dopo di divisione per la rivista {titolo} \n{lista}")
+    if lista == []:
+        rereprint(f"Qualcosa e' andato storto, lista vuota!")
+        with con:
+                    for i in anniSelezionati:
+                        query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+"Not found"+",\""+str(i)+"\");"
+                        con.execute(query)
+        return
     for element in lista:
         anniTrovati.append(element[index_anno])
     for element in lista:
-        if element[index_anno] != "" and element[index_mcq] != "" and element[index_anno] != NULL and element[index_mcq] != NULL:
+        if isfloat(element[index_anno]) and isfloat(element[index_mcq]):
             with con:
                 
                 query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+str(element[index_mcq])+",\""+element[index_anno]+"\");"
                 rereprint(f"Query per rivista {titolo}\n{query}")
                 con.execute(query)
-            for anno in anniSelezionati:
-                if str(anno) not in anniTrovati:
-                    with con:
-                        query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
-                        rereprint(f"Query per rivista {titolo}\n{query}")
-                        con.execute(query)
+    for anno in anniSelezionati:
+        if str(anno) not in anniTrovati:
+            with con:
+                query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\",\""+"Not Found"+"\",\""+str(anno)+"\");"
+                rereprint(f"Query per rivista {titolo}\n{query}")
+                con.execute(query)
 
-
-    rereprint("Da fare la funzione che verifica che i dati acquisiti abbiano senso?")
 
 
 #questa funzione serve per trovare il link rispetto all'issn corrente
