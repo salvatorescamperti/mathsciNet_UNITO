@@ -40,17 +40,17 @@ import xlsxwriter
 #Finestra on top alert
 def info(message, title="ShowInfo"):
     root = tk.Tk()
-    root.overrideredirect(1)
     root.lift()
     root.withdraw()
+    root.iconify()
     messagebox.showinfo(title, message)
     root.destroy()
 
 def chiedisino(message, title="ShowInfo"):
     root = tk.Tk()
-    root.overrideredirect(1)
     root.lift()
     root.withdraw()
+    root.iconify()
     risposta = messagebox.askyesno(title, message)
     root.destroy()
     return risposta
@@ -636,7 +636,12 @@ def long_process():
 #info sarà un vettore che conterra issn e il link associato, ad esempio info[0] = [issn_0,link_0]
     info = recuperoinfopagina()
     numerototale = len(rows)
-    tempo = round((numerototale*8)/3600)  
+    tempo = round((numerototale*8)/3600)
+    minuti = (numerototale*8)/3600 - tempo
+    if minuti < 0:
+        minuti = round((-1)*minuti*60)
+    else:
+        minuti = round(minuti*60)
     rereprint(f"rows:{rows}")
     for i in range(0,numerototale):
         row = rows[i]
@@ -644,7 +649,7 @@ def long_process():
         rereprint(f"Row:{row}")
         for j in range(3):
             pyautogui.press('shift')
-        reprint("Stiamo prendendo MCQ.\nTempo stimato: "+ str(tempo)+" ore\nAnalizzati " + str(i+1) + " su " + str(numerototale) + "...\n")
+        reprint("Stiamo prendendo MCQ.\nTempo stimato: "+ str(tempo)+" ore e "+ str(minuti) +"minuti \nAnalizzati " + str(i+1) + " su " + str(numerototale) + "...\n")
          
         reprint("Rivista corrente: " + row[0])
         if len(row[1])>5:
@@ -856,7 +861,7 @@ def get_MCQ(titolo,p_issn,e_issn,con):
     caso = 0
     try:
         WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['bottonetabella'])))
-        driver.find_element(By.XPATH,config['HTML']['bottonetabella']).click()
+        driver.find_element(By.XPATH,config['HTML']['bottonetabella']).send_keys(Keys.ENTER)
         caso = 1
     except Exception as e:
         rereprint(f"Non e' riuscito a cliccare il bottone della tabella al primo tentativo\n{e}")
