@@ -844,30 +844,31 @@ def validateLogin(username, password,driver,config):
 
 
     return None
+
 def loginheadless(driver,config):
     #window
     tkWindow = tk.Tk()  
     # tkWindow.geometry('400x150')  
     tkWindow.title('Log-in UNITO request')
-    tk.Label(tkWindow, text=f"Controllare che il link di log-in UNITO è il seguente: {driver.current_url}",fg='#f00').grid(row=0, columnspan=2)
+    tk.Label(tkWindow, text=f"Controllare che il link di log-in UNITO è il seguente:",font='Helvetica 10 bold').grid(row=0, columnspan=2)
+    tk.Label(tkWindow, text=f"{driver.current_url}",fg='#f00',font='Helvetica 12 bold').grid(row=1, columnspan=2)
     #username label and text entry box
-    usernameLabel = tk.Label(tkWindow, text="User Name").grid(row=1, column=0)
+    usernameLabel = tk.Label(tkWindow, text="User Name",fg='#05214a',font='Helvetica 12 bold').grid(row=2, column=0)
     username = tk.StringVar()
-    usernameEntry = tk.Entry(tkWindow, textvariable=username).grid(row=1, column=1)  
+    usernameEntry = tk.Entry(tkWindow, textvariable=username).grid(row=2, column=1)  
 
     #password label and password entry box
-    passwordLabel = tk.Label(tkWindow,text="Password").grid(row=2, column=0)  
+    passwordLabel = tk.Label(tkWindow,text="Password",fg='#05214a',font='Helvetica 12 bold').grid(row=3, column=0)  
     password = tk.StringVar()
-    passwordEntry = tk.Entry(tkWindow, textvariable=password, show='*').grid(row=2, column=1)
+    passwordEntry = tk.Entry(tkWindow, textvariable=password, show='*').grid(row=3, column=1)
     
     valiDateLogin = partial(validateLogin, username, password,driver,config)
 
     #login button
-    loginButton = tk.Button(tkWindow, text="Login", command=valiDateLogin).grid(row=4, column=0)  
-    closeButton = tk.Button(tkWindow, text="Close", command=lambda:tkWindow.destroy()).grid(row=5, column=0)  
+    loginButton = tk.Button(tkWindow, text="Login", fg='#05214a',bg='#fff',font='Helvetica 10 bold',command=valiDateLogin).grid(row=4, column=0)  
+    closeButton = tk.Button(tkWindow, text="Close",fg='#f00',bg='#fff',font='Helvetica 10 bold', command=lambda:tkWindow.destroy()).grid(row=4, column=1)  
 
     tkWindow.mainloop()
-
 
 def loginmathscinet(driver,config):
     driver.get(config['LINK']['pagina_iniziale'])
