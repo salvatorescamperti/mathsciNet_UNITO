@@ -54,6 +54,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import EdgeOptions
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.edge.service import Service
+from functools import partial
 
 
 #Finestra on top alert
@@ -781,8 +782,9 @@ class Worker(QObject):
         #cur serve per stampare i dati del db
         curInt = conInt.cursor()
         rereprint(f"Sono in Run")
-        driver.maximize_window()
-        driver.minimize_window()
+        if config['DEFAULT']['headless'] == "False":
+            driver.maximize_window()
+            driver.minimize_window()
         global rows
         try:
             i=0
@@ -812,12 +814,69 @@ class Worker(QObject):
         self.closesome.emit(100)
         sys.exit(0)
         
+
+
+def validateLogin(username, password,driver,config):
+    url_corrente = driver.current_url
+    rereprint("Siamo in validateLogin")
+    rereprint(f"Link corrente: {driver.current_url}")
+    # driver.get_screenshot_as_file("screenshot.png")
+    driver.find_element(By.XPATH,config['LINK']['username_unito']).clear()
+    driver.find_element(By.XPATH,config['LINK']['password_unito']).clear()
+    driver.find_element(By.XPATH,config['LINK']['username_unito']).send_keys(str(username.get()))
+    driver.find_element(By.XPATH,config['LINK']['password_unito']).send_keys(str(password.get()))
+    try:
+        driver.find_element(By.XPATH,config['LINK']['accedi_unito_ita']).send_keys(Keys.ENTER)
+    except:
+        driver.find_element(By.XPATH,config['LINK']['accedi_unito_eng']).send_keys(Keys.ENTER)
+    time.sleep(tempo_attesa_caricamento)
+    rereprint(f"Link corrente: {driver.current_url}")
+    if "https://idp.unito.it/idp/profile/SAML2/POST/SSO?execution=e" in driver.current_url:
+        info("User o password sbagliati, ritentare")
+    elif driver.current_url == "https://mathscinet-ams-org.bibliopass.unito.it/mathscinet/publications-search":
+        info("Accesso a Mathscinet Effettuato con successo, chiudere finestra log in e continuare con la procedura!!")
+    else:
+        info("Condizione inaspettata, termino. Se i problemi persistono provare variabile headless in file varibili.ini con valore False")
+        driver.quit()
+        exit()
+
     
+
+
+    return None
+def loginheadless(driver,config):
+    #window
+    tkWindow = tk.Tk()  
+    # tkWindow.geometry('400x150')  
+    tkWindow.title('Log-in UNITO request')
+    tk.Label(tkWindow, text=f"Controllare che il link di log-in UNITO è il seguente: {driver.current_url}",fg='#f00').grid(row=0, columnspan=2)
+    #username label and text entry box
+    usernameLabel = tk.Label(tkWindow, text="User Name").grid(row=1, column=0)
+    username = tk.StringVar()
+    usernameEntry = tk.Entry(tkWindow, textvariable=username).grid(row=1, column=1)  
+
+    #password label and password entry box
+    passwordLabel = tk.Label(tkWindow,text="Password").grid(row=2, column=0)  
+    password = tk.StringVar()
+    passwordEntry = tk.Entry(tkWindow, textvariable=password, show='*').grid(row=2, column=1)
     
+    valiDateLogin = partial(validateLogin, username, password,driver,config)
+
+    #login button
+    loginButton = tk.Button(tkWindow, text="Login", command=valiDateLogin).grid(row=4, column=0)  
+    closeButton = tk.Button(tkWindow, text="Close", command=lambda:tkWindow.destroy()).grid(row=5, column=0)  
+
+    tkWindow.mainloop()
 
 
 def loginmathscinet(driver,config):
-    driver.get(config['LINK']['lista'])
+    driver.get(config['LINK']['pagina_iniziale'])
+    if config['DEFAULT']['headless']== "True":
+        if config['LINK']['log_in_unito_parziale']in driver.current_url:
+            loginheadless(driver,config)
+        else:
+            rereprint("Accesso a Mathscinet Effettuato con successo!!")
+            return True
     
 
 
@@ -981,16 +1040,30 @@ def webScraping():
         rereprint(f"Variabili globali inizio programma:\nBrowser: {browser}\ndriverPath: {driverPath}\nfiles: {files}\n outputPath={outputPath}\n anniSelezionati={anniSelezionati}")
         if (browser == "Edge"):
             try:
-                # options = EdgeOptions()
-                # options.add_argument("--headless")
-                Driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install(),hide_command_prompt_window=True))
+                if config['DEFAULT']['headless'] == "True":
+                    options = EdgeOptions()
+                    options.add_argument("--headless")
+                    options.add_argument("--window-size=1920x1080")
+                    options.add_argument('--disable-gpu')
+                    options.add_argument('--no-sandbox')
+                    options.add_argument("--start-maximized")
+                    Driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()),options=options)
+                else:
+                    Driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
             except:
                 Driver = webdriver.Edge(driverPath)
         elif (browser == "Chrome"):
             try:
-                # options = ChromeOptions()
-                # options.add_argument("--headless")
-                Driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install(),hide_command_prompt_window=True))
+                if config['DEFAULT']['headless'] == "True":
+                    options = ChromeOptions()
+                    options.add_argument("--headless")
+                    options.add_argument("--window-size=1920x1080")
+                    options.add_argument('--disable-gpu')
+                    options.add_argument('--no-sandbox')
+                    options.add_argument("--start-maximized")
+                    Driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=options)
+                else:
+                    Driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
             except:
                 Driver = webdriver.Chrome(driverPath) 
         elif (browser == "Mozilla Firefox"):
@@ -1587,7 +1660,7 @@ class MainWindow(QMainWindow):
         self.pbar.setFont(QFont('Times', 11))
         # setting alignment to center
         self.pbar.setAlignment(Qt.AlignCenter)
-        self.button = Bottone("Dopo aver fatto l'accesso (se richiesto) Start WebScraping")
+        self.button = Bottone("Dopo aver fatto l'accesso (se richiesto) Start WebScraping.")
         self.buttonCI = Bottone("Termina")
         
         w= Box("Pagina Finale",[self.etichetta_files,self.etichetta_sopra,self.etichetta_warning,self.pbar,self.button.bottone,self.buttonCI.bottone])
@@ -1619,10 +1692,10 @@ class MainWindow(QMainWindow):
     
     def execute(self):
         rereprint(f"In function execute")
-        try:
-            # time.sleep(5)
-            WebDriverWait(driver,15).until(EC.presence_of_element_located((By.XPATH, config['HTML']['testolista'])))
-        except:
+        # time.sleep(5)
+        if driver.current_url == config['LINK']['pagina_iniziale']:
+            rereprint("Pagina iniziale riconosciuta")
+        else:
             rereprint("Non riconosciuta la prima pagina di inizio, termino!!!")
             driver.close()
             sys.exit("Chiusura Improvvisa attivata")
