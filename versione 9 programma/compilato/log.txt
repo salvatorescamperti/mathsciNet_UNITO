@@ -1,0 +1,1218 @@
+2024-06-30 17:47:13,974 
+	Message: Debug logging test...
+2024-06-30 17:47:13,974 
+	Message: Richiesta selezione files per settore MAT01
+2024-06-30 17:47:19,028 
+	Message: Richiesta selezione files per settore MAT02
+2024-06-30 17:47:20,332 
+	Message: Richiesta selezione files per settore MAT03
+2024-06-30 17:47:20,977 
+	Message: Richiesta selezione files per settore MAT04
+2024-06-30 17:47:21,419 
+	Message: Richiesta selezione files per settore MAT05
+2024-06-30 17:47:21,850 
+	Message: Richiesta selezione files per settore MAT06
+2024-06-30 17:47:22,531 
+	Message: Richiesta selezione files per settore MAT07
+2024-06-30 17:47:23,145 
+	Message: Richiesta selezione files per settore MAT08
+2024-06-30 17:47:23,664 
+	Message: Richiesta selezione files per settore MAT09
+2024-06-30 17:47:31,756 
+	Message: Variabili globali inizio programma:
+Browser: Edge
+driverPath: 
+files: {'MAT01': 'C:/Users/scamp/Downloads/Lista_MAT03PROVAVERS9.xlsx'}
+ outputPath=C:/Users/scamp/Desktop/tortoise/mathsciNet_UNITO/versione 8 programma
+ anniSelezionati=['2019', '2020', '2021', '2022']
+2024-06-30 17:47:31,757 
+	Message: ====== WebDriver manager ======
+2024-06-30 17:47:32,174 
+	Message: Get LATEST edgedriver version for 126.0.2592 Edge
+2024-06-30 17:47:32,174 
+	Message: Starting new HTTPS connection (1): msedgedriver.azureedge.net:443
+2024-06-30 17:47:32,330 
+	Message: https://msedgedriver.azureedge.net:443 "GET /LATEST_RELEASE_126_WINDOWS HTTP/1.1" 200 32
+2024-06-30 17:47:32,739 
+	Message: Driver [C:\Users\scamp\.wdm\drivers\edgedriver\win64\126.0.2592\msedgedriver.exe] found in cache
+2024-06-30 17:47:35,256 
+	Message: Starting new HTTP connection (1): localhost:59630
+2024-06-30 17:47:35,926 
+	Message: http://localhost:59630 "POST /session HTTP/1.1" 200 853
+2024-06-30 17:47:36,657 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:47:47,676 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/window/maximize HTTP/1.1" 200 51
+2024-06-30 17:47:47,840 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/window/minimize HTTP/1.1" 200 49
+2024-06-30 17:47:47,842 
+	Message: files:
+{'MAT01': 'C:/Users/scamp/Downloads/Lista_MAT03PROVAVERS9.xlsx'}
+2024-06-30 17:47:47,842 
+	Message: Apertura DB, generazioni delle nuove tabelle di lavoro
+
+2024-06-30 17:47:47,862 
+	Message: Caricamento riviste nei file csv nella tabella 'general' del DB
+
+2024-06-30 17:47:47,862 
+	Message: File corrente :
+C:/Users/scamp/Downloads/Lista_MAT03PROVAVERS9.xlsx
+2024-06-30 17:47:47,883 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","","MAT01")
+2024-06-30 17:47:47,883 
+	Message: row:['AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '03650359', 'nan']
+2024-06-30 17:47:47,889 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","","MAT01")
+2024-06-30 17:47:47,889 
+	Message: row:['Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '00255858', 'nan']
+2024-06-30 17:47:47,889 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica","0001-5962","","MAT01")
+2024-06-30 17:47:47,889 
+	Message: row:['Acta Mathematica', '00015962', 'nan']
+2024-06-30 17:47:47,889 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Hungarica","0236-5294","","MAT01")
+2024-06-30 17:47:47,889 
+	Message: row:['Acta Mathematica Hungarica', '02365294', 'nan']
+2024-06-30 17:47:47,899 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Scientia","0252-9602","","MAT01")
+2024-06-30 17:47:47,899 
+	Message: row:['Acta Mathematica Scientia', '02529602', 'nan']
+2024-06-30 17:47:47,899 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Sinica, English Series","1439-8516","","MAT01")
+2024-06-30 17:47:47,899 
+	Message: row:['Acta Mathematica Sinica, English Series', '14398516', 'nan']
+2024-06-30 17:47:47,909 
+	Message: rows:[('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', ''), ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', ''), ('Acta Mathematica', '0001-5962', ''), ('Acta Mathematica Hungarica', '0236-5294', ''), ('Acta Mathematica Scientia', '0252-9602', ''), ('Acta Mathematica Sinica, English Series', '1439-8516', '')]
+2024-06-30 17:47:47,919 
+	Message: Row:('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '')
+2024-06-30 17:47:48,250 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 1 su 6...
+
+2024-06-30 17:47:48,250 
+	Message: Rivista corrente: AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+2024-06-30 17:47:48,250 
+	Message: Sono in search
+2024-06-30 17:47:48,250 
+	Message: Cerco con PISSN
+2024-06-30 17:47:49,043 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:47:52,049 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 140
+2024-06-30 17:47:52,059 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 140
+2024-06-30 17:47:52,059 
+	Message: Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato
+2024-06-30 17:47:52,069 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/elements HTTP/1.1" 200 247
+2024-06-30 17:47:52,099 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.E1400154CBF6C93E31ABA9E0E8068125.e.136/text HTTP/1.1" 200 161
+2024-06-30 17:47:52,099 
+	Message: Elemento della lista risultati: Atti dell'Accademia Peloritana. Classe di Scienze Fisiche, Matematiche e Natureli
+Atti Accad. Peloritana. Cl. Sci. Fis. Mat. Nat.
+No Longer Indexed
+2024-06-30 17:47:52,119 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.E1400154CBF6C93E31ABA9E0E8068125.e.136/text HTTP/1.1" 200 161
+2024-06-30 17:47:52,131 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.E1400154CBF6C93E31ABA9E0E8068125.e.137/text HTTP/1.1" 200 225
+2024-06-30 17:47:52,131 
+	Message: Elemento della lista risultati: Atti della Accademia Peloritana dei Pericolanti. Classe di Scienze, Fisiche, Matematiche e Naturali. AAPP. Physical, Mathematical, and Natural Sciences
+Atti Accad. Peloritana Pericolanti Cl. Sci. Fis. Mat. Natur.
+2024-06-30 17:47:52,148 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.E1400154CBF6C93E31ABA9E0E8068125.e.137/text HTTP/1.1" 200 225
+2024-06-30 17:47:52,159 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.E1400154CBF6C93E31ABA9E0E8068125.e.137/element HTTP/1.1" 200 127
+2024-06-30 17:47:52,169 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 100
+2024-06-30 17:47:52,547 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:47:52,557 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:47:52,562 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:47:52,562 
+	Message: Ricerca PISSN con successo
+2024-06-30 17:47:52,562 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:47:55,589 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1657
+2024-06-30 17:47:55,589 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=126.0.2592.81)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AA628132+13538]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5B1DE9+595465]
+	(No symbol) [0x00007FF7AA3CE6CF]
+	(No symbol) [0x00007FF7AA412960]
+	(No symbol) [0x00007FF7AA412A1F]
+	(No symbol) [0x00007FF7AA44D627]
+	(No symbol) [0x00007FF7AA43203F]
+	(No symbol) [0x00007FF7AA408147]
+	(No symbol) [0x00007FF7AA44B1EE]
+	(No symbol) [0x00007FF7AA431C63]
+	(No symbol) [0x00007FF7AA40766E]
+	(No symbol) [0x00007FF7AA40683C]
+	(No symbol) [0x00007FF7AA407221]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E96D4+1099860]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA52D8FC+53532]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA520E25+1605]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E8665+1095653]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5BC961+27777]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6CE4+4100]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6E1B+4411]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5ACFA0+575424]
+	BaseThreadInitThunk [0x00007FFC3FFB257D+29]
+	RtlUserThreadStart [0x00007FFC40E6AF28+40]
+
+2024-06-30 17:47:55,599 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:47:55,669 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.F68773C2205C175AFB66EDA25CF00662.e.143/value HTTP/1.1" 200 14
+2024-06-30 17:47:55,669 
+	Message: Prendo gli MCQ per 0365-0359
+2024-06-30 17:47:55,704 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:47:55,719 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:47:55,729 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:47:55,746 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 406
+2024-06-30 17:47:55,759 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:47:55,769 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:47:55,779 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:47:55,789 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 11234
+2024-06-30 17:47:55,795 
+	Message: Inizio funzione dividiHTMLmcq, la lista:
+['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.13</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">142</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.14</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">133</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.10</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">11</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">111</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.17</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">11</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">66</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.03</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">61</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.14</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">8</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">59</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.12</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">7</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">58</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.08</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">52</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">15</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">44</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">14</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">5</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">1.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">1</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">1</span></td></', '></tbody>']
+2024-06-30 17:47:55,796 
+	Message: Questa è la lista nella funzione dividiHTMLmcq 
+ ['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.13</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">142</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.14</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">133</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.10</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">11</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">111</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.17</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">11</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">66</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.03</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">61</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.14</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">8</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">59</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.12</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">7</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">58</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.08</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">52</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">15</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">44</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">14</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">5</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">1.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">1</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">1</span></td></', '></tbody>']
+2024-06-30 17:47:55,796 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-06-30 17:47:55,796 
+	Message: Lista dopo di divisione per la rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali 
+[['2022', '0.13', '18', '142'], ['2021', '0.14', '18', '133'], ['2020', '0.10', '11', '111'], ['2019', '0.17', '11', '66'], ['2018', '0.03', '2', '61'], ['2017', '0.14', '8', '59'], ['2016', '0.12', '7', '58'], ['2015', '0.08', '4', '52'], ['2014', '0.34', '15', '44'], ['2013', '0.00', '0', '14'], ['2012', '0.00', '0', '5'], ['2011', '0.00', '0', '0'], ['2010', '0.00', '0', '0'], ['2009', '0.00', '0', '0'], ['2008', '0.00', '0', '0'], ['2007', '0.00', '0', '0'], ['2006', '0.00', '0', '0'], ['2005', '0.00', '0', '0'], ['2004', '0.00', '0', '0'], ['2003', '0.00', '0', '0'], ['2002', '0.00', '0', '0'], ['2001', '0.00', '0', '0'], ['2000', '1.00', '1', '1']]
+2024-06-30 17:47:55,796 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.13,"2022");
+2024-06-30 17:47:55,799 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.14,"2021");
+2024-06-30 17:47:55,799 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.10,"2020");
+2024-06-30 17:47:55,799 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.17,"2019");
+2024-06-30 17:47:55,813 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.03,"2018");
+2024-06-30 17:47:55,813 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.14,"2017");
+2024-06-30 17:47:55,819 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.12,"2016");
+2024-06-30 17:47:55,819 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.08,"2015");
+2024-06-30 17:47:55,829 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.34,"2014");
+2024-06-30 17:47:55,829 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2013");
+2024-06-30 17:47:55,829 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2012");
+2024-06-30 17:47:55,839 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2011");
+2024-06-30 17:47:55,839 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2010");
+2024-06-30 17:47:55,846 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2009");
+2024-06-30 17:47:55,849 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2008");
+2024-06-30 17:47:55,854 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2007");
+2024-06-30 17:47:55,859 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2006");
+2024-06-30 17:47:55,862 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2005");
+2024-06-30 17:47:55,862 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2004");
+2024-06-30 17:47:55,869 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2003");
+2024-06-30 17:47:55,869 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2002");
+2024-06-30 17:47:55,879 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",0.00,"2001");
+2024-06-30 17:47:55,884 
+	Message: Query per rivista AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","",1.00,"2000");
+2024-06-30 17:47:55,899 
+	Message: Row:('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '')
+2024-06-30 17:47:56,230 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 2 su 6...
+
+2024-06-30 17:47:56,230 
+	Message: Rivista corrente: Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+2024-06-30 17:47:56,230 
+	Message: Sono in search
+2024-06-30 17:47:56,230 
+	Message: Cerco con PISSN
+2024-06-30 17:47:56,719 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:47:59,740 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 140
+2024-06-30 17:47:59,761 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 140
+2024-06-30 17:47:59,761 
+	Message: Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato
+2024-06-30 17:47:59,779 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/elements HTTP/1.1" 200 365
+2024-06-30 17:47:59,811 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.171/text HTTP/1.1" 200 136
+2024-06-30 17:47:59,811 
+	Message: Elemento della lista risultati: Abhandlungen aus dem Mathematischen Seminar der Hansischen Universität
+Abh. Math. Sem. Hansischen Univ.
+No Longer Indexed
+2024-06-30 17:47:59,833 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.171/text HTTP/1.1" 200 136
+2024-06-30 17:47:59,844 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.172/text HTTP/1.1" 200 146
+2024-06-30 17:47:59,844 
+	Message: Elemento della lista risultati: Abhandlungen aus dem Mathematischen Seminar der Universität Hamburg
+Abh. Math. Sem. Univ. Hamburg
+Reference List
+No Longer Indexed
+2024-06-30 17:47:59,855 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.172/text HTTP/1.1" 200 146
+2024-06-30 17:47:59,869 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.173/text HTTP/1.1" 200 152
+2024-06-30 17:47:59,869 
+	Message: Elemento della lista risultati: Abhandlungen aus dem Mathematischen Seminar der Universität Hamburg
+Abh. Math. Semin. Univ. Hambg.
+Reference List
+Indexed Cover-to-Cover
+2024-06-30 17:47:59,879 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.173/text HTTP/1.1" 200 152
+2024-06-30 17:47:59,894 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.499BDA9834D2732B5F6A64D571800E5E.e.173/element HTTP/1.1" 200 127
+2024-06-30 17:47:59,899 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 100
+2024-06-30 17:48:00,269 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:48:00,280 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:00,285 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:00,286 
+	Message: Ricerca PISSN con successo
+2024-06-30 17:48:00,286 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:48:03,329 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1657
+2024-06-30 17:48:03,329 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=126.0.2592.81)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AA628132+13538]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5B1DE9+595465]
+	(No symbol) [0x00007FF7AA3CE6CF]
+	(No symbol) [0x00007FF7AA412960]
+	(No symbol) [0x00007FF7AA412A1F]
+	(No symbol) [0x00007FF7AA44D627]
+	(No symbol) [0x00007FF7AA43203F]
+	(No symbol) [0x00007FF7AA408147]
+	(No symbol) [0x00007FF7AA44B1EE]
+	(No symbol) [0x00007FF7AA431C63]
+	(No symbol) [0x00007FF7AA40766E]
+	(No symbol) [0x00007FF7AA40683C]
+	(No symbol) [0x00007FF7AA407221]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E96D4+1099860]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA52D8FC+53532]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA520E25+1605]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E8665+1095653]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5BC961+27777]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6CE4+4100]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6E1B+4411]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5ACFA0+575424]
+	BaseThreadInitThunk [0x00007FFC3FFB257D+29]
+	RtlUserThreadStart [0x00007FFC40E6AF28+40]
+
+2024-06-30 17:48:03,345 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:03,407 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.E3A2D2DA71F6E485C678DC52ADD93A1B.e.179/value HTTP/1.1" 200 14
+2024-06-30 17:48:03,408 
+	Message: Prendo gli MCQ per 0025-5858
+2024-06-30 17:48:03,419 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:03,429 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:03,444 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:03,449 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 406
+2024-06-30 17:48:03,469 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:03,479 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:03,499 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:03,509 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 11270
+2024-06-30 17:48:03,509 
+	Message: Inizio funzione dividiHTMLmcq, la lista:
+['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">44</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">103</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">37</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">96</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">95</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.55</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">95</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">86</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.38</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">68</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">38</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">74</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.59</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">45</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">76</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">70</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">37</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">76</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">17</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">30</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">77</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">20</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">90</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">95</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">101</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">31</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">114</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">122</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">42</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">130</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">133</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.30</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">132</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">134</span></td></', '></tbody>']
+2024-06-30 17:48:03,509 
+	Message: Questa è la lista nella funzione dividiHTMLmcq 
+ ['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">44</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">103</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">37</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">96</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">95</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.55</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">95</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">86</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.38</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">68</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">38</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">74</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.59</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">45</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">76</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">70</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">37</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">76</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">17</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">30</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">77</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">20</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">90</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">95</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">101</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">31</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">114</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">122</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">42</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">130</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">133</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.30</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">132</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">134</span></td></', '></tbody>']
+2024-06-30 17:48:03,509 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-06-30 17:48:03,509 
+	Message: Lista dopo di divisione per la rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg 
+[['2022', '0.43', '44', '103'], ['2021', '0.39', '37', '96'], ['2020', '0.54', '51', '95'], ['2019', '0.55', '52', '95'], ['2018', '0.40', '34', '86'], ['2017', '0.52', '34', '65'], ['2016', '0.38', '26', '68'], ['2015', '0.51', '38', '74'], ['2014', '0.59', '45', '76'], ['2013', '0.41', '29', '70'], ['2012', '0.49', '37', '76'], ['2011', '0.22', '17', '78'], ['2010', '0.41', '30', '73'], ['2009', '0.34', '26', '77'], ['2008', '0.22', '20', '90'], ['2007', '0.27', '26', '95'], ['2006', '0.24', '24', '101'], ['2005', '0.27', '31', '114'], ['2004', '0.22', '27', '122'], ['2003', '0.32', '42', '130'], ['2002', '0.26', '35', '133'], ['2001', '0.30', '40', '132'], ['2000', '0.35', '47', '134']]
+2024-06-30 17:48:03,509 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.43,"2022");
+2024-06-30 17:48:03,509 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.39,"2021");
+2024-06-30 17:48:03,519 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.54,"2020");
+2024-06-30 17:48:03,519 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.55,"2019");
+2024-06-30 17:48:03,526 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.40,"2018");
+2024-06-30 17:48:03,529 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.52,"2017");
+2024-06-30 17:48:03,529 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.38,"2016");
+2024-06-30 17:48:03,540 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.51,"2015");
+2024-06-30 17:48:03,542 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.59,"2014");
+2024-06-30 17:48:03,549 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.41,"2013");
+2024-06-30 17:48:03,554 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.49,"2012");
+2024-06-30 17:48:03,559 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.22,"2011");
+2024-06-30 17:48:03,560 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.41,"2010");
+2024-06-30 17:48:03,560 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.34,"2009");
+2024-06-30 17:48:03,569 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.22,"2008");
+2024-06-30 17:48:03,575 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.27,"2007");
+2024-06-30 17:48:03,579 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.24,"2006");
+2024-06-30 17:48:03,579 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.27,"2005");
+2024-06-30 17:48:03,579 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.22,"2004");
+2024-06-30 17:48:03,593 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.32,"2003");
+2024-06-30 17:48:03,593 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.26,"2002");
+2024-06-30 17:48:03,599 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.30,"2001");
+2024-06-30 17:48:03,599 
+	Message: Query per rivista Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","",0.35,"2000");
+2024-06-30 17:48:03,619 
+	Message: Row:('Acta Mathematica', '0001-5962', '')
+2024-06-30 17:48:03,931 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 3 su 6...
+
+2024-06-30 17:48:03,931 
+	Message: Rivista corrente: Acta Mathematica
+2024-06-30 17:48:03,931 
+	Message: Sono in search
+2024-06-30 17:48:03,931 
+	Message: Cerco con PISSN
+2024-06-30 17:48:04,460 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:48:07,476 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:07,479 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:07,479 
+	Message: RIcerca PISSN con successo
+2024-06-30 17:48:07,479 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:48:10,500 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1657
+2024-06-30 17:48:10,500 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=126.0.2592.81)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AA628132+13538]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5B1DE9+595465]
+	(No symbol) [0x00007FF7AA3CE6CF]
+	(No symbol) [0x00007FF7AA412960]
+	(No symbol) [0x00007FF7AA412A1F]
+	(No symbol) [0x00007FF7AA44D627]
+	(No symbol) [0x00007FF7AA43203F]
+	(No symbol) [0x00007FF7AA408147]
+	(No symbol) [0x00007FF7AA44B1EE]
+	(No symbol) [0x00007FF7AA431C63]
+	(No symbol) [0x00007FF7AA40766E]
+	(No symbol) [0x00007FF7AA40683C]
+	(No symbol) [0x00007FF7AA407221]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E96D4+1099860]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA52D8FC+53532]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA520E25+1605]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E8665+1095653]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5BC961+27777]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6CE4+4100]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6E1B+4411]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5ACFA0+575424]
+	BaseThreadInitThunk [0x00007FFC3FFB257D+29]
+	RtlUserThreadStart [0x00007FFC40E6AF28+40]
+
+2024-06-30 17:48:10,517 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:10,589 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.BF2ADF90CFE8F327D7F0F519983EABAD.e.211/value HTTP/1.1" 200 14
+2024-06-30 17:48:10,589 
+	Message: Prendo gli MCQ per 0001-5962
+2024-06-30 17:48:10,607 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:10,619 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:10,629 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:10,639 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 406
+2024-06-30 17:48:10,659 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:10,671 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:10,679 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:10,689 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 11285
+2024-06-30 17:48:10,689 
+	Message: Inizio funzione dividiHTMLmcq, la lista:
+['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">5.53</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">304</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">55</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.88</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">278</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">57</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.17</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">250</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">60</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">272</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.76</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">267</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">71</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">308</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.01</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">313</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.87</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">302</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.55</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">263</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">74</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.12</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">276</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">67</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.05</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">251</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">62</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.11</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">234</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">57</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.68</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">217</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">59</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.89</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">188</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">151</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.01</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">208</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">69</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.42</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">177</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.44</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">173</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">71</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.77</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">202</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.92</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">225</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">77</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.56</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">200</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.23</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">174</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.46</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">197</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">80</span></td></', '></tbody>']
+2024-06-30 17:48:10,689 
+	Message: Questa è la lista nella funzione dividiHTMLmcq 
+ ['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">5.53</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">304</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">55</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.88</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">278</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">57</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.17</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">250</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">60</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">272</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.76</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">267</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">71</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">308</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.01</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">313</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.87</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">302</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.55</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">263</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">74</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.12</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">276</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">67</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.05</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">251</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">62</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">4.11</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">234</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">57</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.68</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">217</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">59</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.89</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">188</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">151</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">65</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">3.01</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">208</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">69</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.42</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">177</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.44</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">173</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">71</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.77</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">202</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">73</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.92</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">225</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">77</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.56</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">200</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.23</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">174</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">78</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2.46</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">197</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">80</span></td></', '></tbody>']
+2024-06-30 17:48:10,689 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-06-30 17:48:10,689 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica 
+[['2022', '5.53', '304', '55'], ['2021', '4.88', '278', '57'], ['2020', '4.17', '250', '60'], ['2019', '4.18', '272', '65'], ['2018', '3.76', '267', '71'], ['2017', '4.22', '308', '73'], ['2016', '4.01', '313', '78'], ['2015', '3.87', '302', '78'], ['2014', '3.55', '263', '74'], ['2013', '4.12', '276', '67'], ['2012', '4.05', '251', '62'], ['2011', '4.11', '234', '57'], ['2010', '3.68', '217', '59'], ['2009', '2.89', '188', '65'], ['2008', '2.32', '151', '65'], ['2007', '3.01', '208', '69'], ['2006', '2.42', '177', '73'], ['2005', '2.44', '173', '71'], ['2004', '2.77', '202', '73'], ['2003', '2.92', '225', '77'], ['2002', '2.56', '200', '78'], ['2001', '2.23', '174', '78'], ['2000', '2.46', '197', '80']]
+2024-06-30 17:48:10,689 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",5.53,"2022");
+2024-06-30 17:48:10,689 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.88,"2021");
+2024-06-30 17:48:10,700 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.17,"2020");
+2024-06-30 17:48:10,706 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.18,"2019");
+2024-06-30 17:48:10,709 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",3.76,"2018");
+2024-06-30 17:48:10,709 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.22,"2017");
+2024-06-30 17:48:10,709 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.01,"2016");
+2024-06-30 17:48:10,719 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",3.87,"2015");
+2024-06-30 17:48:10,722 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",3.55,"2014");
+2024-06-30 17:48:10,722 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.12,"2013");
+2024-06-30 17:48:10,729 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.05,"2012");
+2024-06-30 17:48:10,729 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",4.11,"2011");
+2024-06-30 17:48:10,739 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",3.68,"2010");
+2024-06-30 17:48:10,739 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.89,"2009");
+2024-06-30 17:48:10,739 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.32,"2008");
+2024-06-30 17:48:10,749 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",3.01,"2007");
+2024-06-30 17:48:10,749 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.42,"2006");
+2024-06-30 17:48:10,756 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.44,"2005");
+2024-06-30 17:48:10,759 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.77,"2004");
+2024-06-30 17:48:10,759 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.92,"2003");
+2024-06-30 17:48:10,759 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.56,"2002");
+2024-06-30 17:48:10,759 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.23,"2001");
+2024-06-30 17:48:10,771 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","",2.46,"2000");
+2024-06-30 17:48:10,779 
+	Message: Row:('Acta Mathematica Hungarica', '0236-5294', '')
+2024-06-30 17:48:11,090 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 4 su 6...
+
+2024-06-30 17:48:11,090 
+	Message: Rivista corrente: Acta Mathematica Hungarica
+2024-06-30 17:48:11,090 
+	Message: Sono in search
+2024-06-30 17:48:11,090 
+	Message: Cerco con PISSN
+2024-06-30 17:48:11,660 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:48:14,671 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:14,679 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:14,679 
+	Message: RIcerca PISSN con successo
+2024-06-30 17:48:14,679 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:48:17,689 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1657
+2024-06-30 17:48:17,689 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=126.0.2592.81)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AA628132+13538]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5B1DE9+595465]
+	(No symbol) [0x00007FF7AA3CE6CF]
+	(No symbol) [0x00007FF7AA412960]
+	(No symbol) [0x00007FF7AA412A1F]
+	(No symbol) [0x00007FF7AA44D627]
+	(No symbol) [0x00007FF7AA43203F]
+	(No symbol) [0x00007FF7AA408147]
+	(No symbol) [0x00007FF7AA44B1EE]
+	(No symbol) [0x00007FF7AA431C63]
+	(No symbol) [0x00007FF7AA40766E]
+	(No symbol) [0x00007FF7AA40683C]
+	(No symbol) [0x00007FF7AA407221]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E96D4+1099860]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA52D8FC+53532]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA520E25+1605]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E8665+1095653]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5BC961+27777]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6CE4+4100]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6E1B+4411]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5ACFA0+575424]
+	BaseThreadInitThunk [0x00007FFC3FFB257D+29]
+	RtlUserThreadStart [0x00007FFC40E6AF28+40]
+
+2024-06-30 17:48:17,699 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:17,753 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.2D49BC9C926E5BEF9B5C3DC00B634604.e.243/value HTTP/1.1" 200 14
+2024-06-30 17:48:17,753 
+	Message: Prendo gli MCQ per 0236-5294
+2024-06-30 17:48:17,774 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:17,786 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:17,799 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:17,844 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 406
+2024-06-30 17:48:17,853 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:17,869 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:17,879 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:17,889 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 11308
+2024-06-30 17:48:17,889 
+	Message: Inizio funzione dividiHTMLmcq, la lista:
+['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.48</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">250</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">525</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">270</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">529</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.46</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">240</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">523</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">247</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">528</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">257</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">527</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">232</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">540</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">214</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">534</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">210</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">537</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">192</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">546</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.45</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">245</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">545</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">251</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">538</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.50</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">265</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">535</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.45</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">239</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">534</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.55</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">283</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">514</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">245</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">517</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.46</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">232</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">509</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">209</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">504</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">164</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">513</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">152</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">522</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">148</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">517</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.30</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">160</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">526</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">127</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">537</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">126</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">532</span></td></', '></tbody>']
+2024-06-30 17:48:17,889 
+	Message: Questa è la lista nella funzione dividiHTMLmcq 
+ ['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.48</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">250</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">525</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">270</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">529</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.46</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">240</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">523</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">247</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">528</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">257</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">527</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">232</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">540</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">214</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">534</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">210</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">537</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">192</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">546</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.45</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">245</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">545</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">251</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">538</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.50</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">265</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">535</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.45</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">239</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">534</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.55</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">283</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">514</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">245</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">517</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.46</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">232</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">509</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">209</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">504</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">164</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">513</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">152</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">522</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">148</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">517</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.30</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">160</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">526</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">127</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">537</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">126</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">532</span></td></', '></tbody>']
+2024-06-30 17:48:17,889 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-06-30 17:48:17,889 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica Hungarica 
+[['2022', '0.48', '250', '525'], ['2021', '0.51', '270', '529'], ['2020', '0.46', '240', '523'], ['2019', '0.47', '247', '528'], ['2018', '0.49', '257', '527'], ['2017', '0.43', '232', '540'], ['2016', '0.40', '214', '534'], ['2015', '0.39', '210', '537'], ['2014', '0.35', '192', '546'], ['2013', '0.45', '245', '545'], ['2012', '0.47', '251', '538'], ['2011', '0.50', '265', '535'], ['2010', '0.45', '239', '534'], ['2009', '0.55', '283', '514'], ['2008', '0.47', '245', '517'], ['2007', '0.46', '232', '509'], ['2006', '0.41', '209', '504'], ['2005', '0.32', '164', '513'], ['2004', '0.29', '152', '522'], ['2003', '0.29', '148', '517'], ['2002', '0.30', '160', '526'], ['2001', '0.24', '127', '537'], ['2000', '0.24', '126', '532']]
+2024-06-30 17:48:17,889 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.48,"2022");
+2024-06-30 17:48:17,889 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.51,"2021");
+2024-06-30 17:48:17,899 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.46,"2020");
+2024-06-30 17:48:17,902 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.47,"2019");
+2024-06-30 17:48:17,902 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.49,"2018");
+2024-06-30 17:48:17,909 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.43,"2017");
+2024-06-30 17:48:17,909 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.40,"2016");
+2024-06-30 17:48:17,909 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.39,"2015");
+2024-06-30 17:48:17,919 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.35,"2014");
+2024-06-30 17:48:17,919 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.45,"2013");
+2024-06-30 17:48:17,924 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.47,"2012");
+2024-06-30 17:48:17,930 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.50,"2011");
+2024-06-30 17:48:17,930 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.45,"2010");
+2024-06-30 17:48:17,936 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.55,"2009");
+2024-06-30 17:48:17,939 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.47,"2008");
+2024-06-30 17:48:17,944 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.46,"2007");
+2024-06-30 17:48:17,949 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.41,"2006");
+2024-06-30 17:48:17,954 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.32,"2005");
+2024-06-30 17:48:17,959 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.29,"2004");
+2024-06-30 17:48:17,959 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.29,"2003");
+2024-06-30 17:48:17,970 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.30,"2002");
+2024-06-30 17:48:17,974 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.24,"2001");
+2024-06-30 17:48:17,974 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","",0.24,"2000");
+2024-06-30 17:48:17,994 
+	Message: Row:('Acta Mathematica Scientia', '0252-9602', '')
+2024-06-30 17:48:18,320 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 5 su 6...
+
+2024-06-30 17:48:18,321 
+	Message: Rivista corrente: Acta Mathematica Scientia
+2024-06-30 17:48:18,321 
+	Message: Sono in search
+2024-06-30 17:48:18,321 
+	Message: Cerco con PISSN
+2024-06-30 17:48:18,889 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:48:21,901 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 140
+2024-06-30 17:48:21,909 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 140
+2024-06-30 17:48:21,909 
+	Message: Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato
+2024-06-30 17:48:21,919 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/elements HTTP/1.1" 200 365
+2024-06-30 17:48:21,939 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.271/text HTTP/1.1" 200 124
+2024-06-30 17:48:21,939 
+	Message: Elemento della lista risultati: Acta Mathematica Scientia. English Edition. Shuxue Wuli Xuebao
+Acta Math. Sci. (English Ed.)
+No Longer Indexed
+2024-06-30 17:48:21,953 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.271/text HTTP/1.1" 200 124
+2024-06-30 17:48:21,959 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.272/text HTTP/1.1" 200 114
+2024-06-30 17:48:21,959 
+	Message: Elemento della lista risultati: Acta Mathematica Scientia. Series B. English Edition
+Acta Math. Sci. (English Ed.)
+No Longer Indexed
+2024-06-30 17:48:21,979 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.272/text HTTP/1.1" 200 114
+2024-06-30 17:48:21,989 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.273/text HTTP/1.1" 200 140
+2024-06-30 17:48:21,989 
+	Message: Elemento della lista risultati: Acta Mathematica Scientia. Series B. English Edition
+Acta Math. Sci. Ser. B (Engl. Ed.)
+Reference List
+Indexed Cover-to-Cover
+2024-06-30 17:48:22,001 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.273/text HTTP/1.1" 200 140
+2024-06-30 17:48:22,019 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.B1D7FC4A2B6BF4F19528846B15170FF4.e.273/element HTTP/1.1" 200 127
+2024-06-30 17:48:22,029 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 100
+2024-06-30 17:48:22,684 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:48:22,690 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:22,690 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:22,690 
+	Message: Ricerca PISSN con successo
+2024-06-30 17:48:22,690 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:48:25,719 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1657
+2024-06-30 17:48:25,719 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=126.0.2592.81)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AA628132+13538]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5B1DE9+595465]
+	(No symbol) [0x00007FF7AA3CE6CF]
+	(No symbol) [0x00007FF7AA412960]
+	(No symbol) [0x00007FF7AA412A1F]
+	(No symbol) [0x00007FF7AA44D627]
+	(No symbol) [0x00007FF7AA43203F]
+	(No symbol) [0x00007FF7AA408147]
+	(No symbol) [0x00007FF7AA44B1EE]
+	(No symbol) [0x00007FF7AA431C63]
+	(No symbol) [0x00007FF7AA40766E]
+	(No symbol) [0x00007FF7AA40683C]
+	(No symbol) [0x00007FF7AA407221]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E96D4+1099860]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA52D8FC+53532]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA520E25+1605]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E8665+1095653]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5BC961+27777]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6CE4+4100]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6E1B+4411]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5ACFA0+575424]
+	BaseThreadInitThunk [0x00007FFC3FFB257D+29]
+	RtlUserThreadStart [0x00007FFC40E6AF28+40]
+
+2024-06-30 17:48:25,729 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:25,769 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.AF3ABAC3CD2ED105EEAAD51F7A083BD7.e.279/value HTTP/1.1" 200 14
+2024-06-30 17:48:25,769 
+	Message: Prendo gli MCQ per 0252-9602
+2024-06-30 17:48:25,789 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:25,799 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:25,809 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:25,819 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 406
+2024-06-30 17:48:25,833 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:25,839 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:25,849 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:25,859 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 11299
+2024-06-30 17:48:25,859 
+	Message: Inizio funzione dividiHTMLmcq, la lista:
+['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.56</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">353</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">632</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.62</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">384</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">623</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.60</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">369</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">610</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">314</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">641</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">345</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">662</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.44</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">321</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">726</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">314</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">805</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.38</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">335</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">872</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">363</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">854</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">346</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">809</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">273</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">707</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.36</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">212</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">586</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.25</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">123</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">490</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.23</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">100</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">431</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.23</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">93</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">399</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">83</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">380</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">67</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">369</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.15</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">356</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.15</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">53</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">350</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.09</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">341</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.07</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">324</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.09</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">302</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.07</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">21</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">298</span></td></', '></tbody>']
+2024-06-30 17:48:25,859 
+	Message: Questa è la lista nella funzione dividiHTMLmcq 
+ ['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.56</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">353</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">632</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.62</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">384</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">623</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.60</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">369</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">610</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">314</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">641</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">345</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">662</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.44</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">321</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">726</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">314</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">805</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.38</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">335</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">872</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">363</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">854</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.43</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">346</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">809</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">273</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">707</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.36</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">212</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">586</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.25</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">123</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">490</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.23</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">100</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">431</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.23</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">93</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">399</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.22</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">83</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">380</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.18</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">67</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">369</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.15</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">356</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.15</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">53</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">350</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.09</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">29</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">341</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.07</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">24</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">324</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.09</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">27</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">302</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.07</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">21</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">298</span></td></', '></tbody>']
+2024-06-30 17:48:25,859 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-06-30 17:48:25,864 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica Scientia 
+[['2022', '0.56', '353', '632'], ['2021', '0.62', '384', '623'], ['2020', '0.60', '369', '610'], ['2019', '0.49', '314', '641'], ['2018', '0.52', '345', '662'], ['2017', '0.44', '321', '726'], ['2016', '0.39', '314', '805'], ['2015', '0.38', '335', '872'], ['2014', '0.43', '363', '854'], ['2013', '0.43', '346', '809'], ['2012', '0.39', '273', '707'], ['2011', '0.36', '212', '586'], ['2010', '0.25', '123', '490'], ['2009', '0.23', '100', '431'], ['2008', '0.23', '93', '399'], ['2007', '0.22', '83', '380'], ['2006', '0.18', '67', '369'], ['2005', '0.15', '54', '356'], ['2004', '0.15', '53', '350'], ['2003', '0.09', '29', '341'], ['2002', '0.07', '24', '324'], ['2001', '0.09', '27', '302'], ['2000', '0.07', '21', '298']]
+2024-06-30 17:48:25,864 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.56,"2022");
+2024-06-30 17:48:25,869 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.62,"2021");
+2024-06-30 17:48:25,869 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.60,"2020");
+2024-06-30 17:48:25,869 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.49,"2019");
+2024-06-30 17:48:25,881 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.52,"2018");
+2024-06-30 17:48:25,881 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.44,"2017");
+2024-06-30 17:48:25,889 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.39,"2016");
+2024-06-30 17:48:25,889 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.38,"2015");
+2024-06-30 17:48:25,897 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.43,"2014");
+2024-06-30 17:48:25,899 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.43,"2013");
+2024-06-30 17:48:25,904 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.39,"2012");
+2024-06-30 17:48:25,909 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.36,"2011");
+2024-06-30 17:48:25,915 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.25,"2010");
+2024-06-30 17:48:25,919 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.23,"2009");
+2024-06-30 17:48:25,919 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.23,"2008");
+2024-06-30 17:48:25,919 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.22,"2007");
+2024-06-30 17:48:25,932 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.18,"2006");
+2024-06-30 17:48:25,932 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.15,"2005");
+2024-06-30 17:48:25,939 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.15,"2004");
+2024-06-30 17:48:25,939 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.09,"2003");
+2024-06-30 17:48:25,949 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.07,"2002");
+2024-06-30 17:48:25,949 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.09,"2001");
+2024-06-30 17:48:25,959 
+	Message: Query per rivista Acta Mathematica Scientia
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Scientia","0252-9602","",0.07,"2000");
+2024-06-30 17:48:25,979 
+	Message: Row:('Acta Mathematica Sinica, English Series', '1439-8516', '')
+2024-06-30 17:48:26,299 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 6 su 6...
+
+2024-06-30 17:48:26,300 
+	Message: Rivista corrente: Acta Mathematica Sinica, English Series
+2024-06-30 17:48:26,300 
+	Message: Sono in search
+2024-06-30 17:48:26,300 
+	Message: Cerco con PISSN
+2024-06-30 17:48:26,874 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 14
+2024-06-30 17:48:29,881 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:29,889 
+	Message: http://localhost:59630 "GET /session/995b527a410171fd4f0f01406a3a1308/url HTTP/1.1" 200 100
+2024-06-30 17:48:29,889 
+	Message: RIcerca PISSN con successo
+2024-06-30 17:48:29,889 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:48:32,907 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1657
+2024-06-30 17:48:32,908 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=126.0.2592.81)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AA628132+13538]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5B1DE9+595465]
+	(No symbol) [0x00007FF7AA3CE6CF]
+	(No symbol) [0x00007FF7AA412960]
+	(No symbol) [0x00007FF7AA412A1F]
+	(No symbol) [0x00007FF7AA44D627]
+	(No symbol) [0x00007FF7AA43203F]
+	(No symbol) [0x00007FF7AA408147]
+	(No symbol) [0x00007FF7AA44B1EE]
+	(No symbol) [0x00007FF7AA431C63]
+	(No symbol) [0x00007FF7AA40766E]
+	(No symbol) [0x00007FF7AA40683C]
+	(No symbol) [0x00007FF7AA407221]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E96D4+1099860]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA52D8FC+53532]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA520E25+1605]
+	Microsoft::Applications::Events::EventProperty::to_string [0x00007FF7AA7E8665+1095653]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5BC961+27777]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6CE4+4100]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7AA5B6E1B+4411]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7AA5ACFA0+575424]
+	BaseThreadInitThunk [0x00007FFC3FFB257D+29]
+	RtlUserThreadStart [0x00007FFC40E6AF28+40]
+
+2024-06-30 17:48:32,913 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:32,962 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element/f.C2EF9BC93CD703E199E67B841F08576D.d.AC88656E254363D0CBCE5C7E3B7F41FD.e.311/value HTTP/1.1" 200 14
+2024-06-30 17:48:32,962 
+	Message: Prendo gli MCQ per 1439-8516
+2024-06-30 17:48:32,969 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:32,979 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1609
+2024-06-30 17:48:32,989 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:32,999 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 406
+2024-06-30 17:48:33,009 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:33,012 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 404 1603
+2024-06-30 17:48:33,019 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/element HTTP/1.1" 200 127
+2024-06-30 17:48:33,029 
+	Message: http://localhost:59630 "POST /session/995b527a410171fd4f0f01406a3a1308/execute/sync HTTP/1.1" 200 11294
+2024-06-30 17:48:33,029 
+	Message: Inizio funzione dividiHTMLmcq, la lista:
+['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">301</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">586</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">297</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">581</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">338</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">630</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.42</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">281</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">672</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">287</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">733</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">279</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">806</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">303</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">882</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">306</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">942</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.37</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">346</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">943</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.36</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">337</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">938</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">453</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">972</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">476</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">980</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">486</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">938</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">478</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">881</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">377</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">770</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.56</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">347</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">620</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">178</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">434</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">108</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">271</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">159</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.21</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">19</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">91</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.14</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">14</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '></tbody>']
+2024-06-30 17:48:33,039 
+	Message: Questa è la lista nella funzione dividiHTMLmcq 
+ ['<thead data-v-2666a86c=""><', ' data-v-2666a86c=""><th data-v-2666a86c="" class="">Year</th><th data-v-2666a86c="" class="rightAligned">MCQ</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Citations">Cit.</abbr>(5yr)</th><th data-v-2666a86c="" class="rightAligned"><abbr title="Publications">Pub.</abbr>(5yr)</th></', '></thead><tbody data-v-2666a86c=""><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2022</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">301</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">586</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2021</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.51</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">297</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">581</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2020</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">338</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">630</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2019</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.42</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">281</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">672</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2018</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.39</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">287</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">733</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2017</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.35</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">279</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">806</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2016</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.34</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">303</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">882</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2015</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.32</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">306</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">942</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2014</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.37</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">346</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">943</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2013</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.36</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">337</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">938</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2012</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.47</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">453</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">972</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2011</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">476</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">980</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2010</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.52</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">486</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">938</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2009</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.54</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">478</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">881</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2008</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.49</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">377</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">770</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2007</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.56</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">347</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">620</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2006</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">178</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">434</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2005</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.40</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">108</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">271</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2004</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.26</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">41</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">159</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2003</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.21</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">19</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">91</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2002</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.14</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">2</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">14</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2001</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '><', ' data-v-2666a86c=""><td data-v-2666a86c="" class=""><span data-v-2666a86c="">2000</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0.00</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td><td data-v-2666a86c="" class="rightAligned"><span data-v-2666a86c="">0</span></td></', '></tbody>']
+2024-06-30 17:48:33,039 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-06-30 17:48:33,039 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica Sinica, English Series 
+[['2022', '0.51', '301', '586'], ['2021', '0.51', '297', '581'], ['2020', '0.54', '338', '630'], ['2019', '0.42', '281', '672'], ['2018', '0.39', '287', '733'], ['2017', '0.35', '279', '806'], ['2016', '0.34', '303', '882'], ['2015', '0.32', '306', '942'], ['2014', '0.37', '346', '943'], ['2013', '0.36', '337', '938'], ['2012', '0.47', '453', '972'], ['2011', '0.49', '476', '980'], ['2010', '0.52', '486', '938'], ['2009', '0.54', '478', '881'], ['2008', '0.49', '377', '770'], ['2007', '0.56', '347', '620'], ['2006', '0.41', '178', '434'], ['2005', '0.40', '108', '271'], ['2004', '0.26', '41', '159'], ['2003', '0.21', '19', '91'], ['2002', '0.14', '2', '14'], ['2001', '0.00', '0', '0'], ['2000', '0.00', '0', '0']]
+2024-06-30 17:48:33,039 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.51,"2022");
+2024-06-30 17:48:33,045 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.51,"2021");
+2024-06-30 17:48:33,049 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.54,"2020");
+2024-06-30 17:48:33,049 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.42,"2019");
+2024-06-30 17:48:33,049 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.39,"2018");
+2024-06-30 17:48:33,062 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.35,"2017");
+2024-06-30 17:48:33,062 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.34,"2016");
+2024-06-30 17:48:33,062 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.32,"2015");
+2024-06-30 17:48:33,069 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.37,"2014");
+2024-06-30 17:48:33,079 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.36,"2013");
+2024-06-30 17:48:33,084 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.47,"2012");
+2024-06-30 17:48:33,089 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.49,"2011");
+2024-06-30 17:48:33,089 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.52,"2010");
+2024-06-30 17:48:33,096 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.54,"2009");
+2024-06-30 17:48:33,099 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.49,"2008");
+2024-06-30 17:48:33,099 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.56,"2007");
+2024-06-30 17:48:33,109 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.41,"2006");
+2024-06-30 17:48:33,112 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.40,"2005");
+2024-06-30 17:48:33,112 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.26,"2004");
+2024-06-30 17:48:33,120 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.21,"2003");
+2024-06-30 17:48:33,120 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.14,"2002");
+2024-06-30 17:48:33,120 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.00,"2001");
+2024-06-30 17:48:33,129 
+	Message: Query per rivista Acta Mathematica Sinica, English Series
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Sinica, English Series","1439-8516","",0.00,"2000");
+2024-06-30 17:48:33,129 
+	Message: Lista files keys: ['MAT01']
+2024-06-30 17:48:33,139 
+	Message: Sto memorizzando MAT01
+2024-06-30 17:48:33,139 
+	Message: Salvo anno 2019 per MAT01
+2024-06-30 17:48:33,139 
+	Message: Risultati query:[('Acta Mathematica', '0001-5962', '', '4.18'), ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.55'), ('Acta Mathematica Scientia', '0252-9602', '', '0.49'), ('Acta Mathematica Hungarica', '0236-5294', '', '0.47'), ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.42'), ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.17')]
+2024-06-30 17:48:33,139 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-06-30 17:48:33,139 
+	Message: ('Acta Mathematica', '0001-5962', '', '4.18')
+2024-06-30 17:48:33,139 
+	Message: ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.55')
+2024-06-30 17:48:33,139 
+	Message: ('Acta Mathematica Scientia', '0252-9602', '', '0.49')
+2024-06-30 17:48:33,139 
+	Message: ('Acta Mathematica Hungarica', '0236-5294', '', '0.47')
+2024-06-30 17:48:33,139 
+	Message: ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.42')
+2024-06-30 17:48:33,139 
+	Message: ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.17')
+2024-06-30 17:48:33,154 
+	Message: Salvo anno 2020 per MAT01
+2024-06-30 17:48:33,154 
+	Message: Risultati query:[('Acta Mathematica', '0001-5962', '', '4.17'), ('Acta Mathematica Scientia', '0252-9602', '', '0.6'), ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.54'), ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.54'), ('Acta Mathematica Hungarica', '0236-5294', '', '0.46'), ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.1')]
+2024-06-30 17:48:33,154 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-06-30 17:48:33,154 
+	Message: ('Acta Mathematica', '0001-5962', '', '4.17')
+2024-06-30 17:48:33,154 
+	Message: ('Acta Mathematica Scientia', '0252-9602', '', '0.6')
+2024-06-30 17:48:33,154 
+	Message: ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.54')
+2024-06-30 17:48:33,154 
+	Message: ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.54')
+2024-06-30 17:48:33,154 
+	Message: ('Acta Mathematica Hungarica', '0236-5294', '', '0.46')
+2024-06-30 17:48:33,154 
+	Message: ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.1')
+2024-06-30 17:48:33,162 
+	Message: Salvo anno 2021 per MAT01
+2024-06-30 17:48:33,162 
+	Message: Risultati query:[('Acta Mathematica', '0001-5962', '', '4.88'), ('Acta Mathematica Scientia', '0252-9602', '', '0.62'), ('Acta Mathematica Hungarica', '0236-5294', '', '0.51'), ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.51'), ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.39'), ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.14')]
+2024-06-30 17:48:33,162 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-06-30 17:48:33,162 
+	Message: ('Acta Mathematica', '0001-5962', '', '4.88')
+2024-06-30 17:48:33,162 
+	Message: ('Acta Mathematica Scientia', '0252-9602', '', '0.62')
+2024-06-30 17:48:33,162 
+	Message: ('Acta Mathematica Hungarica', '0236-5294', '', '0.51')
+2024-06-30 17:48:33,162 
+	Message: ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.51')
+2024-06-30 17:48:33,162 
+	Message: ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.39')
+2024-06-30 17:48:33,162 
+	Message: ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.14')
+2024-06-30 17:48:33,169 
+	Message: Salvo anno 2022 per MAT01
+2024-06-30 17:48:33,169 
+	Message: Risultati query:[('Acta Mathematica', '0001-5962', '', '5.53'), ('Acta Mathematica Scientia', '0252-9602', '', '0.56'), ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.51'), ('Acta Mathematica Hungarica', '0236-5294', '', '0.48'), ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.43'), ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.13')]
+2024-06-30 17:48:33,169 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-06-30 17:48:33,169 
+	Message: ('Acta Mathematica', '0001-5962', '', '5.53')
+2024-06-30 17:48:33,169 
+	Message: ('Acta Mathematica Scientia', '0252-9602', '', '0.56')
+2024-06-30 17:48:33,169 
+	Message: ('Acta Mathematica Sinica, English Series', '1439-8516', '', '0.51')
+2024-06-30 17:48:33,169 
+	Message: ('Acta Mathematica Hungarica', '0236-5294', '', '0.48')
+2024-06-30 17:48:33,169 
+	Message: ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', '', '0.43')
+2024-06-30 17:48:33,169 
+	Message: ('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '', '0.13')
+2024-06-30 17:48:33,199 
+	Message:  Salvataggio dei MCQ avvenuto con successo!
+
+2024-06-30 17:48:33,199 
+	Message:  I dati sono stati salvati nel file al seguente percorso C:/Users/scamp/Desktop/tortoise/mathsciNet_UNITO/versione 8 programma\mathscinetWebscraping2024630
+2024-06-30 17:48:33,309 
+	Message: http://localhost:59630 "DELETE /session/995b527a410171fd4f0f01406a3a1308/window HTTP/1.1" 200 12

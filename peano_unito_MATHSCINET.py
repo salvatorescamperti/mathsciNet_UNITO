@@ -499,7 +499,7 @@ def caricamentoriviste(con):
                 #time.sleep(10)
                 with con:
                     con.execute(query)
-        if ".xlsx" in files[key]:
+        elif ".xlsx" in files[key]:
             try:
                 dfs = pd.read_excel(files[key],sheet_name=None, dtype=str,converters={colonnaTitolo:str,colonna_pISSN:str,colonna_eISSN:str})
                 rows = []
@@ -1958,4 +1958,4 @@ window = MainWindow()
 
 window.show()
 
-app.exec()
+sys.exit(app.exec())
