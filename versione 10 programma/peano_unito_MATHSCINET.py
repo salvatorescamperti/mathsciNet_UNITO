@@ -33,7 +33,7 @@ from bs4 import BeautifulSoup
 def get_years_range():
     # Funzione per chiedere input dell'utente con finestre di dialogo
     root = tk.Tk()
-    root.withdraw()  # Nasconde la finestra principale di tkinter
+    root.lift()  # Portare la finestra in primo piano
 
     # Funzione per verificare che l'anno sia tra 1900 e 3000
     def valid_year(year):
@@ -101,12 +101,23 @@ def parse_html_table(html_str):
 
 
 #Finestra on top alert
-def info(message, title="ShowInfo"):
+def info2(message, title="ShowInfo"):
     root = tk.Tk()
-    root.lift()
     root.withdraw()
+    root.deiconify()  # Assicurarsi che la finestra sia visibile
+    root.focus_force()  # Forzare il focus sulla nuova finestra
+    time.sleep(0.5)
+    root.lift()  # Portare la finestra in primo piano
     root.iconify()
     messagebox.showinfo(title, message)
+    
+    root.destroy()
+def info(message, title="ShowInfo"):
+    root = tk.Tk()
+    root.lift()  # Portare la finestra in primo piano
+    root.iconify()
+    messagebox.showinfo(title, message)
+    
     root.destroy()
 
 def chiedisino(message, title="ShowInfo"):
@@ -1116,9 +1127,10 @@ def webScraping():
         loginmathscinet(driver,config)
 
         if config['DEFAULT']['headless'] == "False":
-            info("Se nel browser automatico che è comparso chiede le credenziali, fare l'accesso. Poi cliccare OK.")
             driver.maximize_window()
+            info2("Se nel browser automatico che è comparso chiede le credenziali, fare l'accesso. Poi cliccare OK.")
             driver.minimize_window()
+            
 
         rereprint(f"files:\n{files}")
         #time.sleep(20)
@@ -1147,4 +1159,5 @@ def webScraping():
 webScraping()
 con.close()
 driver.close()
+info("Il programma è terminato","Fine")
 sys.exit()
