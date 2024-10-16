@@ -1,0 +1,27 @@
+2024-10-16 11:56:02,261 
+	Message: Debug logging test...
+2024-10-16 11:56:02,266 
+	Message: Richiesta selezione files per settore MAT01
+2024-10-16 11:56:04,709 
+	Message: Richiesta selezione files per settore MAT02
+2024-10-16 11:56:05,766 
+	Message: Richiesta selezione files per settore MAT03
+2024-10-16 11:56:06,664 
+	Message: Richiesta selezione files per settore MAT04
+2024-10-16 11:56:07,581 
+	Message: Richiesta selezione files per settore MAT05
+2024-10-16 11:56:08,517 
+	Message: Richiesta selezione files per settore MAT06
+2024-10-16 11:56:10,305 
+	Message: Richiesta selezione files per settore MAT07
+2024-10-16 11:56:11,698 
+	Message: Richiesta selezione files per settore MAT08
+2024-10-16 11:56:12,895 
+	Message: Richiesta selezione files per settore MAT09
+2024-10-16 11:56:19,562 
+	Message: Una delle variabili globali ha un valore che non può essere accettato. Il programma termina!
+Browser: Edge
+driverPath: 
+files: {}
+ outputPath=
+ anniSelezionati=None

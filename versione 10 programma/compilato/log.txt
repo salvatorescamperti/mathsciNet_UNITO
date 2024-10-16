@@ -1,0 +1,855 @@
+2024-10-16 12:09:59,617 
+	Message: Debug logging test...
+2024-10-16 12:09:59,617 
+	Message: Richiesta selezione files per settore MAT01
+2024-10-16 12:10:11,664 
+	Message: Richiesta selezione files per settore MAT02
+2024-10-16 12:10:13,132 
+	Message: Richiesta selezione files per settore MAT03
+2024-10-16 12:10:13,730 
+	Message: Richiesta selezione files per settore MAT04
+2024-10-16 12:10:14,247 
+	Message: Richiesta selezione files per settore MAT05
+2024-10-16 12:10:14,795 
+	Message: Richiesta selezione files per settore MAT06
+2024-10-16 12:10:15,304 
+	Message: Richiesta selezione files per settore MAT07
+2024-10-16 12:10:15,837 
+	Message: Richiesta selezione files per settore MAT08
+2024-10-16 12:10:16,463 
+	Message: Richiesta selezione files per settore MAT09
+2024-10-16 12:10:32,967 
+	Message: Variabili globali inizio programma:
+Browser: Edge
+driverPath: 
+files: {'MAT01': 'C:/Users/scamp/Dropbox/lavoro/mathscinet/Webscriping Mathscinet - Version 9/MAT01 input webscraping.csv'}
+ outputPath=C:/Users/scamp/Dropbox/lavoro/mathscinet/Webscriping Mathscinet - Version 9/Webscraping Mathscinet Unito Applicativo sorgente
+ anniSelezionati=[2019, 2020, 2021, 2022, 2023, 2024]
+2024-10-16 12:10:32,967 
+	Message: ====== WebDriver manager ======
+2024-10-16 12:10:33,803 
+	Message: Get LATEST edgedriver version for 129.0.2792 Edge
+2024-10-16 12:10:33,815 
+	Message: Starting new HTTPS connection (1): msedgedriver.azureedge.net:443
+2024-10-16 12:10:45,291 
+	Message: https://msedgedriver.azureedge.net:443 "GET /LATEST_RELEASE_129_WINDOWS HTTP/1.1" 200 32
+2024-10-16 12:10:46,133 
+	Message: Driver [C:\Users\scamp\.wdm\drivers\edgedriver\win64\129.0.2792\msedgedriver.exe] found in cache
+2024-10-16 12:10:46,717 
+	Message: Starting new HTTP connection (1): localhost:59159
+2024-10-16 12:10:47,685 
+	Message: http://localhost:59159 "POST /session HTTP/1.1" 200 853
+2024-10-16 12:10:49,551 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 14
+2024-10-16 12:10:50,747 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/window/maximize HTTP/1.1" 200 51
+2024-10-16 12:10:50,852 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/window/minimize HTTP/1.1" 200 49
+2024-10-16 12:10:50,853 
+	Message: files:
+{'MAT01': 'C:/Users/scamp/Dropbox/lavoro/mathscinet/Webscriping Mathscinet - Version 9/MAT01 input webscraping.csv'}
+2024-10-16 12:10:50,853 
+	Message: Apertura DB, generazioni delle nuove tabelle di lavoro
+
+2024-10-16 12:10:50,881 
+	Message: Caricamento riviste nei file csv nella tabella 'general' del DB
+
+2024-10-16 12:10:50,881 
+	Message: File corrente :
+C:/Users/scamp/Dropbox/lavoro/mathscinet/Webscriping Mathscinet - Version 9/MAT01 input webscraping.csv
+2024-10-16 12:10:50,881 
+	Message: ['Annals of Mathematics', '19700166602', '0,549450549450549', '0003-486X', '1939-8980', '6', '1', '0', 'NO 60% - 80%', 'NO Bottom 20%']
+2024-10-16 12:10:50,881 
+	Message: 10
+2024-10-16 12:10:50,882 
+	Message: ['Acta Mathematica', '23051', '0,520958083832335', '0001-5962', '1871-2509', 'NO Top 10%', '1', '0', 'NO 60% - 80%', 'NO Bottom 20%']
+2024-10-16 12:10:50,882 
+	Message: 10
+2024-10-16 12:10:50,882 
+	Message: ['Journal of the American Mathematical Society', '23617', '0,0662983425414364', '0894-0347', '1088-6834', 'NO Top 10%', 'NO 10% - 35%', 'NO 35% - 60%', '2', '0']
+2024-10-16 12:10:50,882 
+	Message: 10
+2024-10-16 12:10:50,882 
+	Message: ['Memoirs of the American Mathematical Society', '13024', '0,136842105263158', '0065-9266', '1947-6221', 'NO Top 10%', 'NO 10% - 35%', '18', '1', '0']
+2024-10-16 12:10:50,882 
+	Message: 10
+2024-10-16 12:10:50,882 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Annals of Mathematics","0003-486X","1939-8980","MAT01")
+2024-10-16 12:10:50,883 
+	Message: row:['Annals of Mathematics', '19700166602', '0,549450549450549', '0003-486X', '1939-8980', '6', '1', '0', 'NO 60% - 80%', 'NO Bottom 20%']
+2024-10-16 12:10:50,886 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica","0001-5962","1871-2509","MAT01")
+2024-10-16 12:10:50,886 
+	Message: row:['Acta Mathematica', '23051', '0,520958083832335', '0001-5962', '1871-2509', 'NO Top 10%', '1', '0', 'NO 60% - 80%', 'NO Bottom 20%']
+2024-10-16 12:10:50,886 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Journal of the American Mathematical Society","0894-0347","1088-6834","MAT01")
+2024-10-16 12:10:50,886 
+	Message: row:['Journal of the American Mathematical Society', '23617', '0,0662983425414364', '0894-0347', '1088-6834', 'NO Top 10%', 'NO 10% - 35%', 'NO 35% - 60%', '2', '0']
+2024-10-16 12:10:50,891 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Memoirs of the American Mathematical Society","0065-9266","1947-6221","MAT01")
+2024-10-16 12:10:50,891 
+	Message: row:['Memoirs of the American Mathematical Society', '13024', '0,136842105263158', '0065-9266', '1947-6221', 'NO Top 10%', 'NO 10% - 35%', '18', '1', '0']
+2024-10-16 12:10:50,891 
+	Message: rows:[('Annals of Mathematics', '0003-486X', '1939-8980'), ('Acta Mathematica', '0001-5962', '1871-2509'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221')]
+2024-10-16 12:10:50,941 
+	Message: Row:('Annals of Mathematics', '0003-486X', '1939-8980')
+2024-10-16 12:10:51,267 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 1 su 4...
+
+2024-10-16 12:10:51,267 
+	Message: Rivista corrente: Annals of Mathematics
+2024-10-16 12:10:51,267 
+	Message: Sono in search
+2024-10-16 12:10:51,267 
+	Message: Cerco con PISSN
+2024-10-16 12:10:51,911 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 14
+2024-10-16 12:10:54,919 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 120
+2024-10-16 12:10:54,937 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 120
+2024-10-16 12:10:54,937 
+	Message: Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato
+2024-10-16 12:10:54,955 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/elements HTTP/1.1" 200 365
+2024-10-16 12:10:54,967 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.117/text HTTP/1.1" 200 86
+2024-10-16 12:10:54,967 
+	Message: Elemento della lista risultati: Annals of Mathematics. Second Series
+Ann. of Math. (2)
+No Longer Indexed
+2024-10-16 12:10:54,982 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.117/text HTTP/1.1" 200 86
+2024-10-16 12:10:54,998 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.118/text HTTP/1.1" 200 67
+2024-10-16 12:10:54,998 
+	Message: Elemento della lista risultati: Annals of Mathematics
+Ann. of Math.
+No Longer Indexed
+2024-10-16 12:10:55,029 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.118/text HTTP/1.1" 200 67
+2024-10-16 12:10:55,045 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.119/text HTTP/1.1" 200 107
+2024-10-16 12:10:55,045 
+	Message: Elemento della lista risultati: Annals of Mathematics. Second Series
+Ann. of Math. (2)
+Reference List
+Indexed Cover-to-Cover
+2024-10-16 12:10:55,061 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.119/text HTTP/1.1" 200 107
+2024-10-16 12:10:55,092 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.79092D91DF212AB953E31A1BE0E14054.e.119/element HTTP/1.1" 200 127
+2024-10-16 12:10:55,108 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 80
+2024-10-16 12:10:55,265 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 14
+2024-10-16 12:10:55,280 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:10:55,327 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:10:55,327 
+	Message: Ricerca PISSN con successo
+2024-10-16 12:10:55,327 
+	Message: Clicco il bottone della tabella
+2024-10-16 12:10:58,369 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1645
+2024-10-16 12:10:58,384 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7EFAFCEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFD7BD24+1897988]
+	(No symbol) [0x00007FF7EF8AF1CC]
+	(No symbol) [0x00007FF7EF8F672E]
+	(No symbol) [0x00007FF7EF8F67B5]
+	(No symbol) [0x00007FF7EF934ED7]
+	(No symbol) [0x00007FF7EF917F8F]
+	(No symbol) [0x00007FF7EF8EC09D]
+	(No symbol) [0x00007FF7EF932887]
+	(No symbol) [0x00007FF7EF917BB3]
+	(No symbol) [0x00007FF7EF8EB5AC]
+	(No symbol) [0x00007FF7EF8EAA8D]
+	(No symbol) [0x00007FF7EF8EB171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA9E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA2095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA13103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA8B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA99761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA8C28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-16 12:10:58,400 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:10:58,463 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.74C007AF96FE0EB860F19113C74D7472.e.125/value HTTP/1.1" 200 14
+2024-10-16 12:10:58,463 
+	Message: Prendo gli MCQ per 0003-486X
+2024-10-16 12:10:58,478 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:10:58,494 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:10:58,510 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:10:58,525 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 406
+2024-10-16 12:10:58,543 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:10:58,566 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:10:58,575 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:10:58,593 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 11804
+2024-10-16 12:10:58,604 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-16 12:10:58,605 
+	Message: Lista dopo di divisione per la rivista Annals of Mathematics 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '6.24', '1.067', '171'], ['2022', '5.91', '1.100', '186'], ['2021', '5.69', '1.098', '193'], ['2020', '5.73', '1.140', '199'], ['2019', '5.41', '1.131', '209'], ['2018', '4.66', '1.043', '224'], ['2017', '5.01', '1.277', '255'], ['2016', '4.30', '1.286', '299'], ['2015', '4.19', '1.505', '359'], ['2014', '3.95', '1.491', '377'], ['2013', '3.66', '1.385', '378'], ['2012', '3.66', '1.279', '349'], ['2011', '3.54', '1.118', '316'], ['2010', '3.44', '952', '277'], ['2009', '3.49', '946', '271'], ['2008', '3.32', '904', '272'], ['2007', '3.02', '843', '279'], ['2006', '2.69', '729', '271'], ['2005', '2.36', '618', '262'], ['2004', '2.13', '578', '271'], ['2003', '2.29', '601', '263'], ['2002', '2.44', '602', '247'], ['2001', '2.19', '529', '242'], ['2000', '2.41', '530', '220']]
+2024-10-16 12:10:58,605 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",6.24,"2023");
+2024-10-16 12:10:58,620 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",5.91,"2022");
+2024-10-16 12:10:58,620 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",5.69,"2021");
+2024-10-16 12:10:58,620 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",5.73,"2020");
+2024-10-16 12:10:58,620 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",5.41,"2019");
+2024-10-16 12:10:58,636 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",4.66,"2018");
+2024-10-16 12:10:58,644 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",5.01,"2017");
+2024-10-16 12:10:58,644 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",4.30,"2016");
+2024-10-16 12:10:58,644 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",4.19,"2015");
+2024-10-16 12:10:58,652 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.95,"2014");
+2024-10-16 12:10:58,652 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.66,"2013");
+2024-10-16 12:10:58,652 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.66,"2012");
+2024-10-16 12:10:58,668 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.54,"2011");
+2024-10-16 12:10:58,668 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.44,"2010");
+2024-10-16 12:10:58,668 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.49,"2009");
+2024-10-16 12:10:58,683 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.32,"2008");
+2024-10-16 12:10:58,683 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",3.02,"2007");
+2024-10-16 12:10:58,683 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.69,"2006");
+2024-10-16 12:10:58,699 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.36,"2005");
+2024-10-16 12:10:58,699 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.13,"2004");
+2024-10-16 12:10:58,699 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.29,"2003");
+2024-10-16 12:10:58,715 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.44,"2002");
+2024-10-16 12:10:58,715 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.19,"2001");
+2024-10-16 12:10:58,715 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980",2.41,"2000");
+2024-10-16 12:10:58,715 
+	Message: Query per rivista Annals of Mathematics
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Annals of Mathematics","0003-486X","1939-8980","Not Found","2024");
+2024-10-16 12:10:58,762 
+	Message: Row:('Acta Mathematica', '0001-5962', '1871-2509')
+2024-10-16 12:10:59,107 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 2 su 4...
+
+2024-10-16 12:10:59,107 
+	Message: Rivista corrente: Acta Mathematica
+2024-10-16 12:10:59,107 
+	Message: Sono in search
+2024-10-16 12:10:59,107 
+	Message: Cerco con PISSN
+2024-10-16 12:11:00,247 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 14
+2024-10-16 12:11:03,262 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:11:03,268 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:11:03,268 
+	Message: RIcerca PISSN con successo
+2024-10-16 12:11:03,268 
+	Message: Clicco il bottone della tabella
+2024-10-16 12:11:06,270 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1645
+2024-10-16 12:11:06,270 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7EFAFCEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFD7BD24+1897988]
+	(No symbol) [0x00007FF7EF8AF1CC]
+	(No symbol) [0x00007FF7EF8F672E]
+	(No symbol) [0x00007FF7EF8F67B5]
+	(No symbol) [0x00007FF7EF934ED7]
+	(No symbol) [0x00007FF7EF917F8F]
+	(No symbol) [0x00007FF7EF8EC09D]
+	(No symbol) [0x00007FF7EF932887]
+	(No symbol) [0x00007FF7EF917BB3]
+	(No symbol) [0x00007FF7EF8EB5AC]
+	(No symbol) [0x00007FF7EF8EAA8D]
+	(No symbol) [0x00007FF7EF8EB171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA9E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA2095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA13103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA8B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA99761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA8C28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-16 12:11:06,285 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:06,332 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.911859A1016E7A864BD427EAF8120D8C.e.132/value HTTP/1.1" 200 14
+2024-10-16 12:11:06,332 
+	Message: Prendo gli MCQ per 0001-5962
+2024-10-16 12:11:06,348 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:11:06,364 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:11:06,364 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:06,379 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 406
+2024-10-16 12:11:06,395 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:11:06,395 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:11:06,416 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:06,422 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 11754
+2024-10-16 12:11:06,426 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-16 12:11:06,426 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '5.39', '275', '51'], ['2022', '5.53', '304', '55'], ['2021', '4.88', '278', '57'], ['2020', '4.17', '250', '60'], ['2019', '4.18', '272', '65'], ['2018', '3.76', '267', '71'], ['2017', '4.22', '308', '73'], ['2016', '4.01', '313', '78'], ['2015', '3.87', '302', '78'], ['2014', '3.55', '263', '74'], ['2013', '4.12', '276', '67'], ['2012', '4.05', '251', '62'], ['2011', '4.11', '234', '57'], ['2010', '3.68', '217', '59'], ['2009', '2.89', '188', '65'], ['2008', '2.32', '151', '65'], ['2007', '3.01', '208', '69'], ['2006', '2.42', '177', '73'], ['2005', '2.44', '173', '71'], ['2004', '2.77', '202', '73'], ['2003', '2.92', '225', '77'], ['2002', '2.56', '200', '78'], ['2001', '2.23', '174', '78'], ['2000', '2.46', '197', '80']]
+2024-10-16 12:11:06,426 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",5.39,"2023");
+2024-10-16 12:11:06,426 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",5.53,"2022");
+2024-10-16 12:11:06,442 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.88,"2021");
+2024-10-16 12:11:06,442 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.17,"2020");
+2024-10-16 12:11:06,442 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.18,"2019");
+2024-10-16 12:11:06,442 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.76,"2018");
+2024-10-16 12:11:06,460 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.22,"2017");
+2024-10-16 12:11:06,460 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.01,"2016");
+2024-10-16 12:11:06,460 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.87,"2015");
+2024-10-16 12:11:06,474 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.55,"2014");
+2024-10-16 12:11:06,474 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.12,"2013");
+2024-10-16 12:11:06,489 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.05,"2012");
+2024-10-16 12:11:06,489 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.11,"2011");
+2024-10-16 12:11:06,505 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.68,"2010");
+2024-10-16 12:11:06,505 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.89,"2009");
+2024-10-16 12:11:06,505 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.32,"2008");
+2024-10-16 12:11:06,521 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.01,"2007");
+2024-10-16 12:11:06,521 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.42,"2006");
+2024-10-16 12:11:06,521 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.44,"2005");
+2024-10-16 12:11:06,536 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.77,"2004");
+2024-10-16 12:11:06,536 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.92,"2003");
+2024-10-16 12:11:06,536 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.56,"2002");
+2024-10-16 12:11:06,536 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.23,"2001");
+2024-10-16 12:11:06,552 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.46,"2000");
+2024-10-16 12:11:06,552 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509","Not Found","2024");
+2024-10-16 12:11:06,599 
+	Message: Row:('Journal of the American Mathematical Society', '0894-0347', '1088-6834')
+2024-10-16 12:11:06,946 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 3 su 4...
+
+2024-10-16 12:11:06,946 
+	Message: Rivista corrente: Journal of the American Mathematical Society
+2024-10-16 12:11:06,946 
+	Message: Sono in search
+2024-10-16 12:11:06,946 
+	Message: Cerco con PISSN
+2024-10-16 12:11:07,315 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 14
+2024-10-16 12:11:10,332 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:11:10,348 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:11:10,348 
+	Message: RIcerca PISSN con successo
+2024-10-16 12:11:10,348 
+	Message: Clicco il bottone della tabella
+2024-10-16 12:11:13,376 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1645
+2024-10-16 12:11:13,376 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7EFAFCEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFD7BD24+1897988]
+	(No symbol) [0x00007FF7EF8AF1CC]
+	(No symbol) [0x00007FF7EF8F672E]
+	(No symbol) [0x00007FF7EF8F67B5]
+	(No symbol) [0x00007FF7EF934ED7]
+	(No symbol) [0x00007FF7EF917F8F]
+	(No symbol) [0x00007FF7EF8EC09D]
+	(No symbol) [0x00007FF7EF932887]
+	(No symbol) [0x00007FF7EF917BB3]
+	(No symbol) [0x00007FF7EF8EB5AC]
+	(No symbol) [0x00007FF7EF8EAA8D]
+	(No symbol) [0x00007FF7EF8EB171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA9E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA2095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA13103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA8B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA99761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA8C28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-16 12:11:13,404 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:13,480 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.088CE76BD16A4397FC688EF73C51EB39.e.139/value HTTP/1.1" 200 14
+2024-10-16 12:11:13,480 
+	Message: Prendo gli MCQ per 0894-0347
+2024-10-16 12:11:13,495 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:11:13,511 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:11:13,527 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:13,542 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 406
+2024-10-16 12:11:13,542 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:11:13,558 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:11:13,575 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:13,575 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 11778
+2024-10-16 12:11:13,589 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-16 12:11:13,589 
+	Message: Lista dopo di divisione per la rivista Journal of the American Mathematical Society 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '4.40', '493', '112'], ['2022', '4.68', '552', '118'], ['2021', '4.68', '590', '126'], ['2020', '4.79', '608', '127'], ['2019', '5.29', '682', '129'], ['2018', '4.75', '646', '136'], ['2017', '4.29', '626', '146'], ['2016', '3.94', '591', '150'], ['2015', '3.65', '581', '159'], ['2014', '3.59', '603', '168'], ['2013', '3.49', '629', '180'], ['2012', '3.58', '648', '181'], ['2011', '3.40', '598', '176'], ['2010', '3.30', '558', '169'], ['2009', '3.26', '535', '164'], ['2008', '3.37', '533', '158'], ['2007', '3.09', '461', '149'], ['2006', '3.45', '503', '146'], ['2005', '3.13', '472', '151'], ['2004', '2.85', '445', '156'], ['2003', '2.78', '426', '153'], ['2002', '2.62', '416', '159'], ['2001', '2.73', '458', '168'], ['2000', '2.30', '375', '163']]
+2024-10-16 12:11:13,589 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",4.40,"2023");
+2024-10-16 12:11:13,589 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",4.68,"2022");
+2024-10-16 12:11:13,605 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",4.68,"2021");
+2024-10-16 12:11:13,605 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",4.79,"2020");
+2024-10-16 12:11:13,605 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",5.29,"2019");
+2024-10-16 12:11:13,621 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",4.75,"2018");
+2024-10-16 12:11:13,621 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",4.29,"2017");
+2024-10-16 12:11:13,621 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.94,"2016");
+2024-10-16 12:11:13,636 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.65,"2015");
+2024-10-16 12:11:13,636 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.59,"2014");
+2024-10-16 12:11:13,636 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.49,"2013");
+2024-10-16 12:11:13,652 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.58,"2012");
+2024-10-16 12:11:13,652 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.40,"2011");
+2024-10-16 12:11:13,652 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.30,"2010");
+2024-10-16 12:11:13,652 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.26,"2009");
+2024-10-16 12:11:13,668 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.37,"2008");
+2024-10-16 12:11:13,668 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.09,"2007");
+2024-10-16 12:11:13,676 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.45,"2006");
+2024-10-16 12:11:13,676 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",3.13,"2005");
+2024-10-16 12:11:13,684 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",2.85,"2004");
+2024-10-16 12:11:13,684 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",2.78,"2003");
+2024-10-16 12:11:13,684 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",2.62,"2002");
+2024-10-16 12:11:13,684 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",2.73,"2001");
+2024-10-16 12:11:13,699 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834",2.30,"2000");
+2024-10-16 12:11:13,699 
+	Message: Query per rivista Journal of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Journal of the American Mathematical Society","0894-0347","1088-6834","Not Found","2024");
+2024-10-16 12:11:13,730 
+	Message: Row:('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221')
+2024-10-16 12:11:14,060 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 4 su 4...
+
+2024-10-16 12:11:14,060 
+	Message: Rivista corrente: Memoirs of the American Mathematical Society
+2024-10-16 12:11:14,060 
+	Message: Sono in search
+2024-10-16 12:11:14,060 
+	Message: Cerco con PISSN
+2024-10-16 12:11:15,033 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 14
+2024-10-16 12:11:18,038 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:11:18,038 
+	Message: http://localhost:59159 "GET /session/24b554720b38dcede4e600e55d4dc4ff/url HTTP/1.1" 200 80
+2024-10-16 12:11:18,038 
+	Message: RIcerca PISSN con successo
+2024-10-16 12:11:18,038 
+	Message: Clicco il bottone della tabella
+2024-10-16 12:11:21,044 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1645
+2024-10-16 12:11:21,044 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7EFAFCEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFD7BD24+1897988]
+	(No symbol) [0x00007FF7EF8AF1CC]
+	(No symbol) [0x00007FF7EF8F672E]
+	(No symbol) [0x00007FF7EF8F67B5]
+	(No symbol) [0x00007FF7EF934ED7]
+	(No symbol) [0x00007FF7EF917F8F]
+	(No symbol) [0x00007FF7EF8EC09D]
+	(No symbol) [0x00007FF7EF932887]
+	(No symbol) [0x00007FF7EF917BB3]
+	(No symbol) [0x00007FF7EF8EB5AC]
+	(No symbol) [0x00007FF7EF8EAA8D]
+	(No symbol) [0x00007FF7EF8EB171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA9E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA2095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF7EFA13103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7EFCA8B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA99761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA95D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF7EFA8C28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-16 12:11:21,060 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:21,154 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element/f.14DD16D99934C0346ED85E71FD17A339.d.536D5ED0CEB1C4318D77F066E1BC7AA2.e.146/value HTTP/1.1" 200 14
+2024-10-16 12:11:21,154 
+	Message: Prendo gli MCQ per 0065-9266
+2024-10-16 12:11:21,176 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:11:21,184 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1597
+2024-10-16 12:11:21,192 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:21,200 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 406
+2024-10-16 12:11:21,204 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:11:21,204 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 404 1591
+2024-10-16 12:11:21,219 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/element HTTP/1.1" 200 127
+2024-10-16 12:11:21,235 
+	Message: http://localhost:59159 "POST /session/24b554720b38dcede4e600e55d4dc4ff/execute/sync HTTP/1.1" 200 11778
+2024-10-16 12:11:21,235 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-16 12:11:21,235 
+	Message: Lista dopo di divisione per la rivista Memoirs of the American Mathematical Society 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '2.97', '570', '192'], ['2022', '2.75', '525', '191'], ['2021', '2.79', '505', '181'], ['2020', '3.06', '541', '177'], ['2019', '2.95', '490', '166'], ['2018', '2.41', '378', '157'], ['2017', '2.61', '384', '147'], ['2016', '2.55', '378', '148'], ['2015', '2.49', '358', '144'], ['2014', '2.24', '329', '147'], ['2013', '2.72', '400', '147'], ['2012', '2.47', '348', '141'], ['2011', '2.60', '364', '140'], ['2010', '2.68', '364', '136'], ['2009', '2.51', '326', '130'], ['2008', '2.26', '291', '129'], ['2007', '1.99', '271', '136'], ['2006', '1.61', '222', '138'], ['2005', '1.93', '268', '139'], ['2004', '1.81', '252', '139'], ['2003', '2.26', '325', '144'], ['2002', '2.03', '286', '141'], ['2001', '2.17', '301', '139'], ['2000', '1.79', '249', '139']]
+2024-10-16 12:11:21,235 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.97,"2023");
+2024-10-16 12:11:21,235 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.75,"2022");
+2024-10-16 12:11:21,250 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.79,"2021");
+2024-10-16 12:11:21,250 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",3.06,"2020");
+2024-10-16 12:11:21,250 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.95,"2019");
+2024-10-16 12:11:21,250 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.41,"2018");
+2024-10-16 12:11:21,266 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.61,"2017");
+2024-10-16 12:11:21,266 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.55,"2016");
+2024-10-16 12:11:21,266 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.49,"2015");
+2024-10-16 12:11:21,266 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.24,"2014");
+2024-10-16 12:11:21,266 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.72,"2013");
+2024-10-16 12:11:21,281 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.47,"2012");
+2024-10-16 12:11:21,281 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.60,"2011");
+2024-10-16 12:11:21,281 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.68,"2010");
+2024-10-16 12:11:21,281 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.51,"2009");
+2024-10-16 12:11:21,297 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.26,"2008");
+2024-10-16 12:11:21,297 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",1.99,"2007");
+2024-10-16 12:11:21,297 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",1.61,"2006");
+2024-10-16 12:11:21,297 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",1.93,"2005");
+2024-10-16 12:11:21,313 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",1.81,"2004");
+2024-10-16 12:11:21,313 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.26,"2003");
+2024-10-16 12:11:21,313 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.03,"2002");
+2024-10-16 12:11:21,313 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",2.17,"2001");
+2024-10-16 12:11:21,313 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221",1.79,"2000");
+2024-10-16 12:11:21,329 
+	Message: Query per rivista Memoirs of the American Mathematical Society
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Memoirs of the American Mathematical Society","0065-9266","1947-6221","Not Found","2024");
+2024-10-16 12:11:21,329 
+	Message: Lista files keys: ['MAT01']
+2024-10-16 12:11:21,329 
+	Message: Sto memorizzando MAT01
+2024-10-16 12:11:21,360 
+	Message: Salvo anno 2019 per MAT01
+2024-10-16 12:11:21,360 
+	Message: Risultati query:[('Annals of Mathematics', '0003-486X', '1939-8980', '5.41'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '5.29'), ('Acta Mathematica', '0001-5962', '1871-2509', '4.18'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.95')]
+2024-10-16 12:11:21,360 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-16 12:11:21,360 
+	Message: ('Annals of Mathematics', '0003-486X', '1939-8980', '5.41')
+2024-10-16 12:11:21,360 
+	Message: ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '5.29')
+2024-10-16 12:11:21,360 
+	Message: ('Acta Mathematica', '0001-5962', '1871-2509', '4.18')
+2024-10-16 12:11:21,360 
+	Message: ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.95')
+2024-10-16 12:11:21,360 
+	Message: Salvo anno 2020 per MAT01
+2024-10-16 12:11:21,376 
+	Message: Risultati query:[('Annals of Mathematics', '0003-486X', '1939-8980', '5.73'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.79'), ('Acta Mathematica', '0001-5962', '1871-2509', '4.17'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '3.06')]
+2024-10-16 12:11:21,376 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-16 12:11:21,376 
+	Message: ('Annals of Mathematics', '0003-486X', '1939-8980', '5.73')
+2024-10-16 12:11:21,376 
+	Message: ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.79')
+2024-10-16 12:11:21,376 
+	Message: ('Acta Mathematica', '0001-5962', '1871-2509', '4.17')
+2024-10-16 12:11:21,376 
+	Message: ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '3.06')
+2024-10-16 12:11:21,376 
+	Message: Salvo anno 2021 per MAT01
+2024-10-16 12:11:21,376 
+	Message: Risultati query:[('Annals of Mathematics', '0003-486X', '1939-8980', '5.69'), ('Acta Mathematica', '0001-5962', '1871-2509', '4.88'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.68'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.79')]
+2024-10-16 12:11:21,376 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-16 12:11:21,376 
+	Message: ('Annals of Mathematics', '0003-486X', '1939-8980', '5.69')
+2024-10-16 12:11:21,376 
+	Message: ('Acta Mathematica', '0001-5962', '1871-2509', '4.88')
+2024-10-16 12:11:21,376 
+	Message: ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.68')
+2024-10-16 12:11:21,376 
+	Message: ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.79')
+2024-10-16 12:11:21,376 
+	Message: Salvo anno 2022 per MAT01
+2024-10-16 12:11:21,376 
+	Message: Risultati query:[('Annals of Mathematics', '0003-486X', '1939-8980', '5.91'), ('Acta Mathematica', '0001-5962', '1871-2509', '5.53'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.68'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.75')]
+2024-10-16 12:11:21,376 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-16 12:11:21,391 
+	Message: ('Annals of Mathematics', '0003-486X', '1939-8980', '5.91')
+2024-10-16 12:11:21,391 
+	Message: ('Acta Mathematica', '0001-5962', '1871-2509', '5.53')
+2024-10-16 12:11:21,391 
+	Message: ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.68')
+2024-10-16 12:11:21,391 
+	Message: ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.75')
+2024-10-16 12:11:21,395 
+	Message: Salvo anno 2023 per MAT01
+2024-10-16 12:11:21,395 
+	Message: Risultati query:[('Annals of Mathematics', '0003-486X', '1939-8980', '6.24'), ('Acta Mathematica', '0001-5962', '1871-2509', '5.39'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.4'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.97')]
+2024-10-16 12:11:21,395 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-16 12:11:21,395 
+	Message: ('Annals of Mathematics', '0003-486X', '1939-8980', '6.24')
+2024-10-16 12:11:21,395 
+	Message: ('Acta Mathematica', '0001-5962', '1871-2509', '5.39')
+2024-10-16 12:11:21,395 
+	Message: ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', '4.4')
+2024-10-16 12:11:21,395 
+	Message: ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', '2.97')
+2024-10-16 12:11:21,395 
+	Message: Salvo anno 2024 per MAT01
+2024-10-16 12:11:21,395 
+	Message: Risultati query:[('Annals of Mathematics', '0003-486X', '1939-8980', 'Not Found'), ('Acta Mathematica', '0001-5962', '1871-2509', 'Not Found'), ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', 'Not Found'), ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', 'Not Found')]
+2024-10-16 12:11:21,395 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-16 12:11:21,407 
+	Message: ('Annals of Mathematics', '0003-486X', '1939-8980', 'Not Found')
+2024-10-16 12:11:21,407 
+	Message: ('Acta Mathematica', '0001-5962', '1871-2509', 'Not Found')
+2024-10-16 12:11:21,407 
+	Message: ('Journal of the American Mathematical Society', '0894-0347', '1088-6834', 'Not Found')
+2024-10-16 12:11:21,407 
+	Message: ('Memoirs of the American Mathematical Society', '0065-9266', '1947-6221', 'Not Found')
+2024-10-16 12:11:21,438 
+	Message:  Salvataggio dei MCQ avvenuto con successo!
+
+2024-10-16 12:11:21,438 
+	Message:  I dati sono stati salvati nel file al seguente percorso C:/Users/scamp/Dropbox/lavoro/mathscinet/Webscriping Mathscinet - Version 9/Webscraping Mathscinet Unito Applicativo sorgente\mathscinetWebscraping20241016
+2024-10-16 12:11:21,514 
+	Message: http://localhost:59159 "DELETE /session/24b554720b38dcede4e600e55d4dc4ff/window HTTP/1.1" 200 12

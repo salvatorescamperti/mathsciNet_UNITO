@@ -2,17 +2,12 @@
 
 import sys, stat
 import os.path
-from os import path
-from PyQt5.QtWidgets import (
-     QFileDialog
-)
 import logging
 import time
 import math
 import datetime
 import configparser
 import sqlite3 as sl
-from asyncio.windows_events import NULL
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
@@ -22,20 +17,87 @@ from selenium.webdriver.support import expected_conditions as EC
 import csv
 import tkinter as tk
 from tkinter import messagebox, filedialog
+from tkinter import simpledialog
 import pyautogui
 import pandas as pd
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
-import openpyxl
-import xlsxwriter
 from selenium.webdriver import EdgeOptions
 from selenium.webdriver import ChromeOptions
 from functools import partial
+from bs4 import BeautifulSoup
 
 
+def get_years_range():
+    # Funzione per chiedere input dell'utente con finestre di dialogo
+    root = tk.Tk()
+    root.withdraw()  # Nasconde la finestra principale di tkinter
 
+    # Funzione per verificare che l'anno sia tra 1900 e 3000
+    def valid_year(year):
+        return 1900 <= year <= 3000
+
+    while True:
+        # Chiediamo l'anno di inizio
+        start_year = simpledialog.askinteger("Anno di inizio", "Inserisci l'anno di inizio raccolta (tra 1900 e 3000):")
+        # Chiediamo l'anno di fine
+        end_year = simpledialog.askinteger("Anno di fine", "Inserisci l'anno di fine raccolta (tra 1900 e 3000):")
+
+        # Controlliamo che gli anni siano validi
+        if start_year is None or end_year is None:
+            messagebox.showerror("Errore", "Inserimento annullato.")
+            return None
+        
+        if not valid_year(start_year) or not valid_year(end_year):
+            messagebox.showerror("Errore", "Gli anni devono essere compresi tra 1900 e 3000.")
+            exit()
+            sys.exit(app.exec_())
+        elif start_year > end_year:
+            messagebox.showerror("Errore", "L'anno di inizio deve essere minore o uguale all'anno di fine.")
+            exit()
+            sys.exit(app.exec_())
+        else:
+            # Se gli anni sono validi, restituiamo la lista
+            return list(range(start_year, end_year + 1))
+        
+        
+
+def parse_html_table(html_str):
+    # Unire i frammenti di stringa
+    #html_str = ''.join(html_str)
+    
+    # Utilizzare BeautifulSoup per fare il parsing dell'HTML
+    soup = BeautifulSoup(html_str, 'html.parser')
+    
+    # Lista per memorizzare le righe della tabella
+    table_data = []
+
+    # Estrarre i titoli delle colonne (dall'elemento <thead> se presente)
+    headers = [th.get_text(strip=True) for th in soup.find_all('th')]
+    if headers:
+        table_data.append(headers)
+
+    # Controllare se esistono i tag <tr> per le righe della tabella
+    rows = soup.find_all('tr')
+
+    if rows:
+        # Se ci sono i tag <tr>, processiamo le righe
+        for row in rows:
+            row_data = [td.get_text(strip=True) for td in row.find_all('td')]
+            if row_data:  # Aggiungere solo se la riga contiene dati
+                table_data.append(row_data)
+    else:
+        # Se non ci sono tag <tr>, processiamo i tag <td> direttamente
+        current_row = []
+        for td in soup.find_all('td'):
+            current_row.append(td.get_text(strip=True))
+            if len(current_row) == len(headers):  # Quando una riga è completa
+                table_data.append(current_row)
+                current_row = []
+
+    return table_data
 
 
 #Finestra on top alert
@@ -305,10 +367,10 @@ con = sl.connect(determinopathini()+"\\risorse\\mathscinet_databse.db")
 #cur serve per stampare i dati del db
 cur = con.cursor()
 driver=""
-anniSelezionati = []
+anniSelezionati = get_years_range()
 ####estraggo anni selezionati
-for x in config['DEFAULT']['anniSelezionati'].split(","):
-    anniSelezionati.append(x)
+# for x in config['DEFAULT']['anniSelezionati'].split(","):
+#     anniSelezionati.append(x)
 #######
 divisionePercentile = True
 colonna_eISSN = config['DEFAULT']['colonna_eISSN']
@@ -943,14 +1005,14 @@ def get_MCQ(titolo,p_issn,e_issn,con):
         return False
     header = testa.get_attribute('innerHTML')
     #print(f"Header\n{header}")
-    header = determinoHeader(header)
+    #header = determinoHeader(header)
     #print(f"header\n{header}")
     element = trova_uno_di_questi(config["HTML"]["tabellaMCQ"],config["HTML"]["tabellaMCQ2"],config["HTML"]["tabellaMCQ3"])
     HTML = str(element.get_attribute('innerHTML'))
     #print(HTML)
     #time.sleep(10)
-    lista = HTML.split("tr")
-    lista = dividiHTMLmcq(lista)
+    lista = parse_html_table(HTML)
+    header = lista[0]
     rereprint("Ho completato la presa dati per questa rivista, li salvo nel db")
     for i in range(0,len(header)):
         if header[i] == "Year":
@@ -964,14 +1026,16 @@ def get_MCQ(titolo,p_issn,e_issn,con):
         inserimento_not_found(con,[titolo,p_issn,e_issn])
         return False
     for element in lista:
-        anniTrovati.append(element[index_anno])
+        if element[index_anno]!= "Year":
+            anniTrovati.append(element[index_anno])
     for element in lista:
-        if isfloat(element[index_anno]) and isfloat(element[index_mcq]):
-            with con:
-                
-                query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+str(element[index_mcq])+",\""+element[index_anno]+"\");"
-                rereprint(f"Query per rivista {titolo}\n{query}")
-                con.execute(query)
+        if element[index_mcq]!="MCQ":
+            if isfloat(element[index_anno]) and isfloat(element[index_mcq]):
+                with con:
+                    
+                    query = "INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES (\""+titolo+"\",\""+p_issn+"\",\""+e_issn+"\","+str(element[index_mcq])+",\""+element[index_anno]+"\");"
+                    rereprint(f"Query per rivista {titolo}\n{query}")
+                    con.execute(query)
     for anno in anniSelezionati:
         if str(anno) not in anniTrovati:
             with con:
