@@ -32,7 +32,6 @@ from bs4 import BeautifulSoup
 root = tk.Tk()
 root.withdraw()
 
-
 def get_years_range(root):
     # Funzione per chiedere input dell'utente con finestre di dialogo
     # Funzione per verificare che l'anno sia tra 1900 e 3000
@@ -48,7 +47,7 @@ def get_years_range(root):
         # Controlliamo che gli anni siano validi
         if start_year is None or end_year is None:
             messagebox.showerror("Errore", "Inserimento annullato.", parent=root)
-            exit()
+            return None
         
         if not valid_year(start_year) or not valid_year(end_year):
             messagebox.showerror("Errore", "Gli anni devono essere compresi tra 1900 e 3000.", parent=root)
@@ -67,6 +66,8 @@ def info(root, message, title="ShowInfo"):
 def chiedisino(root, message, title="ShowInfo"):
     risposta = messagebox.askyesno(title, message, parent=root)
     return risposta
+
+        
 
 def parse_html_table(html_str):
     # Unire i frammenti di stringa
@@ -102,6 +103,8 @@ def parse_html_table(html_str):
                 current_row = []
 
     return table_data
+
+
 # funzioni in generale
 def determinopathini():
     # determiniamo il path giusto per il file delle risorse
@@ -337,7 +340,7 @@ pyautogui.FAILSAFE = False
 files = {}
 #queste due righe servono per inizializzare le informazioni dal file delle risorse
 config = configparser.ConfigParser()
-config_name = '\\risorse\\variabili.ini'
+config_name = '/risorse/variabili.ini'
 config.read(determinopathini()+config_name)
 outputPath = ""
 browser = config['DEFAULT']['browser']
@@ -348,7 +351,7 @@ if config['DEFAULT']['driverPath']=="True":
 #Creazioni connessioni col DB
 #reprint(str(config['DATABASE']['default_path']))
 print(f"path_app:{determinopathini()}")
-con = sl.connect(determinopathini()+"\\risorse\\mathscinet_databse.db")
+con = sl.connect(determinopathini()+"/risorse/mathscinet_databse.db")
 #cur serve per stampare i dati del db
 cur = con.cursor()
 driver=""
@@ -672,23 +675,23 @@ def backupdb(key):
     current_time = datetime.datetime.now()
     today = str(current_time.year) + str(current_time.month) + str(current_time.day)
     #creazione cartelle
-    if not os.path.exists(outputPath + '\\mathscinetWebscraping'+today+'\\'):
-            os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\')
-            os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\',stat.S_IRWXO)
+    if not os.path.exists(outputPath + '/mathscinetWebscraping'+today+'/'):
+            os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/')
+            os.chmod(outputPath + '/mathscinetWebscraping'+today+'/',stat.S_IRWXO)
 
-    if not os.path.exists(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\'):
-        os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\')
-        os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\',stat.S_IRWXO)
-        os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\CSV')
-        os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\CSV',stat.S_IRWXO)
-        os.makedirs(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\EXCEL')
-        os.chmod(outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\EXCEL',stat.S_IRWXO)
+    if not os.path.exists(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/'):
+        os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/')
+        os.chmod(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/',stat.S_IRWXO)
+        os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/CSV')
+        os.chmod(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/CSV',stat.S_IRWXO)
+        os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/EXCEL')
+        os.chmod(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/EXCEL',stat.S_IRWXO)
 
 
     #scrittura dati
 
   
-    pathFilexlsx=outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\EXCEL\\'+key+'_MCQ.xlsx'
+    pathFilexlsx=outputPath + '/mathscinetWebscraping'+today+'/'+key+'/EXCEL/'+key+'_MCQ.xlsx'
     
     rereprint(f"Lista files keys: {list(files.keys())}")
     if key in list(files.keys()):
@@ -700,7 +703,7 @@ def backupdb(key):
                 results = data.fetchall()
                 rereprint(f"Risultati query:{results}")
                 results = controllo_results(results)
-                pathFile=outputPath + '\\mathscinetWebscraping'+today+'\\'+key+'\\CSV\\'+key+'_MCQ' + str(anno) + '.csv'
+                pathFile=outputPath + '/mathscinetWebscraping'+today+'/'+key+'/CSV/'+key+'_MCQ' + str(anno) + '.csv'
                 if len(results)>0:
                     with open(pathFile, 'w') as f:
                         wrt = csv.writer(f)
@@ -732,7 +735,7 @@ def backupdb(key):
             
 
     reprint(' Salvataggio dei MCQ avvenuto con successo!\n')
-    reprint(' I dati sono stati salvati nel file al seguente percorso ' + outputPath + '\\mathscinetWebscraping'+today)
+    reprint(' I dati sono stati salvati nel file al seguente percorso ' + outputPath + '/mathscinetWebscraping'+today)
 
 
 def long_process(key, numero_totale_files,numero_corrente):
@@ -1131,9 +1134,10 @@ def webScraping():
 
 
 
+
 webScraping()
 con.close()
 driver.close()
 info(root,"Il programma è terminato","Fine")
-root.mainloop()
 sys.exit()
+root.mainloop()
