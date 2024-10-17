@@ -20,17 +20,77 @@ from tkinter import messagebox, filedialog
 from tkinter import simpledialog
 import pyautogui
 import pandas as pd
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
+#from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import EdgeOptions
 from selenium.webdriver import ChromeOptions
 from functools import partial
 from bs4 import BeautifulSoup
+from tkinter import ttk
+import importlib
+
+def scegli_modulo(scelta):
+    if scelta =="Google":
+        importlib.import_module("from selenium.webdriver.chrome.service import Service as ChromeService")
+        importlib.import_module("from webdriver_manager.chrome import ChromeDriverManager")
+    elif scelta =="Morzilla Firefox":
+        importlib.import_module("from selenium.webdriver.firefox.service import Service as FirefoxService")
+        importlib.import_module("from webdriver_manager.firefox import FirefoxDriverManager")
+    else:
+        exit()
+
+    moduli_disponibili = ["os", "sys", "math"]
+    print("Moduli disponibili:", moduli_disponibili)
+    scelta = input("Scegli un modulo da importare: ")
+
+    if scelta in moduli_disponibili:
+        modulo = importlib.import_module(scelta)
+        print(f"Modulo {scelta} importato con successo.")
+        return modulo
+    else:
+        print("Modulo non valido.")
+        return None
+
+
 
 root = tk.Tk()
 root.withdraw()
+
+def scegli_browser():
+    browsers = ["Chrome", "Edge"]
+
+    def conferma_scelta():
+        nonlocal scelta
+        scelta = combobox.get()
+        top.destroy()
+        root.quit()
+        print(f"{scelta}")
+        return scelta
+
+    scelta = ""
+    top = tk.Toplevel(root)
+
+    top.title("Scelta Browser")
+
+    tk.Label(top, text="Scegli un browser:").pack(pady=10)
+
+    
+    combobox =ttk.Combobox(top, values=browsers, state="readonly")
+    combobox.set(browsers[0])
+    combobox.pack(pady=10)
+
+    tk.Button(top, text="Conferma", command=conferma_scelta).pack(pady=10)
+
+
+    top.mainloop()
+
+
+    return scelta
+
+
+
+
+
 
 def get_years_range(root):
     # Funzione per chiedere input dell'utente con finestre di dialogo
@@ -47,7 +107,7 @@ def get_years_range(root):
         # Controlliamo che gli anni siano validi
         if start_year is None or end_year is None:
             messagebox.showerror("Errore", "Inserimento annullato.", parent=root)
-            return None
+            exit()
         
         if not valid_year(start_year) or not valid_year(end_year):
             messagebox.showerror("Errore", "Gli anni devono essere compresi tra 1900 e 3000.", parent=root)
@@ -343,7 +403,7 @@ config = configparser.ConfigParser()
 config_name = '/risorse/variabili.ini'
 config.read(determinopathini()+config_name)
 outputPath = ""
-browser = config['DEFAULT']['browser']
+browser = scegli_browser()
 driverPath = ""
 if config['DEFAULT']['driverPath']=="True":
     fileName = filedialog.askopenfilename(filetypes=[("Eseguibili", ".exe")],title=f"Selezionare il driver")
@@ -1093,7 +1153,7 @@ def webScraping():
             try:
                 Driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
             except:
-                Driver = webdriver.Firefox(driverPath)
+                Driver = webdriver.Firefox()
         else:
             exit()
             sys.exit(app.exec_())
