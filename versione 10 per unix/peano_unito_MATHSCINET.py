@@ -444,6 +444,7 @@ def reprint(stringa):
     
 #questa funzione serve per reprintare in debug
 def rereprint(stringa):
+    stringa = stringa.encode('utf-8', errors='ignore').decode('utf-8')
     reprint(stringa)
     # logging.debug(stringa)
     return
@@ -731,65 +732,62 @@ def caricamentoriviste(con, key, file):
                 con.execute(query)
 
 #funzione per salvare i dati nella cartella di salvataggio
+#funzione per salvare i dati nella cartella di salvataggio
 def backupdb(key):
     current_time = datetime.datetime.now()
     today = str(current_time.year) + str(current_time.month) + str(current_time.day)
-    #creazione cartelle
-    if not os.path.exists(outputPath + '/mathscinetWebscraping'+today+'/'):
-            os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/')
-            os.chmod(outputPath + '/mathscinetWebscraping'+today+'/',stat.S_IRWXO)
+    # Creazione cartelle
+    if not os.path.exists(outputPath + '\\mathscinetWebscraping' + today + '\\'):
+        os.makedirs(outputPath + '\\mathscinetWebscraping' + today + '\\')
+        os.chmod(outputPath + '\\mathscinetWebscraping' + today + '\\', stat.S_IRWXO)
 
-    if not os.path.exists(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/'):
-        os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/')
-        os.chmod(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/',stat.S_IRWXO)
-        os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/CSV')
-        os.chmod(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/CSV',stat.S_IRWXO)
-        os.makedirs(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/EXCEL')
-        os.chmod(outputPath + '/mathscinetWebscraping'+today+'/'+key+'/EXCEL',stat.S_IRWXO)
+    if not os.path.exists(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\'):
+        os.makedirs(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\')
+        os.chmod(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\', stat.S_IRWXO)
+        os.makedirs(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\CSV')
+        os.chmod(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\CSV', stat.S_IRWXO)
+        os.makedirs(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\EXCEL')
+        os.chmod(outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\EXCEL', stat.S_IRWXO)
 
+    # Scrittura dati
+    pathFilexlsx = outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\EXCEL\\' + key + '_MCQ.xlsx'
 
-    #scrittura dati
-
-  
-    pathFilexlsx=outputPath + '/mathscinetWebscraping'+today+'/'+key+'/EXCEL/'+key+'_MCQ.xlsx'
-    
     rereprint(f"Lista files keys: {list(files.keys())}")
     if key in list(files.keys()):
         rereprint(f"Sto memorizzando {key}")    
         with pd.ExcelWriter(pathFilexlsx, engine='xlsxwriter') as writer:
             for anno in anniSelezionati:
                 rereprint(f"Salvo anno {anno} per {key}")
-                data = con.execute("SELECT DISTINCT general.title,general.p_issn,general.e_issn,inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='"+key +"' ORDER BY inforiviste.MCQ DESC")
+                data = con.execute("SELECT DISTINCT general.title, general.p_issn, general.e_issn, inforiviste.MCQ FROM general JOIN inforiviste ON inforiviste.titolo = general.title WHERE inforiviste.anno ='" + str(anno) + "' AND general.sector='" + key + "' ORDER BY inforiviste.MCQ DESC")
                 results = data.fetchall()
-                rereprint(f"Risultati query:{results}")
+                rereprint(f"Risultati query: {results}")
                 results = controllo_results(results)
-                pathFile=outputPath + '/mathscinetWebscraping'+today+'/'+key+'/CSV/'+key+'_MCQ' + str(anno) + '.csv'
-                if len(results)>0:
-                    with open(pathFile, 'w') as f:
+                pathFile = outputPath + '\\mathscinetWebscraping' + today + '\\' + key + '\\CSV\\' + key + '_MCQ' + str(anno) + '.csv'
+                if len(results) > 0:
+                    with open(pathFile, 'w', encoding='utf-8', errors='ignore') as f:  # Ignora errori di codifica
                         wrt = csv.writer(f)
-                        wrt.writerow(['title','p_issn','e_issn','MCQ'])
+                        wrt.writerow(['title', 'p_issn', 'e_issn', 'MCQ'])
                         wrt.writerows(results)
-                    
-                    df = pd.read_csv(pathFile,sep=",")
-                    #print(f"Pandas:\n{df}")
-                    total=len(df.index)
+
+                    df = pd.read_csv(pathFile, sep=",", encoding='utf-8')  # Ignora errori di codifica
+                    total = len(df.index)
                     vettorePercentili = []
                     for j in range(total):
                         vettorePercentili.append("00")
                     for j in range(total):
-                        if j+1 <= math.ceil(total*10/100):
-                            vettorePercentili[j]="10% TOP- Q1"
-                        if j+1 > math.ceil(total*10/100):
-                            vettorePercentili[j]="Q1"
-                        if j+1 > math.ceil(total*25/100):
-                            vettorePercentili[j]="Q2"
-                        if j+1 > math.ceil(total*50/100):
-                            vettorePercentili[j]="Q3"
-                        if j+1 > math.ceil(total*75/100):
-                            vettorePercentili[j]="Q4"
+                        if j + 1 <= math.ceil(total * 10 / 100):
+                            vettorePercentili[j] = "10% TOP- Q1"
+                        if j + 1 > math.ceil(total * 10 / 100):
+                            vettorePercentili[j] = "Q1"
+                        if j + 1 > math.ceil(total * 25 / 100):
+                            vettorePercentili[j] = "Q2"
+                        if j + 1 > math.ceil(total * 50 / 100):
+                            vettorePercentili[j] = "Q3"
+                        if j + 1 > math.ceil(total * 75 / 100):
+                            vettorePercentili[j] = "Q4"
                     df['Percentile'] = vettorePercentili
-                    df.to_csv(pathFile,index=False,sep=",",mode='w')
-                    df.to_excel(writer, sheet_name=str(anno), index=False)
+                    df.to_csv(pathFile, index=False, sep=",", mode='w', errors="ignore")  # Ignora errori
+                    df.to_excel(writer, sheet_name=str(anno), index=False)  # Ignora errori
                 
         
             
@@ -1199,5 +1197,6 @@ webScraping()
 con.close()
 driver.close()
 info(root,"Il programma è terminato","Fine")
-sys.exit()
 root.mainloop()
+sys.exit()
+exit()
