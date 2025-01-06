@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# File di log
+LOG_FILE="log_install.txt"
+
+# Elimina eventuali vecchi log
+echo "Log di installazione - $(date)" > $LOG_FILE
+
+
 # Funzione per installare pacchetti usando apt
 install_with_apt() {
     sudo apt update
@@ -8,18 +15,27 @@ install_with_apt() {
 
 # Verifica se python3 è installato
 if ! command -v python3 &> /dev/null; then
-    echo "Python3 non è installato. Installazione in corso..."
+    echo "Python3 non è installato. Installazione in corso..." >> $LOG_FILE
     install_with_apt python3
 else
-    echo "Python3 è già installato."
+    echo "Python3 è già installato." >> $LOG_FILE
+fi
+
+# Controllo se Python 3 è installato
+if command -v python3 &>/dev/null; then
+    echo "Python 3 è installato." >> $LOG_FILE
+else
+    echo "Python 3 non è installato. Installalo prima di continuare." >> $LOG_FILE
+    echo "Errore: Python 3 non trovato. Esci."
+    exit 1
 fi
 
 # Verifica se pip3 è installato
 if ! command -v pip3 &> /dev/null; then
-    echo "pip3 non è installato. Installazione in corso..."
+    echo "pip3 non è installato. Installazione in corso..." >> $LOG_FILE
     install_with_apt python3-pip
 else
-    echo "pip3 è già installato."
+    echo "pip3 è già installato." >> $LOG_FILE
 fi
 
 # Elenco dei pacchetti richiesti
@@ -33,31 +49,34 @@ REQUIRED_PKG=(
     "datetime"
     "configparser"
     "sqlite3"
-    "selenium"
-    "webdriver_manager"
+    "csv"
     "tkinter"
     "pyautogui"
     "pandas"
+    "selenium"
+    "webdriver_manager"
     "beautifulsoup4"
 )
 
-# Funzione per installare pacchetti mancanti
-for pkg in "${REQUIRED_PKG[@]}"; do
-    if python3 -c "import ${pkg}" &> /dev/null; then
-        echo "Il pacchetto $pkg è già installato."
-    else
-        echo "Il pacchetto $pkg non è installato. Installazione in corso..."
-        if [[ "$pkg" == "configparser" ]]; then
-            sudo apt-get install -y python3-configparser
-        elif [[ "$pkg" == "beautifulsoup4" ]]; then
-            sudo apt-get install -y python3-bs4
-        elif [[ "$pkg" == "tkinter" ]]; then
-            sudo apt-get install -y python3-tk
+# Verifica e installazione dei pacchetti
+for package in "${PACKAGES[@]}"; do
+    echo "Controllo il pacchetto $package..." >> $LOG_FILE
+    python3 -c "import $package" 2>/dev/null
+    if [ $? -ne 0 ]; then
+        echo "$package non è installato. Tentativo di installazione..." >> $LOG_FILE
+        pip install $package >> $LOG_FILE 2>&1
+        if [ $? -eq 0 ]; then
+            echo "$package installato con successo." >> $LOG_FILE
         else
-            pip3 install "$pkg"
+            echo "Errore durante l'installazione di $package." >> $LOG_FILE
         fi
+    else
+        echo "$package è già installato." >> $LOG_FILE
     fi
+    echo "" >> $LOG_FILE
+    sleep 1
+    # Optional: aggiungi un ritardo per evitare problemi di rete o congestione
+
 done
 
-echo "Verifica completata. Tutti i pacchetti necessari sono installati."
-
+echo "Verifica completata. Controlla il file $LOG_FILE per i dettagli."
