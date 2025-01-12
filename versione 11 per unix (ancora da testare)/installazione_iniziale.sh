@@ -56,6 +56,8 @@ REQUIRED_PKG=(
     "selenium"
     "webdriver_manager"
     "beautifulsoup4"
+    "flask"
+    "webbrowser"
 )
 
 # Verifica e installazione dei pacchetti
