@@ -44,8 +44,10 @@ class MathscinetScraper:
         # Carichiamo config e impostiamo logging
         self.config = configparser.ConfigParser()
         self.application_path = self.determina_path_ini()
-        self.config_name = '\\risorse\\variabili.ini'
-        self.config.read(self.application_path + self.config_name)
+        try:
+            self.config.read(os.path.join(self.application_path, "risorse","variabili.ini"))
+        except Exception as e:
+            self.verbose_print(f"non trovato il file varibili.ini: {e}")
 
         # Impostiamo logging
         log_path = os.path.join(self.application_path, "log.txt")
@@ -77,8 +79,12 @@ class MathscinetScraper:
         # Anni selezionati (GUI)
         self.anniSelezionati = self.get_years_range(self.root)
 
+        try:
+           self.con = sl.connect(os.path.join(self.application_path, "risorse","mathscinet_databse.db"))
+        except Exception as e:
+            self.verbose_print(f"non trovato il file oppure errore nella connessione a mathscinet_databse.db: {e}")
+
         # Apriamo la connessione DB
-        self.con = sl.connect(self.application_path + "\\risorse\\mathscinet_databse.db")
         self.cur = self.con.cursor()
 
         # Variabili per file e output
