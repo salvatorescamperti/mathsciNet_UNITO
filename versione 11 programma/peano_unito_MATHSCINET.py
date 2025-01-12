@@ -85,6 +85,10 @@ class MathscinetScraper:
         self.files = {}
         self.outputPath = ""
 
+        #settori default
+        self.settori = self.config['DEFAULT']['settori'].split(',')
+        # Possibilità di settori
+        self.ask_settori(self.root)
         # Selezione di eventuali file per i settori
         self.seleziona_file_settori()
 
@@ -100,6 +104,8 @@ class MathscinetScraper:
 
         # Possibilità di personalizzarli
         self.ask_percentiles(self.root)
+
+        
 
         # Fine init
         self.verbose_print("Inizializzazione completata, pronto per eseguire.")
@@ -178,6 +184,42 @@ class MathscinetScraper:
                 return
             except Exception as e:
                 messagebox.showerror("Errore Percentili", f"Valori invalidi: {e}\nRiprova.")
+
+    #--------------------------------------
+    #GUI per personalizzare settori
+    #-----------------------------------
+    def ask_settori(self,root):
+        """
+        Chiede all'utente via tkinter se vuole modificare i settori
+        """
+        answer = self.chiedisino(root,f"Vuoi modificare i settori di default ({self.settori})?", title="Settori personalizzati", color_si="red",color_no="green",geometria="450x300")
+        
+        if not answer:
+            self.verbose_print("Mantengo i settori di default.")
+            return
+
+        while True:
+            try:
+                msg = ("Inserisci i settori separati da una virgola.\n"
+                       "Esempio: MAT01,MAT02A,MAT03B")
+                user_input = simpledialog.askstring(
+                    "Personalizza settori",
+                    msg,
+                    parent=self.root
+                )
+                if user_input is None:
+                    # annullato => manteniamo i default
+                    self.verbose_print("L'utente ha annullato, mantengo i settori di default.")
+                    return
+
+                new_p = [x.strip() for x in user_input.split(",")]
+                self.settori = new_p
+                self.verbose_print(f"Settori modificati con successo in: {self.settori}")
+                return
+            except Exception as e:
+                messagebox.showerror("Errore settori", f"Valori invalidi: {e}\nRiprova.")
+
+    # -----------------------------------------------
 
     # -----------------------------------------------
     # Funzione di stampa/LOG centralizzata
@@ -296,8 +338,8 @@ class MathscinetScraper:
         Esempio: chiede se vogliamo selezionare il file per alcuni settori (es. "MAT01").
         Aggiunge i file selezionati a self.files
         """
-        settori = self.config['DEFAULT']['settori'].split(',')
-        for x in settori:
+        
+        for x in self.settori:
             self.verbose_print(f"Richiesta selezione files per settore {x}")
             answer = self.chiedisino(
                 self.root,
@@ -1068,9 +1110,13 @@ class MathscinetScraper:
                         # for _ in range(3):
                         #     pyautogui.press('shift')
 
+                        ##########################################
+                        #Qui è da inserire che prima verifica se il giornale è già stato trovato. in quel caso si devono saltare questi passaggi
+                        ###########################################
                         if self.search_journal(row):
                             self.get_MCQ(row[0], row[1], row[2])
                         elif self.search_journal_first_link_also_if_no_valid(row):
+                            #sarebbe bello inserire un dato che ci dice che è stato trovato MCQ in questo caso
                             self.get_MCQ(row[0], row[1], row[2])
                         else:
                             self.inserimento_not_found([row[0], row[1], row[2]])
@@ -1080,7 +1126,10 @@ class MathscinetScraper:
 
             # Info e chiusura “pulita”
             self.root.attributes("-topmost", True)
-            self.info(self.root, "Il programma è terminato", "Fine")
+            if self.settori == "" or self.anniSelezionati == [] or self.files == {} or self.outputPath == "":
+                self.info(self.root, "Il programma è terminato per il mancato inserimento di informazioni necessarie. Per far girare il programma devono essere impostati l'anno di inizio e di fine ricerca, i percentili, almeno un settore con un file di riviste e la cartella dove inserire gli output.", "Fine")
+            else:
+                self.info(self.root, "Il programma è terminato", "Fine")
         except Exception as e:
             self.verbose_print(f"ERRORE GENERALE: {e}")
         finally:
