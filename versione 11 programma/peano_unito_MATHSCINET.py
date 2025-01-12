@@ -37,19 +37,10 @@ class MathscinetScraper:
 
     def __init__(self):
         """Inizializzazione: carica la config, setup logging, tkinter root, ecc."""
-        # Inizializziamo la GUI base, nascosta
-        self.root = tk.Tk()
-        self.root.withdraw()
-
-        # Carichiamo config e impostiamo logging
+         # Carichiamo config e impostiamo logging
         self.config = configparser.ConfigParser()
         self.application_path = self.determina_path_ini()
-        try:
-            self.config.read(os.path.join(self.application_path, "risorse","variabili.ini"))
-        except Exception as e:
-            self.verbose_print(f"non trovato il file varibili.ini: {e}")
-
-        # Impostiamo logging
+         # Impostiamo logging
         log_path = os.path.join(self.application_path, "log.txt")
         logging.basicConfig(
             filename=log_path,
@@ -58,6 +49,17 @@ class MathscinetScraper:
             filemode="w",
         )
 
+        # Inizializziamo la GUI base, nascosta
+        self.root = tk.Tk()
+        self.root.withdraw()
+
+       
+        if os.path.isdir(os.path.join(self.application_path, "risorse","variabili.ini")):
+            self.config.read(os.path.join(self.application_path, "risorse","variabili.ini"))
+        else:
+            self.verbose_print(f"Non trovato il file varibili.ini")
+
+       
         # Leggiamo dal file di config
         self.browser = self.config['DEFAULT']['browser']
         self.driverPath = ""
@@ -80,6 +82,8 @@ class MathscinetScraper:
         self.anniSelezionati = self.get_years_range(self.root)
 
         try:
+           if not os.path.isdir(os.path.join(self.application_path, "risorse","mathscinet_databse.db")):
+               self.verbose_print(f"non trovato il file oppure errore nella connessione a mathscinet_databse.db: {e}")
            self.con = sl.connect(os.path.join(self.application_path, "risorse","mathscinet_databse.db"))
         except Exception as e:
             self.verbose_print(f"non trovato il file oppure errore nella connessione a mathscinet_databse.db: {e}")
@@ -1144,5 +1148,10 @@ class MathscinetScraper:
 
 # ESECUZIONE
 if __name__ == "__main__":
-    scraper = MathscinetScraper()
-    scraper.run()
+    try:
+        scraper = MathscinetScraper()
+        scraper.run()
+    except Exception as e:
+        print(f"Errore iniziale: {e}")
+    
+    
