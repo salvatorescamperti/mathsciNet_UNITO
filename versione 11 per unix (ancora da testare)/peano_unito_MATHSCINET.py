@@ -102,6 +102,7 @@ class MathscinetScraper:
         self.files = {}
         self.outputPath = ""
 
+
         #settori default
         self.settori = self.config['DEFAULT']['settori'].split(',')
         # Possibilità di settori
@@ -169,8 +170,11 @@ class MathscinetScraper:
         Se dice di sì, richiede 4 valori in ordine crescente (0 < p1 < p2 < p3 < p4 < 100).
         Se l'utente inserisce valori non validi, ripete la procedura.
         """
-        answer = self.chiedisino(root,"Vuoi modificare i percentili di default (p1 = 10 quindi top10%, p2 = 25 quindi Q1<=25%, p3 = 50 quindi 25%<Q2<=50%, p4 = 75 quindi 50%<Q3<=75%, Q4>75%)?", title="Percentili personalizzati", color_si="red",color_no="green",geometria="450x300")
+        # commento l'answer e faccio in modo che vada di default
+        #answer = self.chiedi_si_no_accessibile(root,"Vuoi modificare i percentili di default (p1 = 10 quindi top10%, p2 = 25 quindi Q1<=25%, p3 = 50 quindi 25%<Q2<=50%, p4 = 75 quindi 50%<Q3<=75%, Q4>75%)?", title="Percentili personalizzati")
         
+        answer = False
+
         if not answer:
             self.verbose_print("Mantengo i percentili di default: [10, 25, 50, 75].")
             return
@@ -210,8 +214,11 @@ class MathscinetScraper:
         """
         Chiede all'utente via tkinter se vuole modificare le colonne dei file
         """
-        answer = self.chiedisino(root,f"Vuoi modificare le colonne di default ({self.colonna_eISSN},{self.colonna_pISSN}, {self.colonnaTitolo}) \noppure il carattere delimitatore del csv {self.carattereDelimitatorecsv}?", title="Settori personalizzati", color_si="red",color_no="green",geometria="450x300")
+        # commento l'answer e faccio in modo che vada di default
+        #answer = self.chiedi_si_no_accessibile(root,f"Vuoi modificare le colonne di default ({self.colonna_eISSN},{self.colonna_pISSN}, {self.colonnaTitolo}) \noppure il carattere delimitatore del csv {self.carattereDelimitatorecsv}?", title="Settori personalizzati")
         
+        answer = False
+
         if not answer:
             self.verbose_print("Mantengo default.")
             return
@@ -268,8 +275,11 @@ class MathscinetScraper:
         """
         Chiede all'utente via tkinter se vuole modificare i settori
         """
-        answer = self.chiedisino(root,f"Vuoi modificare i settori di default ({self.settori})?", title="Settori personalizzati", color_si="red",color_no="green",geometria="450x300")
+        # commento l'answer e faccio in modo che vada di default
+        #answer = self.chiedi_si_no_accessibile(root,f"Vuoi modificare i settori di default ({self.settori})?", title="Settori personalizzati")
         
+        answer = False
+
         if not answer:
             self.verbose_print("Mantengo i settori di default.")
             return
@@ -328,117 +338,292 @@ class MathscinetScraper:
             application_path = os.getcwd()
         return application_path
 
+    # def get_years_range(self, root):
+    #     """
+    #     Funzione per chiedere input dell'utente con finestre di dialogo:
+    #     Ritorna lista [start_year, ..., end_year].
+    #     """
+    #     def valid_year(year):
+    #         return 1900 <= year <= 3000
+
+    #     while True:
+    #         self.root.attributes("-topmost", True)
+    #         start_year = simpledialog.askinteger(
+    #             "Anno di inizio",
+    #             "Inserisci l'anno di inizio raccolta (tra 1900 e 3000):",
+    #             parent=root
+    #         )
+    #         end_year = simpledialog.askinteger(
+    #             "Anno di fine",
+    #             "Inserisci l'anno di fine raccolta (tra 1900 e 3000):",
+    #             parent=root
+    #         )
+
+    #         if start_year is None or end_year is None:
+    #             messagebox.showerror("Errore", "Inserimento annullato.", parent=root)
+    #             self.close_all(force_exit=True)
+
+    #         if not valid_year(start_year) or not valid_year(end_year):
+    #             messagebox.showerror(
+    #                 "Errore",
+    #                 "Gli anni devono essere compresi tra 1900 e 3000.",
+    #                 parent=root
+    #             )
+    #             continue
+    #         elif start_year > end_year:
+    #             messagebox.showerror(
+    #                 "Errore",
+    #                 "L'anno di inizio deve essere minore o uguale all'anno di fine.",
+    #                 parent=root
+    #             )
+    #             continue
+    #         else:
+    #             return list(range(start_year, end_year + 1))
+
     def get_years_range(self, root):
         """
-        Funzione per chiedere input dell'utente con finestre di dialogo:
-        Ritorna lista [start_year, ..., end_year].
+        Versione accessibile con shortcut: chiede anni da input e ritorna [start_year, ..., end_year].
         """
-        def valid_year(year):
-            return 1900 <= year <= 3000
 
-        while True:
-            self.root.attributes("-topmost", True)
-            start_year = simpledialog.askinteger(
-                "Anno di inizio",
-                "Inserisci l'anno di inizio raccolta (tra 1900 e 3000):",
-                parent=root
-            )
-            end_year = simpledialog.askinteger(
-                "Anno di fine",
-                "Inserisci l'anno di fine raccolta (tra 1900 e 3000):",
-                parent=root
-            )
+        def on_confirm(event=None):  # supporta anche evento da tastiera
+            try:
+                start_year = int(entry_start.get())
+                end_year = int(entry_end.get())
+            except ValueError:
+                label_status.config(text="⚠️ Inserisci numeri validi.")
+                return
 
-            if start_year is None or end_year is None:
-                messagebox.showerror("Errore", "Inserimento annullato.", parent=root)
-                self.close_all(force_exit=True)
+            if not (1900 <= start_year <= 3000) or not (1900 <= end_year <= 3000):
+                label_status.config(text="⚠️ Gli anni devono essere tra 1900 e 3000.")
+                return
+            if start_year > end_year:
+                label_status.config(text="⚠️ L'anno di inizio deve essere ≤ anno di fine.")
+                return
 
-            if not valid_year(start_year) or not valid_year(end_year):
-                messagebox.showerror(
-                    "Errore",
-                    "Gli anni devono essere compresi tra 1900 e 3000.",
-                    parent=root
-                )
-                continue
-            elif start_year > end_year:
-                messagebox.showerror(
-                    "Errore",
-                    "L'anno di inizio deve essere minore o uguale all'anno di fine.",
-                    parent=root
-                )
-                continue
-            else:
-                return list(range(start_year, end_year + 1))
+            self.years_range = list(range(start_year, end_year + 1))
+            input_frame.destroy()
+            root.quit()
+
+        # Crea una finestra secondaria accessibile
+        input_frame = tk.Toplevel(root)
+        input_frame.title("Seleziona intervallo anni")
+        input_frame.attributes("-topmost", True)
+        input_frame.grab_set()
+        input_frame.geometry("300x220")
+        input_frame.resizable(False, False)
+
+        tk.Label(input_frame, text="Anno di inizio (1900–3000):").pack(pady=(15, 5))
+        entry_start = tk.Entry(input_frame)
+        entry_start.pack()
+        entry_start.focus_set()
+
+        tk.Label(input_frame, text="Anno di fine (1900–3000):").pack(pady=(10, 5))
+        entry_end = tk.Entry(input_frame)
+        entry_end.pack()
+
+        confirm_btn = tk.Button(input_frame, text="Conferma", command=on_confirm)
+        confirm_btn.pack(pady=15)
+
+        label_status = tk.Label(input_frame, text="", fg="red")
+        label_status.pack()
+
+        # Bind del tasto Invio (Return) all'azione di conferma
+        input_frame.bind("<Return>", on_confirm)
+
+        root.wait_window(input_frame)
+
+        if hasattr(self, "years_range"):
+            return self.years_range
+        else:
+            self.close_all(force_exit=True)
+
+
+ 
+ 
+ 
+ 
+    # def info(self, root, message, title="ShowInfo"):
+    #     """Mostra una info box su tkinter."""
+    #     self.root.attributes("-topmost", True)
+    #     messagebox.showinfo(title, message, parent=root)
+
 
     def info(self, root, message, title="ShowInfo"):
-        """Mostra una info box su tkinter."""
-        self.root.attributes("-topmost", True)
-        messagebox.showinfo(title, message, parent=root)
+        """
+        Mostra una finestra informativa accessibile (al posto di messagebox.showinfo).
+        Funziona anche da tastiera: Invio o Esc per chiudere.
+        """
+        def close_info(event=None):
+            info_win.destroy()
+            root.quit()  # Ferma il mainloop locale se attivo
 
-    # def chiedisino(self, root, message, title="ShowInfo"):
+        info_win = tk.Toplevel(root)
+        info_win.title(title)
+        info_win.attributes("-topmost", True)
+        info_win.grab_set()
+        info_win.geometry("350x160")
+        info_win.resizable(False, False)
+
+        label_msg = tk.Label(info_win, text=message, wraplength=320, justify="left")
+        label_msg.pack(padx=15, pady=(25, 10))
+
+        ok_button = tk.Button(info_win, text="OK", width=10, command=close_info)
+        ok_button.pack(pady=(0, 20))
+        ok_button.focus_set()  # Imposta focus iniziale sul pulsante
+
+        # Shortcut tastiera
+        info_win.bind("<Return>", close_info)
+        info_win.bind("<Escape>", close_info)
+
+        root.wait_window(info_win)
+
+
+    # def chiedi_si_no_accessibile(self, root, message, title="ShowInfo"):
     #     """Chiede yes/no su tkinter, ritorna boolean."""
     #     self.root.attributes("-topmost", True)
     #     risposta = messagebox.askyesno(title, message, parent=root)
     #     return risposta
 
-    def chiedisino(self, root, message, title="ShowInfo", color_si="green",color_no="red",geometria="300x150"):
-        """Chiede yes/no su tkinter, ritorna boolean."""
-        # Creazione della finestra personalizzata
-        dialog = Toplevel(root)
-        dialog.title(title)
-        dialog.attributes("-topmost", True)  # Mantieni in primo piano
-        dialog.geometry(geometria)
-        dialog.grab_set()  # Blocca interazioni con la finestra principale
+    # def chiedi_si_no_accessibile(self, root, message, title="ShowInfo", color_si="green",color_no="red",geometria="300x150"):
+    #     """Chiede yes/no su tkinter, ritorna boolean."""
+    #     # Creazione della finestra personalizzata
+    #     dialog = Toplevel(root)
+    #     dialog.title(title)
+    #     dialog.attributes("-topmost", True)  # Mantieni in primo piano
+    #     dialog.geometry(geometria)
+    #     dialog.grab_set()  # Blocca interazioni con la finestra principale
 
-        # Messaggio
-        tk.Label(dialog, text=message, wraplength=250, padx=10, pady=10).pack()
+    #     # Messaggio
+    #     tk.Label(dialog, text=message, wraplength=250, padx=10, pady=10).pack()
 
-        # Variabile per la risposta
-        risposta = tk.BooleanVar(value=None)
+    #     # Variabile per la risposta
+    #     risposta = tk.BooleanVar(value=None)
 
-        # Pulsanti personalizzati
-        def chiudi_si():
-            risposta.set(True)
-            dialog.destroy()
+    #     # Pulsanti personalizzati
+    #     def chiudi_si():
+    #         risposta.set(True)
+    #         dialog.destroy()
 
-        def chiudi_no():
-            risposta.set(False)
-            dialog.destroy()
+    #     def chiudi_no():
+    #         risposta.set(False)
+    #         dialog.destroy()
 
-        tk.Button(dialog, text="Sì", command=chiudi_si, bg=color_si, fg="white", width=10).pack(side=tk.LEFT, padx=20, pady=10)
-        tk.Button(dialog, text="No", command=chiudi_no, bg=color_no, fg="white", width=10).pack(side=tk.RIGHT, padx=20, pady=10)
+    #     tk.Button(dialog, text="Sì", command=chiudi_si, bg=color_si, fg="white", width=10).pack(side=tk.LEFT, padx=20, pady=10)
+    #     tk.Button(dialog, text="No", command=chiudi_no, bg=color_no, fg="white", width=10).pack(side=tk.RIGHT, padx=20, pady=10)
 
-        # Attendi la chiusura della finestra
-        dialog.wait_window(dialog)
-        return risposta.get()
+    #     # Attendi la chiusura della finestra
+    #     dialog.wait_window(dialog)
+    #     return risposta.get()
 
-    # -----------------------------------------------
+    def chiedi_si_no_accessibile(self, root, message, title="Domanda"):
+        """
+        Mostra una finestra accessibile per domanda SI/NO, con focus forzato.
+        Ritorna True (sì) o False (no).
+        """
+
+        risposta = {"valore": None}
+
+        def conferma_si(event=None):
+            risposta["valore"] = True
+            finestra.destroy()
+            root.quit()
+
+        def conferma_no(event=None):
+            risposta["valore"] = False
+            finestra.destroy()
+            root.quit()
+
+        finestra = tk.Toplevel(root)
+        finestra.title(title)
+        finestra.geometry("400x180")
+        finestra.resizable(False, False)
+        finestra.grab_set()               # Blocca input ad altre finestre
+        finestra.focus_force()            # Forza focus sulla finestra
+        finestra.attributes("-topmost", True)
+        finestra.lift()                   # Porta sopra altre finestre
+        finestra.update_idletasks()       # Forza refresh grafico
+
+        label = tk.Label(finestra, text=message, wraplength=380, justify="left")
+        label.pack(padx=20, pady=(30, 15))
+
+        frame_bottoni = tk.Frame(finestra)
+        frame_bottoni.pack(pady=(0, 20))
+
+        btn_si = tk.Button(frame_bottoni, text="Sì", width=10, command=conferma_si)
+        btn_si.pack(side="left", padx=10)
+        btn_si.focus_set()               # Focus diretto sul bottone
+
+        btn_no = tk.Button(frame_bottoni, text="No", width=10, command=conferma_no)
+        btn_no.pack(side="left", padx=10)
+
+        # Shortcut tastiera
+        finestra.bind("<Return>", conferma_si)
+        finestra.bind("<Escape>", conferma_no)
+        finestra.bind("n", conferma_no)
+        finestra.bind("s", conferma_si)
+
+        root.wait_window(finestra)
+        return risposta["valore"]
+
+
+
+
+    # # -----------------------------------------------
     # Selezione file settori
     # -----------------------------------------------
+    # def seleziona_file_settori(self):
+    #     """
+    #     Esempio: chiede se vogliamo selezionare il file per alcuni settori (es. "MAT01").
+    #     Aggiunge i file selezionati a self.files
+    #     """
+        
+    #     for x in self.settori:
+    #         self.verbose_print(f"Richiesta selezione files per settore {x}")
+    #         answer = self.chiedisino(
+    #             self.root,
+    #             f"Vuoi selezionare il file per il settore {x}?",
+    #             "Seleziona il file"
+    #         )
+    #         if answer:
+    #             fileName = filedialog.askopenfilename(
+    #                 filetypes=[("Excel files e CSV", ".xlsx .xls .csv")],
+    #                 title=f"Selezionare file per il settore {x}"
+    #             )
+    #             if fileName:
+    #                 # Evitiamo duplicati
+    #                 if fileName not in self.files.values():
+    #                     self.files[x] = fileName
+    #                 self.verbose_print(fileName)
+    #                 self.verbose_print(self.files)
+
+
     def seleziona_file_settori(self):
         """
-        Esempio: chiede se vogliamo selezionare il file per alcuni settori (es. "MAT01").
-        Aggiunge i file selezionati a self.files
+        Versione accessibile: chiede se selezionare file per ciascun settore,
+        usando finestre compatibili con screen reader.
         """
-        
-        for x in self.settori:
-            self.verbose_print(f"Richiesta selezione files per settore {x}")
-            answer = self.chiedisino(
+
+        for settore in self.settori:
+            self.verbose_print(f"Richiesta selezione files per settore {settore}")
+
+            risposta = self.chiedi_si_no_accessibile(
                 self.root,
-                f"Vuoi selezionare il file per il settore {x}?",
-                "Seleziona il file"
+                f"Vuoi selezionare il file per il settore {settore}?",
+                title="Seleziona il file"
             )
-            if answer:
+
+            if risposta:
                 fileName = filedialog.askopenfilename(
                     filetypes=[("Excel files e CSV", ".xlsx .xls .csv")],
-                    title=f"Selezionare file per il settore {x}"
+                    title=f"Selezionare file per il settore {settore}"
                 )
                 if fileName:
-                    # Evitiamo duplicati
                     if fileName not in self.files.values():
-                        self.files[x] = fileName
+                        self.files[settore] = fileName
                     self.verbose_print(fileName)
                     self.verbose_print(self.files)
+
+
 
     # -----------------------------------------------
     # Parsing HTML con BeautifulSoup
@@ -714,11 +899,122 @@ class MathscinetScraper:
             self.verbose_print(f"Errore avvio browser: {e}")
             self.close_all(force_exit=True)
 
+    # def do_login(self):
+    #     """
+    #     Esegue il login su MathSciNet.
+    #     Se headless, fa inserire credenziali via tkinter.
+    #     Altrimenti si aspetta che l'utente logghi manualmente.
+    #     """
+    #     pagina_iniziale = self.config['LINK']['pagina_iniziale']
+    #     try:
+    #         self.driver.get(pagina_iniziale)
+    #         time.sleep(self.tempo_attesa_caricamento)
+    #     except Exception as e:
+    #         self.verbose_print(f"Errore caricamento pagina iniziale: {e}")
+    #         self.close_all(force_exit=True)
+
+    #     if self.config['DEFAULT']['headless'] == "True":
+    #         unito_parziale = self.config['LINK']['log_in_unito_parziale']
+    #         if unito_parziale in self.driver.current_url:
+    #             self.loginheadless()
+    #         else:
+    #             self.verbose_print("Accesso a MathSciNet già effettuato (headless) o link di login assente.")
+    #     else:
+    #         # Non headless => login manuale
+    #         self.root.attributes("-topmost", True)
+    #         self.info(
+    #             self.root,
+    #             "Se nel browser automatico che è comparso chiede le credenziali, fare l'accesso. Poi cliccare OK.",
+    #             "Login manuale"
+    #         )
+    #         self.root.attributes("-topmost", False)
+
+    def info_accessibile(self, root, message, title="Informazione"):
+        """
+        Mostra una finestra informativa accessibile (sostituisce messagebox.showinfo).
+        Supporta screen reader e navigazione da tastiera.
+        """
+
+        def close_info(event=None):
+            info_win.destroy()
+            root.quit()
+
+        info_win = tk.Toplevel(root)
+        info_win.title(title)
+        info_win.attributes("-topmost", True)
+        info_win.grab_set()
+        info_win.geometry("550x250")
+        info_win.resizable(False, False)
+
+        label = tk.Label(info_win, text=message, wraplength=380, justify="left")
+        label.pack(padx=20, pady=(30, 10))
+
+        btn_ok = tk.Button(info_win, text="OK", width=12, command=close_info)
+        btn_ok.pack(pady=(0, 20))
+        btn_ok.focus_set()
+
+        # Supporto tastiera
+        info_win.bind("<Return>", close_info)
+        info_win.bind("<Escape>", close_info)
+
+        root.wait_window(info_win)
+
+    def show_info_accessibile_dinamica(self, root, message, title="Informazione"):
+        """
+        Crea una finestra info accessibile che può essere aggiornata dinamicamente.
+        Ritorna un oggetto con .update_warning(testo), .wait() e .close()
+        """
+
+        info_win = tk.Toplevel(root)
+        info_win.title(title)
+        info_win.attributes("-topmost", True)
+        info_win.grab_set()
+        info_win.geometry("550x220")
+        info_win.resizable(False, False)
+        info_win.focus_force()
+        info_win.lift()
+        info_win.update_idletasks()
+
+        label = tk.Label(info_win, text=message, wraplength=500, justify="left")
+        label.pack(padx=20, pady=(30, 10))
+
+        warning_label = tk.Label(info_win, text="", fg="red", font=("Arial", 10, "bold"))
+        warning_label.pack(pady=(0, 10))
+        warning_label.pack_forget()  # Nasconde inizialmente
+
+        def close_info(event=None):
+            info_win.destroy()
+            root.quit()
+
+        btn_ok = tk.Button(info_win, text="OK", width=12, command=close_info)
+        btn_ok.pack(pady=(0, 20))
+        btn_ok.focus_set()
+
+        info_win.bind("<Return>", close_info)
+        info_win.bind("<Escape>", close_info)
+
+        # API di controllo esterno
+        class InfoAPI:
+            def update_warning(self, testo):
+                warning_label.config(text=f"⚠️ {testo}")
+                warning_label.pack()
+                info_win.geometry("550x250")
+
+            def wait(self):
+                root.wait_window(info_win)
+
+            def close(self):
+                close_info()
+
+        return InfoAPI()
+
+
+
+
     def do_login(self):
         """
         Esegue il login su MathSciNet.
-        Se headless, fa inserire credenziali via tkinter.
-        Altrimenti si aspetta che l'utente logghi manualmente.
+        Versione accessibile: messaggi compatibili con screen reader.
         """
         pagina_iniziale = self.config['LINK']['pagina_iniziale']
         try:
@@ -735,14 +1031,24 @@ class MathscinetScraper:
             else:
                 self.verbose_print("Accesso a MathSciNet già effettuato (headless) o link di login assente.")
         else:
-            # Non headless => login manuale
+            # Modalità non headless → richiede login manuale via browser
             self.root.attributes("-topmost", True)
-            self.info(
-                self.root,
-                "Se nel browser automatico che è comparso chiede le credenziali, fare l'accesso. Poi cliccare OK.",
-                "Login manuale"
-            )
+            sentinella = 0
+            while ("mathscinet-ams-org" not in self.driver.current_url):
+                info_api = self.show_info_accessibile_dinamica(self.root, "Se nel browser automatico che è comparso viene richiesto l\'accesso, inserisci le credenziali. Poi premi OK per continuare.", title = 'Login manuale')
+                if ("mathscinet-ams-org" not in self.driver.current_url and sentinella > 0):
+                    info_api.update_warning("Access Wrong")
+                self.root.attributes("-topmost",True)
+                sentinella += 1
+                info_api.wait()
+                time.sleep(1)
+                if sentinella > 9:
+                    info_api.close()
+                    self.driver.quit()
+                    break
+            info_api.close()
             self.root.attributes("-topmost", False)
+
 
     def validate_login(self, username, password):
         """

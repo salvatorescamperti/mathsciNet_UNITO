@@ -58,6 +58,7 @@ REQUIRED_PKG=(
     "beautifulsoup4"
     "flask"
     "webbrowser"
+    "xlrd"
 )
 
 # Verifica e installazione dei pacchetti
