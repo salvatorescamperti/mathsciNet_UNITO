@@ -53,8 +53,8 @@ class MathscinetScraper:
         self.root = tk.Tk()
         self.root.withdraw()
 
-       
-        if os.path.isdir(os.path.join(self.application_path, "risorse","variabili.ini")):
+        print(f"Path variabili.ini: {os.path.join(self.application_path, "risorse","variabili.ini")}")
+        if os.path.exists(os.path.isdir(os.path.join(self.application_path, "risorse","variabili.ini"))):
             self.config.read(os.path.join(self.application_path, "risorse","variabili.ini"))
         else:
             self.verbose_print(f"Non trovato il file varibili.ini")
@@ -78,11 +78,18 @@ class MathscinetScraper:
         self.carattereDelimitatorecsv = self.config['DEFAULT']['carattereDelimitatorecsv']
         self.divisionePercentile = True
 
+        #QUI è DOVE CAMBIARE PER LE COLONNE
+        # Possibilità di settori
+        #self.ask_settori(self.root)
+        self.ask_colonne(self.root)
+
+
+
         # Anni selezionati (GUI)
         self.anniSelezionati = self.get_years_range(self.root)
 
         try:
-           if not os.path.isdir(os.path.join(self.application_path, "risorse","mathscinet_databse.db")):
+           if not os.path.exists(os.path.isdir(os.path.join(self.application_path, "risorse","mathscinet_databse.db"))):
                self.verbose_print(f"non trovato il file oppure errore nella connessione a mathscinet_databse.db: {e}")
            self.con = sl.connect(os.path.join(self.application_path, "risorse","mathscinet_databse.db"))
         except Exception as e:
@@ -195,6 +202,65 @@ class MathscinetScraper:
             except Exception as e:
                 messagebox.showerror("Errore Percentili", f"Valori invalidi: {e}\nRiprova.")
 
+
+     #--------------------------------------
+    #GUI per personalizzare settori
+    #-----------------------------------
+    def ask_colonne(self,root):
+        """
+        Chiede all'utente via tkinter se vuole modificare le colonne dei file
+        """
+        answer = self.chiedisino(root,f"Vuoi modificare le colonne di default ({self.colonna_eISSN},{self.colonna_pISSN}, {self.colonnaTitolo}) \noppure il carattere delimitatore del csv {self.carattereDelimitatorecsv}?", title="Settori personalizzati", color_si="red",color_no="green",geometria="450x300")
+        
+        if not answer:
+            self.verbose_print("Mantengo default.")
+            return
+
+        while True:
+            try:
+                msg = ("Inserisci i nomi delle colonne separati da virgola e senza spazi, 'titolo,p_issn,e_issn'.\nSe i nomi delle colonne contengono spazi, toglierli dai file e poi continuare.\n"
+                       "Esempio: Colonnatitolo,PISSN,EISSN")
+                user_input = simpledialog.askstring(
+                    "Personalizza colonne",
+                    msg,
+                    parent=self.root
+                )
+                if user_input is None:
+                    # annullato => manteniamo i default
+                    self.verbose_print("L'utente ha annullato, mantengo default.")
+                    return
+
+                new_p = [x.strip() for x in user_input.split(",")]
+                self.colonnaTitolo = new_p[0].replace(" ","")
+                self.colonna_pISSN = new_p[1].replace(" ","")
+                self.colonna_eISSN = new_p[2].replace(" ","")
+                self.verbose_print(f"Settori modificati con successo in: {self.colonnaTitolo},{self.colonna_pISSN},{self.colonna_eISSN}")   
+
+                msg = ("Inserisci il carattere delimitatore del csv senza mettere spazi.\n"
+                       "Esempio: ;")
+                user_input = simpledialog.askstring(
+                    "Personalizza selimitatore",
+                    msg,
+                    parent=self.root
+                )
+                if user_input is None:
+                    # annullato => manteniamo i default
+                    self.verbose_print("L'utente ha annullato, mantengo default.")
+                    return
+
+                self.carattereDelimitatorecsv = user_input.replace(" ","")
+                self.verbose_print(f"Delimitatore modificato con successo in: {self.carattereDelimitatorecsv}")
+                self.root.attributes("-topmost", True)
+                self.info(
+                    self.root,
+                    f"Nuove colonne: {self.colonnaTitolo},{self.colonna_pISSN},{self.colonna_eISSN}\nNuovo delimitatore: {self.carattereDelimitatorecsv}",
+                    "Cambio colonne e delimitatore"
+                )
+                return
+            except Exception as e:
+                messagebox.showerror("Errore settori", f"Valori invalidi: {e}\nRiprova.")
+
+    # -----------------------------------------------
     #--------------------------------------
     #GUI per personalizzare settori
     #-----------------------------------
@@ -225,6 +291,12 @@ class MathscinetScraper:
                 new_p = [x.strip() for x in user_input.split(",")]
                 self.settori = new_p
                 self.verbose_print(f"Settori modificati con successo in: {self.settori}")
+                self.root.attributes("-topmost", True)
+                self.info(
+                    self.root,
+                    f"Nuovi settori: {self.settori}",
+                    "Cambio colonne e delimitatore"
+                )
                 return
             except Exception as e:
                 messagebox.showerror("Errore settori", f"Valori invalidi: {e}\nRiprova.")

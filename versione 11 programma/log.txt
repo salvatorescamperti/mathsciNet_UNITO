@@ -1,0 +1,916 @@
+2024-10-18 15:17:31,894 
+	Message: Debug logging test...
+2024-10-18 15:17:31,894 
+	Message: Richiesta selezione files per settore MAT01
+2024-10-18 15:17:35,896 
+	Message: Richiesta selezione files per settore MAT02
+2024-10-18 15:17:37,031 
+	Message: Richiesta selezione files per settore MAT03
+2024-10-18 15:17:37,422 
+	Message: Richiesta selezione files per settore MAT04
+2024-10-18 15:17:37,755 
+	Message: Richiesta selezione files per settore MAT05
+2024-10-18 15:17:38,091 
+	Message: Richiesta selezione files per settore MAT06
+2024-10-18 15:17:38,423 
+	Message: Richiesta selezione files per settore MAT07
+2024-10-18 15:17:38,716 
+	Message: Richiesta selezione files per settore MAT08
+2024-10-18 15:17:39,036 
+	Message: Richiesta selezione files per settore MAT09
+2024-10-18 15:17:42,517 
+	Message: Variabili globali inizio programma:
+Browser: Edge
+driverPath: 
+files: {'MAT01': 'C:/Users/scamp/Downloads/Lista riviste MATH01-A_final_prova.xlsx'}
+ outputPath=C:/Users/scamp/Downloads
+ anniSelezionati=[2019, 2020, 2021, 2022, 2023, 2024]
+2024-10-18 15:17:42,518 
+	Message: ====== WebDriver manager ======
+2024-10-18 15:17:43,264 
+	Message: Get LATEST edgedriver version for 129.0.2792 Edge
+2024-10-18 15:17:43,264 
+	Message: Starting new HTTPS connection (1): msedgedriver.azureedge.net:443
+2024-10-18 15:17:43,374 
+	Message: https://msedgedriver.azureedge.net:443 "GET /LATEST_RELEASE_129_WINDOWS HTTP/1.1" 200 32
+2024-10-18 15:17:44,064 
+	Message: Driver [C:\Users\scamp\.wdm\drivers\edgedriver\win64\129.0.2792\msedgedriver.exe] found in cache
+2024-10-18 15:17:44,615 
+	Message: Starting new HTTP connection (1): localhost:51760
+2024-10-18 15:17:45,351 
+	Message: http://localhost:51760 "POST /session HTTP/1.1" 200 854
+2024-10-18 15:17:46,592 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 14
+2024-10-18 15:17:46,648 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/window/maximize HTTP/1.1" 200 51
+2024-10-18 15:17:55,093 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/window/minimize HTTP/1.1" 200 49
+2024-10-18 15:17:55,095 
+	Message: files:
+{'MAT01': 'C:/Users/scamp/Downloads/Lista riviste MATH01-A_final_prova.xlsx'}
+2024-10-18 15:17:55,095 
+	Message: Apertura DB, generazioni delle nuove tabelle di lavoro
+
+2024-10-18 15:17:55,116 
+	Message: Caricamento riviste nei file csv nella tabella 'general' del DB
+
+2024-10-18 15:17:55,117 
+	Message: File corrente :
+C:/Users/scamp/Downloads/Lista riviste MATH01-A_final_prova.xlsx
+2024-10-18 15:17:55,395 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("ACM Transactions on Computation Theory","1942-3454","1942-3462","MAT01")
+2024-10-18 15:17:55,395 
+	Message: row:['ACM Transactions on Computation Theory', '1942-3454', '1942-3462']
+2024-10-18 15:17:55,407 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("ACM Transactions on Computational Logic","1529-3785","1557-945X","MAT01")
+2024-10-18 15:17:55,407 
+	Message: row:['ACM Transactions on Computational Logic', '1529-3785', '1557-945X']
+2024-10-18 15:17:55,407 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Cybernetica","0324-721X","","MAT01")
+2024-10-18 15:17:55,407 
+	Message: row:['Acta Cybernetica', '0324-721X', 'nan']
+2024-10-18 15:17:55,407 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica","0001-5962","1871-2509","MAT01")
+2024-10-18 15:17:55,407 
+	Message: row:['Acta Mathematica', '0001-5962', '1871-2509']
+2024-10-18 15:17:55,407 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Hungarica","0236-5294","1588-2632","MAT01")
+2024-10-18 15:17:55,407 
+	Message: row:['Acta Mathematica Hungarica', '0236-5294', '1588-2632']
+2024-10-18 15:17:55,422 
+	Message: rows:[('ACM Transactions on Computation Theory', '1942-3454', '1942-3462'), ('ACM Transactions on Computational Logic', '1529-3785', '1557-945X'), ('Acta Cybernetica', '0324-721X', ''), ('Acta Mathematica', '0001-5962', '1871-2509'), ('Acta Mathematica Hungarica', '0236-5294', '1588-2632')]
+2024-10-18 15:17:55,454 
+	Message: Row:('ACM Transactions on Computation Theory', '1942-3454', '1942-3462')
+2024-10-18 15:17:55,784 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 1 su 5...
+
+2024-10-18 15:17:55,784 
+	Message: Rivista corrente: ACM Transactions on Computation Theory
+2024-10-18 15:17:55,784 
+	Message: Sono in search
+2024-10-18 15:17:55,784 
+	Message: Cerco con PISSN
+2024-10-18 15:17:56,806 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 14
+2024-10-18 15:18:02,819 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:02,819 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:02,819 
+	Message: RIcerca PISSN con successo
+2024-10-18 15:18:02,819 
+	Message: Clicco il bottone della tabella
+2024-10-18 15:18:08,841 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1645
+2024-10-18 15:18:08,847 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF790F5CEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7911DBD24+1897988]
+	(No symbol) [0x00007FF790D0F1CC]
+	(No symbol) [0x00007FF790D5672E]
+	(No symbol) [0x00007FF790D567B5]
+	(No symbol) [0x00007FF790D94ED7]
+	(No symbol) [0x00007FF790D77F8F]
+	(No symbol) [0x00007FF790D4C09D]
+	(No symbol) [0x00007FF790D92887]
+	(No symbol) [0x00007FF790D77BB3]
+	(No symbol) [0x00007FF790D4B5AC]
+	(No symbol) [0x00007FF790D4AA8D]
+	(No symbol) [0x00007FF790D4B171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791109E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E8095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E73103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791108B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF9761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EEC28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-18 15:18:08,847 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 126
+2024-10-18 15:18:08,932 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element/f.4A11DE9B05078BF0675B17341F64083B.d.7394A1BB79DC74BB82DD3E97645F6F6D.e.89/value HTTP/1.1" 200 14
+2024-10-18 15:18:08,932 
+	Message: Prendo gli MCQ per 1942-3454
+2024-10-18 15:18:08,942 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:08,956 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:08,972 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 126
+2024-10-18 15:18:08,985 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 406
+2024-10-18 15:18:09,000 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:09,003 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:09,027 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 126
+2024-10-18 15:18:09,040 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 11704
+2024-10-18 15:18:09,048 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-18 15:18:09,048 
+	Message: Lista dopo di divisione per la rivista ACM Transactions on Computation Theory 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '0.55', '61', '110'], ['2022', '0.50', '53', '107'], ['2021', '0.56', '60', '107'], ['2020', '0.67', '66', '98'], ['2019', '0.59', '54', '91'], ['2018', '0.69', '59', '85'], ['2017', '0.65', '49', '75'], ['2016', '0.71', '37', '52'], ['2015', '0.28', '11', '39'], ['2014', '0.28', '5', '18'], ['2013', '0.00', '0', '0'], ['2012', '0.00', '0', '0'], ['2011', '0.00', '0', '0'], ['2010', '0.00', '0', '0'], ['2009', '0.00', '0', '0'], ['2008', '0.00', '0', '0'], ['2007', '0.00', '0', '0'], ['2006', '0.00', '0', '0'], ['2005', '0.00', '0', '0'], ['2004', '0.00', '0', '0'], ['2003', '0.00', '0', '0'], ['2002', '0.00', '0', '0'], ['2001', '0.00', '0', '0'], ['2000', '0.00', '0', '0']]
+2024-10-18 15:18:09,048 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.55,"2023");
+2024-10-18 15:18:09,048 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.50,"2022");
+2024-10-18 15:18:09,058 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.56,"2021");
+2024-10-18 15:18:09,062 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.67,"2020");
+2024-10-18 15:18:09,066 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.59,"2019");
+2024-10-18 15:18:09,071 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.69,"2018");
+2024-10-18 15:18:09,075 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.65,"2017");
+2024-10-18 15:18:09,080 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.71,"2016");
+2024-10-18 15:18:09,083 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.28,"2015");
+2024-10-18 15:18:09,088 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.28,"2014");
+2024-10-18 15:18:09,092 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2013");
+2024-10-18 15:18:09,097 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2012");
+2024-10-18 15:18:09,100 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2011");
+2024-10-18 15:18:09,105 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2010");
+2024-10-18 15:18:09,111 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2009");
+2024-10-18 15:18:09,116 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2008");
+2024-10-18 15:18:09,122 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2007");
+2024-10-18 15:18:09,125 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2006");
+2024-10-18 15:18:09,130 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2005");
+2024-10-18 15:18:09,134 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2004");
+2024-10-18 15:18:09,139 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2003");
+2024-10-18 15:18:09,142 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2002");
+2024-10-18 15:18:09,142 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2001");
+2024-10-18 15:18:09,151 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462",0.00,"2000");
+2024-10-18 15:18:09,153 
+	Message: Query per rivista ACM Transactions on Computation Theory
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computation Theory","1942-3454","1942-3462","Not Found","2024");
+2024-10-18 15:18:09,191 
+	Message: Row:('ACM Transactions on Computational Logic', '1529-3785', '1557-945X')
+2024-10-18 15:18:09,520 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 2 su 5...
+
+2024-10-18 15:18:09,520 
+	Message: Rivista corrente: ACM Transactions on Computational Logic
+2024-10-18 15:18:09,520 
+	Message: Sono in search
+2024-10-18 15:18:09,520 
+	Message: Cerco con PISSN
+2024-10-18 15:18:10,542 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 14
+2024-10-18 15:18:16,544 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:16,544 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:16,544 
+	Message: RIcerca PISSN con successo
+2024-10-18 15:18:16,544 
+	Message: Clicco il bottone della tabella
+2024-10-18 15:18:22,569 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1645
+2024-10-18 15:18:22,569 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF790F5CEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7911DBD24+1897988]
+	(No symbol) [0x00007FF790D0F1CC]
+	(No symbol) [0x00007FF790D5672E]
+	(No symbol) [0x00007FF790D567B5]
+	(No symbol) [0x00007FF790D94ED7]
+	(No symbol) [0x00007FF790D77F8F]
+	(No symbol) [0x00007FF790D4C09D]
+	(No symbol) [0x00007FF790D92887]
+	(No symbol) [0x00007FF790D77BB3]
+	(No symbol) [0x00007FF790D4B5AC]
+	(No symbol) [0x00007FF790D4AA8D]
+	(No symbol) [0x00007FF790D4B171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791109E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E8095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E73103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791108B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF9761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EEC28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-18 15:18:22,591 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 126
+2024-10-18 15:18:22,643 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element/f.4A11DE9B05078BF0675B17341F64083B.d.4965B2ED4DA5010C72DF47FD7D678BAE.e.96/value HTTP/1.1" 200 14
+2024-10-18 15:18:22,643 
+	Message: Prendo gli MCQ per 1529-3785
+2024-10-18 15:18:22,659 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:22,683 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:22,696 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 126
+2024-10-18 15:18:22,710 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 406
+2024-10-18 15:18:22,714 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:22,728 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:22,752 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 126
+2024-10-18 15:18:22,766 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 11746
+2024-10-18 15:18:22,774 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-18 15:18:22,775 
+	Message: Lista dopo di divisione per la rivista ACM Transactions on Computational Logic 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '0.46', '66', '142'], ['2022', '0.45', '66', '148'], ['2021', '0.51', '75', '147'], ['2020', '0.50', '78', '157'], ['2019', '0.54', '91', '167'], ['2018', '0.55', '94', '170'], ['2017', '0.67', '115', '171'], ['2016', '0.64', '107', '167'], ['2015', '0.50', '80', '160'], ['2014', '0.43', '66', '154'], ['2013', '0.26', '38', '149'], ['2012', '0.43', '60', '139'], ['2011', '0.49', '69', '142'], ['2010', '0.54', '72', '133'], ['2009', '0.35', '45', '127'], ['2008', '0.53', '63', '119'], ['2007', '0.60', '68', '113'], ['2006', '0.42', '45', '108'], ['2005', '0.52', '48', '93'], ['2004', '0.29', '20', '70'], ['2003', '0.45', '22', '49'], ['2002', '0.19', '6', '31'], ['2001', '0.17', '2', '12'], ['2000', '0.00', '0', '0']]
+2024-10-18 15:18:22,776 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.46,"2023");
+2024-10-18 15:18:22,781 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.45,"2022");
+2024-10-18 15:18:22,784 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.51,"2021");
+2024-10-18 15:18:22,788 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.50,"2020");
+2024-10-18 15:18:22,793 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.54,"2019");
+2024-10-18 15:18:22,798 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.55,"2018");
+2024-10-18 15:18:22,803 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.67,"2017");
+2024-10-18 15:18:22,807 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.64,"2016");
+2024-10-18 15:18:22,811 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.50,"2015");
+2024-10-18 15:18:22,816 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.43,"2014");
+2024-10-18 15:18:22,820 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.26,"2013");
+2024-10-18 15:18:22,823 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.43,"2012");
+2024-10-18 15:18:22,829 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.49,"2011");
+2024-10-18 15:18:22,834 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.54,"2010");
+2024-10-18 15:18:22,838 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.35,"2009");
+2024-10-18 15:18:22,843 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.53,"2008");
+2024-10-18 15:18:22,848 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.60,"2007");
+2024-10-18 15:18:22,854 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.42,"2006");
+2024-10-18 15:18:22,858 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.52,"2005");
+2024-10-18 15:18:22,862 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.29,"2004");
+2024-10-18 15:18:22,868 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.45,"2003");
+2024-10-18 15:18:22,869 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.19,"2002");
+2024-10-18 15:18:22,876 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.17,"2001");
+2024-10-18 15:18:22,880 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X",0.00,"2000");
+2024-10-18 15:18:22,884 
+	Message: Query per rivista ACM Transactions on Computational Logic
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("ACM Transactions on Computational Logic","1529-3785","1557-945X","Not Found","2024");
+2024-10-18 15:18:22,921 
+	Message: Row:('Acta Cybernetica', '0324-721X', '')
+2024-10-18 15:18:23,247 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 3 su 5...
+
+2024-10-18 15:18:23,247 
+	Message: Rivista corrente: Acta Cybernetica
+2024-10-18 15:18:23,247 
+	Message: Sono in search
+2024-10-18 15:18:23,247 
+	Message: Cerco con PISSN
+2024-10-18 15:18:24,291 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 14
+2024-10-18 15:18:30,317 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 79
+2024-10-18 15:18:30,333 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 79
+2024-10-18 15:18:30,333 
+	Message: RIcerca PISSN con successo
+2024-10-18 15:18:30,333 
+	Message: Clicco il bottone della tabella
+2024-10-18 15:18:36,337 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1645
+2024-10-18 15:18:36,352 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF790F5CEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7911DBD24+1897988]
+	(No symbol) [0x00007FF790D0F1CC]
+	(No symbol) [0x00007FF790D5672E]
+	(No symbol) [0x00007FF790D567B5]
+	(No symbol) [0x00007FF790D94ED7]
+	(No symbol) [0x00007FF790D77F8F]
+	(No symbol) [0x00007FF790D4C09D]
+	(No symbol) [0x00007FF790D92887]
+	(No symbol) [0x00007FF790D77BB3]
+	(No symbol) [0x00007FF790D4B5AC]
+	(No symbol) [0x00007FF790D4AA8D]
+	(No symbol) [0x00007FF790D4B171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791109E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E8095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E73103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791108B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF9761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EEC28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-18 15:18:36,352 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:18:36,424 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element/f.4A11DE9B05078BF0675B17341F64083B.d.A935FEF16976822AD13D44C39FF3208C.e.103/value HTTP/1.1" 200 14
+2024-10-18 15:18:36,435 
+	Message: Prendo gli MCQ per 0324-721X
+2024-10-18 15:18:36,436 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:36,458 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:36,475 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:18:36,489 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 406
+2024-10-18 15:18:36,503 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:36,506 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:36,529 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:18:36,539 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 11712
+2024-10-18 15:18:36,547 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-18 15:18:36,548 
+	Message: Lista dopo di divisione per la rivista Acta Cybernetica 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '0.05', '4', '73'], ['2022', '0.09', '8', '89'], ['2021', '0.08', '7', '90'], ['2020', '0.10', '9', '94'], ['2019', '0.14', '13', '95'], ['2018', '0.13', '11', '86'], ['2017', '0.13', '9', '67'], ['2016', '0.08', '5', '60'], ['2015', '0.02', '1', '41'], ['2014', '0.14', '8', '58'], ['2013', '0.03', '2', '69'], ['2012', '0.09', '7', '76'], ['2011', '0.09', '8', '88'], ['2010', '0.04', '4', '99'], ['2009', '0.09', '8', '86'], ['2008', '0.10', '8', '81'], ['2007', '0.09', '7', '81'], ['2006', '0.05', '4', '84'], ['2005', '0.02', '2', '86'], ['2004', '0.07', '7', '100'], ['2003', '0.14', '14', '101'], ['2002', '0.09', '9', '99'], ['2001', '0.15', '14', '93'], ['2000', '0.04', '4', '92']]
+2024-10-18 15:18:36,549 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.05,"2023");
+2024-10-18 15:18:36,552 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.09,"2022");
+2024-10-18 15:18:36,556 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.08,"2021");
+2024-10-18 15:18:36,559 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.10,"2020");
+2024-10-18 15:18:36,563 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.14,"2019");
+2024-10-18 15:18:36,566 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.13,"2018");
+2024-10-18 15:18:36,569 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.13,"2017");
+2024-10-18 15:18:36,574 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.08,"2016");
+2024-10-18 15:18:36,579 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.02,"2015");
+2024-10-18 15:18:36,583 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.14,"2014");
+2024-10-18 15:18:36,586 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.03,"2013");
+2024-10-18 15:18:36,590 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.09,"2012");
+2024-10-18 15:18:36,595 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.09,"2011");
+2024-10-18 15:18:36,598 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.04,"2010");
+2024-10-18 15:18:36,602 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.09,"2009");
+2024-10-18 15:18:36,607 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.10,"2008");
+2024-10-18 15:18:36,610 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.09,"2007");
+2024-10-18 15:18:36,615 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.05,"2006");
+2024-10-18 15:18:36,618 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.02,"2005");
+2024-10-18 15:18:36,623 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.07,"2004");
+2024-10-18 15:18:36,624 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.14,"2003");
+2024-10-18 15:18:36,632 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.09,"2002");
+2024-10-18 15:18:36,636 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.15,"2001");
+2024-10-18 15:18:36,641 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","",0.04,"2000");
+2024-10-18 15:18:36,645 
+	Message: Query per rivista Acta Cybernetica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Cybernetica","0324-721X","","Not Found","2024");
+2024-10-18 15:18:36,678 
+	Message: Row:('Acta Mathematica', '0001-5962', '1871-2509')
+2024-10-18 15:18:37,007 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 4 su 5...
+
+2024-10-18 15:18:37,007 
+	Message: Rivista corrente: Acta Mathematica
+2024-10-18 15:18:37,007 
+	Message: Sono in search
+2024-10-18 15:18:37,007 
+	Message: Cerco con PISSN
+2024-10-18 15:18:37,902 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 14
+2024-10-18 15:18:43,927 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:43,945 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:43,945 
+	Message: RIcerca PISSN con successo
+2024-10-18 15:18:43,945 
+	Message: Clicco il bottone della tabella
+2024-10-18 15:18:49,976 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1645
+2024-10-18 15:18:49,976 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF790F5CEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7911DBD24+1897988]
+	(No symbol) [0x00007FF790D0F1CC]
+	(No symbol) [0x00007FF790D5672E]
+	(No symbol) [0x00007FF790D567B5]
+	(No symbol) [0x00007FF790D94ED7]
+	(No symbol) [0x00007FF790D77F8F]
+	(No symbol) [0x00007FF790D4C09D]
+	(No symbol) [0x00007FF790D92887]
+	(No symbol) [0x00007FF790D77BB3]
+	(No symbol) [0x00007FF790D4B5AC]
+	(No symbol) [0x00007FF790D4AA8D]
+	(No symbol) [0x00007FF790D4B171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791109E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E8095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E73103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791108B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF9761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EEC28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-18 15:18:49,991 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:18:50,063 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element/f.4A11DE9B05078BF0675B17341F64083B.d.7BED3E04B9769EBDA3BDE6FDA35105FE.e.110/value HTTP/1.1" 200 14
+2024-10-18 15:18:50,063 
+	Message: Prendo gli MCQ per 0001-5962
+2024-10-18 15:18:50,067 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:50,085 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:18:50,103 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:18:50,116 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 406
+2024-10-18 15:18:50,132 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:50,148 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:18:50,161 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:18:50,175 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 11754
+2024-10-18 15:18:50,180 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-18 15:18:50,180 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '5.39', '275', '51'], ['2022', '5.53', '304', '55'], ['2021', '4.88', '278', '57'], ['2020', '4.17', '250', '60'], ['2019', '4.18', '272', '65'], ['2018', '3.76', '267', '71'], ['2017', '4.22', '308', '73'], ['2016', '4.01', '313', '78'], ['2015', '3.87', '302', '78'], ['2014', '3.55', '263', '74'], ['2013', '4.12', '276', '67'], ['2012', '4.05', '251', '62'], ['2011', '4.11', '234', '57'], ['2010', '3.68', '217', '59'], ['2009', '2.89', '188', '65'], ['2008', '2.32', '151', '65'], ['2007', '3.01', '208', '69'], ['2006', '2.42', '177', '73'], ['2005', '2.44', '173', '71'], ['2004', '2.77', '202', '73'], ['2003', '2.92', '225', '77'], ['2002', '2.56', '200', '78'], ['2001', '2.23', '174', '78'], ['2000', '2.46', '197', '80']]
+2024-10-18 15:18:50,180 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",5.39,"2023");
+2024-10-18 15:18:50,180 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",5.53,"2022");
+2024-10-18 15:18:50,194 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.88,"2021");
+2024-10-18 15:18:50,197 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.17,"2020");
+2024-10-18 15:18:50,200 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.18,"2019");
+2024-10-18 15:18:50,200 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.76,"2018");
+2024-10-18 15:18:50,210 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.22,"2017");
+2024-10-18 15:18:50,215 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.01,"2016");
+2024-10-18 15:18:50,219 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.87,"2015");
+2024-10-18 15:18:50,224 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.55,"2014");
+2024-10-18 15:18:50,228 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.12,"2013");
+2024-10-18 15:18:50,232 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.05,"2012");
+2024-10-18 15:18:50,237 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",4.11,"2011");
+2024-10-18 15:18:50,239 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.68,"2010");
+2024-10-18 15:18:50,245 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.89,"2009");
+2024-10-18 15:18:50,249 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.32,"2008");
+2024-10-18 15:18:50,255 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",3.01,"2007");
+2024-10-18 15:18:50,257 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.42,"2006");
+2024-10-18 15:18:50,263 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.44,"2005");
+2024-10-18 15:18:50,269 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.77,"2004");
+2024-10-18 15:18:50,273 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.92,"2003");
+2024-10-18 15:18:50,278 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.56,"2002");
+2024-10-18 15:18:50,282 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.23,"2001");
+2024-10-18 15:18:50,286 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509",2.46,"2000");
+2024-10-18 15:18:50,289 
+	Message: Query per rivista Acta Mathematica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica","0001-5962","1871-2509","Not Found","2024");
+2024-10-18 15:18:50,370 
+	Message: Row:('Acta Mathematica Hungarica', '0236-5294', '1588-2632')
+2024-10-18 15:18:50,700 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato per MAT01: 0 ore e 1 minuti 
+Analizzati 5 su 5...
+
+2024-10-18 15:18:50,700 
+	Message: Rivista corrente: Acta Mathematica Hungarica
+2024-10-18 15:18:50,700 
+	Message: Sono in search
+2024-10-18 15:18:50,700 
+	Message: Cerco con PISSN
+2024-10-18 15:18:51,893 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 14
+2024-10-18 15:18:57,902 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:57,902 
+	Message: http://localhost:51760 "GET /session/2a335ef11cf3d867d73985fa829498fc/url HTTP/1.1" 200 80
+2024-10-18 15:18:57,902 
+	Message: RIcerca PISSN con successo
+2024-10-18 15:18:57,902 
+	Message: Clicco il bottone della tabella
+2024-10-18 15:19:03,916 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1645
+2024-10-18 15:19:03,921 
+	Message: Non e' riuscito a cliccare il bottone della tabella al primo tentativo
+Message: no such element: Unable to locate element: {"method":"xpath","selector":"*//h5[contains(text(),'Mathematical Citation Quotient')]/..//span[contains(text(),'Table')]/../.."}
+  (Session info: MicrosoftEdge=129.0.2792.89)
+Stacktrace:
+	GetHandleVerifier [0x00007FF790F5CEF5+12997]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF7911DBD24+1897988]
+	(No symbol) [0x00007FF790D0F1CC]
+	(No symbol) [0x00007FF790D5672E]
+	(No symbol) [0x00007FF790D567B5]
+	(No symbol) [0x00007FF790D94ED7]
+	(No symbol) [0x00007FF790D77F8F]
+	(No symbol) [0x00007FF790D4C09D]
+	(No symbol) [0x00007FF790D92887]
+	(No symbol) [0x00007FF790D77BB3]
+	(No symbol) [0x00007FF790D4B5AC]
+	(No symbol) [0x00007FF790D4AA8D]
+	(No symbol) [0x00007FF790D4B171]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791109E04+1038052]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E8095F+56655]
+	Microsoft::Applications::Events::EventProperty::~EventProperty [0x00007FF790E73103+1267]
+	Microsoft::Applications::Events::EventProperty::empty [0x00007FF791108B8D+1033325]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF9761+327729]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5BE4+312500]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EF5D19+312809]
+	Microsoft::Applications::Events::ILogConfiguration::operator* [0x00007FF790EEC28C+273244]
+	BaseThreadInitThunk [0x00007FFFF9CC257D+29]
+	RtlUserThreadStart [0x00007FFFFB1CAF08+40]
+
+2024-10-18 15:19:03,921 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:19:03,990 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element/f.4A11DE9B05078BF0675B17341F64083B.d.6566DA703E19A3482506855039EF28F2.e.117/value HTTP/1.1" 200 14
+2024-10-18 15:19:04,006 
+	Message: Prendo gli MCQ per 0236-5294
+2024-10-18 15:19:04,007 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:19:04,030 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1597
+2024-10-18 15:19:04,047 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:19:04,062 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 406
+2024-10-18 15:19:04,077 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:19:04,092 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 404 1591
+2024-10-18 15:19:04,104 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/element HTTP/1.1" 200 127
+2024-10-18 15:19:04,117 
+	Message: http://localhost:51760 "POST /session/2a335ef11cf3d867d73985fa829498fc/execute/sync HTTP/1.1" 200 11778
+2024-10-18 15:19:04,123 
+	Message: Ho completato la presa dati per questa rivista, li salvo nel db
+2024-10-18 15:19:04,123 
+	Message: Lista dopo di divisione per la rivista Acta Mathematica Hungarica 
+[['Year', 'MCQ', 'Cit.(5yr)', 'Pub.(5yr)'], ['2023', '0.53', '275', '523'], ['2022', '0.48', '250', '525'], ['2021', '0.51', '270', '529'], ['2020', '0.46', '240', '523'], ['2019', '0.47', '247', '528'], ['2018', '0.49', '257', '527'], ['2017', '0.43', '232', '540'], ['2016', '0.40', '214', '534'], ['2015', '0.39', '210', '537'], ['2014', '0.35', '192', '546'], ['2013', '0.45', '245', '545'], ['2012', '0.47', '251', '538'], ['2011', '0.50', '265', '535'], ['2010', '0.45', '239', '534'], ['2009', '0.55', '283', '514'], ['2008', '0.47', '245', '517'], ['2007', '0.46', '232', '509'], ['2006', '0.41', '209', '504'], ['2005', '0.32', '164', '513'], ['2004', '0.29', '152', '522'], ['2003', '0.29', '148', '517'], ['2002', '0.30', '160', '526'], ['2001', '0.24', '127', '537'], ['2000', '0.24', '126', '532']]
+2024-10-18 15:19:04,123 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.53,"2023");
+2024-10-18 15:19:04,123 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.48,"2022");
+2024-10-18 15:19:04,133 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.51,"2021");
+2024-10-18 15:19:04,136 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.46,"2020");
+2024-10-18 15:19:04,140 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.47,"2019");
+2024-10-18 15:19:04,143 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.49,"2018");
+2024-10-18 15:19:04,147 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.43,"2017");
+2024-10-18 15:19:04,148 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.40,"2016");
+2024-10-18 15:19:04,148 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.39,"2015");
+2024-10-18 15:19:04,159 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.35,"2014");
+2024-10-18 15:19:04,163 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.45,"2013");
+2024-10-18 15:19:04,168 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.47,"2012");
+2024-10-18 15:19:04,172 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.50,"2011");
+2024-10-18 15:19:04,176 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.45,"2010");
+2024-10-18 15:19:04,179 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.55,"2009");
+2024-10-18 15:19:04,184 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.47,"2008");
+2024-10-18 15:19:04,188 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.46,"2007");
+2024-10-18 15:19:04,192 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.41,"2006");
+2024-10-18 15:19:04,198 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.32,"2005");
+2024-10-18 15:19:04,201 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.29,"2004");
+2024-10-18 15:19:04,206 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.29,"2003");
+2024-10-18 15:19:04,209 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.30,"2002");
+2024-10-18 15:19:04,214 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.24,"2001");
+2024-10-18 15:19:04,218 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632",0.24,"2000");
+2024-10-18 15:19:04,224 
+	Message: Query per rivista Acta Mathematica Hungarica
+INSERT INTO inforiviste ('titolo','p_issn','e_issn','MCQ','anno') VALUES ("Acta Mathematica Hungarica","0236-5294","1588-2632","Not Found","2024");
+2024-10-18 15:19:04,228 
+	Message: Lista files keys: ['MAT01']
+2024-10-18 15:19:04,229 
+	Message: Sto memorizzando MAT01
+2024-10-18 15:19:04,280 
+	Message: Salvo anno 2019 per MAT01
+2024-10-18 15:19:04,281 
+	Message: Risultati query: [('Acta Mathematica', '0001-5962', '1871-2509', '4.18'), ('ACM Transactions on Computation Theory', '1942-3454', '1942-3462', '0.59'), ('ACM Transactions on Computational Logic', '1529-3785', '1557-945X', '0.54'), ('Acta Mathematica Hungarica', '0236-5294', '1588-2632', '0.47'), ('Acta Cybernetica', '0324-721X', '', '0.14')]
+2024-10-18 15:19:04,281 
+	Message: Risultato dopo il controllo dei dati acquisiti
+2024-10-18 15:19:04,282 
+	Message: Acta Mathematica
+2024-10-18 15:19:04,282 
+	Message: 0001-5962
+2024-10-18 15:19:04,282 
+	Message: 1871-2509
+2024-10-18 15:19:04,282 
+	Message: 4.18
+2024-10-18 15:19:04,283 
+	Message: ACM Transactions on Computation Theory
+2024-10-18 15:19:04,283 
+	Message: 1942-3454
+2024-10-18 15:19:04,283 
+	Message: 1942-3462
+2024-10-18 15:19:04,283 
+	Message: 0.59
+2024-10-18 15:19:04,283 
+	Message: ACM Transactions on Computational Logic
+2024-10-18 15:19:04,284 
+	Message: 1529-3785
+2024-10-18 15:19:04,284 
+	Message: 1557-945X
+2024-10-18 15:19:04,284 
+	Message: 0.54
+2024-10-18 15:19:04,284 
+	Message: Acta Mathematica Hungarica
+2024-10-18 15:19:04,284 
+	Message: 0236-5294
+2024-10-18 15:19:04,285 
+	Message: 1588-2632
+2024-10-18 15:19:04,285 
+	Message: 0.47
+2024-10-18 15:19:04,285 
+	Message: Acta Cybernetica
+2024-10-18 15:19:04,285 
+	Message: 0324-721X
+2024-10-18 15:19:04,285 
+	Message: 
+2024-10-18 15:19:04,286 
+	Message: 0.14

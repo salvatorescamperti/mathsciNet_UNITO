@@ -1,0 +1,144 @@
+2024-06-30 17:27:33,126 
+	Message: Debug logging test...
+2024-06-30 17:27:33,126 
+	Message: Debug logging test...
+2024-06-30 17:27:46,046 
+	Message: Apertura DB, generazioni delle nuove tabelle di lavoro
+
+2024-06-30 17:27:46,080 
+	Message: Variabili globali inizio programma:
+Browser: Edge
+driverPath: None
+files: {'MAT01': 'C:/Users/scamp/Downloads/Lista_MAT03PROVAVERS9.xlsx'}
+ outputPath=C:/Users/scamp/Desktop/tortoise/mathsciNet_UNITO/versione 8 programma UI
+ anniSelezionati=['2020']
+2024-06-30 17:27:46,080 
+	Message: ====== WebDriver manager ======
+2024-06-30 17:27:46,464 
+	Message: Get LATEST edgedriver version for 126.0.2592 Edge
+2024-06-30 17:27:46,466 
+	Message: Starting new HTTPS connection (1): msedgedriver.azureedge.net:443
+2024-06-30 17:27:46,631 
+	Message: https://msedgedriver.azureedge.net:443 "GET /LATEST_RELEASE_126_WINDOWS HTTP/1.1" 200 32
+2024-06-30 17:27:47,010 
+	Message: Driver [C:\Users\scamp\.wdm\drivers\edgedriver\win64\126.0.2592\msedgedriver.exe] found in cache
+2024-06-30 17:27:49,543 
+	Message: Starting new HTTP connection (1): localhost:58171
+2024-06-30 17:27:50,076 
+	Message: http://localhost:58171 "POST /session HTTP/1.1" 200 854
+2024-06-30 17:27:50,882 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 14
+2024-06-30 17:27:59,096 
+	Message: In function execute
+2024-06-30 17:27:59,096 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 89
+2024-06-30 17:27:59,096 
+	Message: Pagina iniziale riconosciuta
+2024-06-30 17:27:59,096 
+	Message: Creazioni classi
+2024-06-30 17:27:59,096 
+	Message: messo worker nel thread
+2024-06-30 17:27:59,104 
+	Message: Create le connessioni
+2024-06-30 17:27:59,104 
+	Message: Fine execute
+2024-06-30 17:27:59,105 
+	Message: Sono in Run
+2024-06-30 17:27:59,203 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/window/maximize HTTP/1.1" 200 51
+2024-06-30 17:27:59,323 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/window/minimize HTTP/1.1" 200 49
+2024-06-30 17:27:59,324 
+	Message: Apertura DB, generazioni delle nuove tabelle di lavoro
+
+2024-06-30 17:27:59,345 
+	Message: Caricamento riviste nei file csv nella tabella 'general' del DB
+
+2024-06-30 17:27:59,347 
+	Message: File corrente :
+C:/Users/scamp/Downloads/Lista_MAT03PROVAVERS9.xlsx
+2024-06-30 17:27:59,376 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali","0365-0359","","MAT01")
+2024-06-30 17:27:59,377 
+	Message: row:['AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '03650359', 'nan']
+2024-06-30 17:27:59,380 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg","0025-5858","","MAT01")
+2024-06-30 17:27:59,381 
+	Message: row:['Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '00255858', 'nan']
+2024-06-30 17:27:59,388 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica","0001-5962","","MAT01")
+2024-06-30 17:27:59,389 
+	Message: row:['Acta Mathematica', '00015962', 'nan']
+2024-06-30 17:27:59,393 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Hungarica","0236-5294","","MAT01")
+2024-06-30 17:27:59,394 
+	Message: row:['Acta Mathematica Hungarica', '02365294', 'nan']
+2024-06-30 17:27:59,397 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Scientia","0252-9602","","MAT01")
+2024-06-30 17:27:59,398 
+	Message: row:['Acta Mathematica Scientia', '02529602', 'nan']
+2024-06-30 17:27:59,406 
+	Message: Query:INSERT INTO general (title,p_issn,e_issn,sector) values("Acta Mathematica Sinica, English Series","1439-8516","","MAT01")
+2024-06-30 17:27:59,406 
+	Message: row:['Acta Mathematica Sinica, English Series', '14398516', 'nan']
+2024-06-30 17:27:59,406 
+	Message: Fine funzione caricamento riviste
+2024-06-30 17:27:59,406 
+	Message: Numero file update: 1
+2024-06-30 17:27:59,406 
+	Message: rows:[('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', ''), ('Abhandlungen aus dem Mathematischen Seminar der Universitat Hamburg', '0025-5858', ''), ('Acta Mathematica', '0001-5962', ''), ('Acta Mathematica Hungarica', '0236-5294', ''), ('Acta Mathematica Scientia', '0252-9602', ''), ('Acta Mathematica Sinica, English Series', '1439-8516', '')]
+2024-06-30 17:27:59,437 
+	Message: Row:('AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali', '0365-0359', '')
+2024-06-30 17:27:59,772 
+	Message: Analisi file 1 su 1
+Stiamo prendendo MCQ.
+Tempo stimato: 0 ore e 1 minuti 
+Analizzati 1 su 6...
+
+2024-06-30 17:27:59,772 
+	Message: Rivista corrente: AAPP Atti della Accademia Peloritana dei Pericolanti, Classe di Scienze Fisiche, Matematiche e Naturali
+2024-06-30 17:27:59,776 
+	Message: Sono in search
+2024-06-30 17:27:59,776 
+	Message: Cerco con PISSN
+2024-06-30 17:28:00,640 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 14
+2024-06-30 17:28:03,645 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 140
+2024-06-30 17:28:03,648 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 140
+2024-06-30 17:28:03,648 
+	Message: Verifico se non ne ha trovati più di uno, clicco il primo ancora indicizzato
+2024-06-30 17:28:03,660 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/elements HTTP/1.1" 200 247
+2024-06-30 17:28:03,694 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/element/f.ACE21325497AD09F0AF9D73B1E66EE47.d.DDC91C80DFDDA27B61D96FE9734CD2C8.e.137/text HTTP/1.1" 200 161
+2024-06-30 17:28:03,695 
+	Message: Elemento della lista risultati: Atti dell'Accademia Peloritana. Classe di Scienze Fisiche, Matematiche e Natureli
+Atti Accad. Peloritana. Cl. Sci. Fis. Mat. Nat.
+No Longer Indexed
+2024-06-30 17:28:03,711 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/element/f.ACE21325497AD09F0AF9D73B1E66EE47.d.DDC91C80DFDDA27B61D96FE9734CD2C8.e.137/text HTTP/1.1" 200 161
+2024-06-30 17:28:03,723 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/element/f.ACE21325497AD09F0AF9D73B1E66EE47.d.DDC91C80DFDDA27B61D96FE9734CD2C8.e.138/text HTTP/1.1" 200 225
+2024-06-30 17:28:03,724 
+	Message: Elemento della lista risultati: Atti della Accademia Peloritana dei Pericolanti. Classe di Scienze, Fisiche, Matematiche e Naturali. AAPP. Physical, Mathematical, and Natural Sciences
+Atti Accad. Peloritana Pericolanti Cl. Sci. Fis. Mat. Natur.
+2024-06-30 17:28:03,734 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/element/f.ACE21325497AD09F0AF9D73B1E66EE47.d.DDC91C80DFDDA27B61D96FE9734CD2C8.e.138/text HTTP/1.1" 200 225
+2024-06-30 17:28:03,746 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/element/f.ACE21325497AD09F0AF9D73B1E66EE47.d.DDC91C80DFDDA27B61D96FE9734CD2C8.e.138/element HTTP/1.1" 200 127
+2024-06-30 17:28:03,763 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/execute/sync HTTP/1.1" 200 100
+2024-06-30 17:28:04,131 
+	Message: http://localhost:58171 "POST /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 14
+2024-06-30 17:28:04,137 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 100
+2024-06-30 17:28:04,143 
+	Message: http://localhost:58171 "GET /session/223a3547d785e556fcc8980d61df9a08/url HTTP/1.1" 200 100
+2024-06-30 17:28:04,143 
+	Message: Ricerca PISSN con successo
+2024-06-30 17:28:04,144 
+	Message: Clicco il bottone della tabella
+2024-06-30 17:28:06,503 
+	Message: http://localhost:58171 "DELETE /session/223a3547d785e556fcc8980d61df9a08/window HTTP/1.1" 200 12
