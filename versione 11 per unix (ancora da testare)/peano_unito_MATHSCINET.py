@@ -27,6 +27,31 @@ from selenium.webdriver.common.keys import Keys
 from functools import partial
 from bs4 import BeautifulSoup
 from tkinter import Toplevel
+import platform
+import subprocess
+import ctypes
+
+def mostra_avviso(messaggio, titolo="Attenzione!", severity = "warning"):
+    sistema = platform.system()
+
+    if sistema == "Windows":
+        if severity == "warning":
+            ctypes.windll.user32.MessageBoxW(0, messaggio, titolo, 0x30)
+        elif severity == "error":
+            ctypes.windll.user32.MessageBoxW(0, messaggio, titolo,0x10)
+        else:
+            ctypes.windll.user32.MessageBoxW(0, messaggio, titolo, 0x40)
+
+    elif sistema == "Linux":
+        if severity == "warning":
+            subprocess.run(["zenity", "--warning", "--text=", messaggio, "--title=", titolo])
+        elif severity == "error":
+            subprocess.run(["zenity", "--error", "--text=", messaggio, "--title=", titolo])
+        else:
+            subprocess.run(["zenity", "--info", "--text=", messaggio, "--title=", titolo])
+    else:
+        print("Sistema operativo non supportato.")
+
 
 class MathscinetScraper:
     """
@@ -58,7 +83,8 @@ class MathscinetScraper:
             self.config.read(os.path.join(self.application_path, "risorse","variabili.ini"))
         else:
             self.verbose_print(f"Non trovato il file varibili.ini")
-
+            self.close_all(force_exit=True)
+        
        
         # Leggiamo dal file di config
         self.browser = self.config['DEFAULT']['browser']
@@ -86,7 +112,9 @@ class MathscinetScraper:
 
 
         # Anni selezionati (GUI)
-        self.anniSelezionati = self.get_years_range(self.root)
+        #self.anniSelezionati = self.get_years_range(self.root)# Commentato perchè gestito con variabili.ini
+        self.anniSelezionati = list(range(int(self.config['InputRicerca']['annoInizio']), int(self.config['InputRicerca']['annoFine']) + 1))
+        print(f"Anni selezionati: {self.anniSelezionati}")
 
         try:
            if not os.path.exists(os.path.isdir(os.path.join(self.application_path, "risorse","mathscinet_databse.db"))):
@@ -94,6 +122,7 @@ class MathscinetScraper:
            self.con = sl.connect(os.path.join(self.application_path, "risorse","mathscinet_databse.db"))
         except Exception as e:
             self.verbose_print(f"non trovato il file oppure errore nella connessione a mathscinet_databse.db: {e}")
+            self.close_all(force_exit=True)
 
         # Apriamo la connessione DB
         self.cur = self.con.cursor()
@@ -105,14 +134,32 @@ class MathscinetScraper:
 
         #settori default
         self.settori = self.config['DEFAULT']['settori'].split(',')
+        print(f"Settori selezionati: {self.settori}")
         # Possibilità di settori
         self.ask_settori(self.root)
         # Selezione di eventuali file per i settori
-        self.seleziona_file_settori()
+        #self.seleziona_file_settori() #commentato perchè viene gestito con variabili.ini
 
-        # Selezione cartella output
-        self.info(self.root, "Seleziona cartella output", "Selezionare la cartella di output")
-        self.outputPath = filedialog.askdirectory(title="Seleziona cartella output")
+        for settore in self.settori:
+            nomeChiave = 'InputFileFullPath' + settore
+            if (len(self.config['InputRicerca'][nomeChiave]) > 3 ):
+                self.files[settore] = self.config['InputRicerca'][nomeChiave]
+        
+        print(f"Lista dei settori che hanno dei files: {self.files}")
+        
+
+
+        # Selezione cartella output -- commentati perchè verrà selezionata nella variabili.ini
+        #self.info(self.root, "Seleziona cartella output", "Selezionare la cartella di output")
+        #self.outputPath = filedialog.askdirectory(title="Seleziona cartella output")
+
+        self.outputPath = self.config['InputRicerca']['OutputDirectory']
+
+        if len(self.config['InputRicerca']['OutputDirectory']) == 0:
+            print(f"No output directori")
+            self.close_all(force_exit=True)
+        
+        
 
         self.driver = None  # webdriver Selenium
         self.root.attributes("-topmost", False)
@@ -1035,18 +1082,17 @@ class MathscinetScraper:
             self.root.attributes("-topmost", True)
             sentinella = 0
             while ("mathscinet-ams-org" not in self.driver.current_url):
-                info_api = self.show_info_accessibile_dinamica(self.root, "Se nel browser automatico che è comparso viene richiesto l\'accesso, inserisci le credenziali. Poi premi OK per continuare.", title = 'Login manuale')
+                if sentinella == 0:
+                    mostra_avviso("Se nel browser automatico che è comparso viene richiesto l\'accesso, inserisci le credenziali. Poi premi OK per continuare.", "Login manuale")
+                #info_api = self.show_info_accessibile_dinamica(self.root, "Se nel browser automatico che è comparso viene richiesto l\'accesso, inserisci le credenziali. Poi premi OK per continuare.", title = 'Login manuale')
                 if ("mathscinet-ams-org" not in self.driver.current_url and sentinella > 0):
-                    info_api.update_warning("Access Wrong")
+                    mostra_avviso("Accesso Errato! Se nel browser automatico che è comparso viene richiesto l\'accesso, inserisci le credenziali. Poi premi OK per continuare.", "Login manuale", severity = "error")
                 self.root.attributes("-topmost",True)
                 sentinella += 1
-                info_api.wait()
                 time.sleep(1)
                 if sentinella > 9:
-                    info_api.close()
                     self.driver.quit()
                     break
-            info_api.close()
             self.root.attributes("-topmost", False)
 
 
@@ -1515,9 +1561,11 @@ class MathscinetScraper:
             # Info e chiusura “pulita”
             self.root.attributes("-topmost", True)
             if self.settori == "" or self.anniSelezionati == [] or self.files == {} or self.outputPath == "":
-                self.info(self.root, "Il programma è terminato per il mancato inserimento di informazioni necessarie. Per far girare il programma devono essere impostati l'anno di inizio e di fine ricerca, i percentili, almeno un settore con un file di riviste e la cartella dove inserire gli output.", "Fine")
+                mostra_avviso("Il programma è terminato per il mancato inserimento di informazioni necessarie. Per far girare il programma devono essere impostati l'anno di inizio e di fine ricerca, i percentili, almeno un settore con un file di riviste e la cartella dove inserire gli output.", "Fine", severity = "error")
+                #self.info(self.root, "Il programma è terminato per il mancato inserimento di informazioni necessarie. Per far girare il programma devono essere impostati l'anno di inizio e di fine ricerca, i percentili, almeno un settore con un file di riviste e la cartella dove inserire gli output.", "Fine")
             else:
-                self.info(self.root, "Il programma è terminato", "Fine")
+                mostra_avviso("Il programma è terminato.", "Fine", severity = "info")
+                #self.info(self.root, "Il programma è terminato", "Fine")
         except Exception as e:
             self.verbose_print(f"ERRORE GENERALE: {e}")
         finally:

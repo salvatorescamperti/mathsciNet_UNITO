@@ -59,6 +59,10 @@ REQUIRED_PKG=(
     "flask"
     "webbrowser"
     "xlrd"
+    "winotify"
+    "subprocess"
+    "platform"
+    "ctypes"
 )
 
 # Verifica e installazione dei pacchetti
