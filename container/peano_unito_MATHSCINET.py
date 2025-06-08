@@ -26,6 +26,7 @@ from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import getpass
 import logging
+import argparse
 
 # Disabilita i log di selenium webdriver
 logging.getLogger('selenium').setLevel(logging.WARNING)
@@ -58,7 +59,7 @@ class MathscinetScraper:
 
 
         print(f"Path variabili.ini: {os.path.join(self.application_path, 'risorse','variabili.ini')}")
-        if os.path.exists(os.path.isdir(os.path.join(self.application_path, 'risorse','variabili.ini'))):
+        if os.path.exists(os.path.join(self.application_path, 'risorse','variabili.ini')):
             self.config.read(os.path.join(self.application_path, 'risorse','variabili.ini'))
         else:
             self.verbose_print(f"Non trovato il file varibili.ini")
@@ -78,6 +79,45 @@ class MathscinetScraper:
         self.carattereDelimitatorecsv = self.config['DEFAULT']['carattereDelimitatorecsv']
         self.divisionePercentile = True
 
+        ## Opzione --config : viene esposto a terminale il file di configurazione (le parti di interesse)
+        parser = argparse.ArgumentParser(description='WebScrapint Mathscinet per riviste UNITO')
+    
+        # Aggiungi l'opzione --config
+        parser.add_argument('--config', 
+                        action='store_true',
+                        help='Mostra informazioni di configurazione')
+        
+        parser.add_argument('--checkFile', 
+                        action='store_true',
+                        help='Check esistenza file di input')
+        
+        # Leggi gli argomenti
+        args = parser.parse_args()
+        
+        # Controlla se è stata usata l'opzione --config
+        if args.config:
+            self.print_section("InputRicerca")
+            self.verbose_print(f"Fine scrittura configurazione")
+            # in caso di errore, chiudiamo tutto
+            exit()
+        
+        if args.checkFile:
+            self.settori = self.config['DEFAULT']['settori'].split(',')
+            for settore in self.settori:
+                nomeChiave = 'InputFileFullPath' + settore
+                if (len(self.config['InputRicerca'][nomeChiave]) > 3 ):
+                    if not os.path.exists(self.config['InputRicerca'][nomeChiave]):
+                        print(f"Settore = {nomeChiave}, FullPathFile = {self.config['InputRicerca'][nomeChiave]} -> ERRORE : File non trovato")
+                    else:
+                        print(" -> File trovato")
+            self.verbose_print(f"Fine check")
+            # in caso di errore, chiudiamo tutto
+            exit()
+
+
+
+        ##################################
+
 
 
 
@@ -86,7 +126,7 @@ class MathscinetScraper:
         self.verbose_print(f"Anni selezionati: {self.anniSelezionati}")
 
         try:
-           if not os.path.exists(os.path.isdir(os.path.join(self.application_path, 'risorse','mathscinet_databse.db'))):
+           if not os.path.exists(os.path.join(self.application_path, 'risorse','mathscinet_databse.db')):
                self.verbose_print(f"non trovato il file oppure errore nella connessione a mathscinet_databse.db: {e}")
            self.con = sl.connect(os.path.join(self.application_path, 'risorse','mathscinet_databse.db'))
         except Exception as e:
@@ -111,6 +151,9 @@ class MathscinetScraper:
             nomeChiave = 'InputFileFullPath' + settore
             if (len(self.config['InputRicerca'][nomeChiave]) > 3 ):
                 self.files[settore] = self.config['InputRicerca'][nomeChiave]
+                if not os.path.exists(self.config['InputRicerca'][nomeChiave]):
+                    print(f"Settore = {nomeChiave}, FullPathFile = {self.config['InputRicerca'][nomeChiave]} -> ERRORE : File non trovato")
+                    exit()
         
         self.verbose_print(f"Lista dei settori che hanno dei files: {self.files}")
         
@@ -142,6 +185,18 @@ class MathscinetScraper:
 
         # Fine init
         self.verbose_print("Inizializzazione completata, pronto per eseguire.")
+    # -----------------------------------------------
+    # Sezione per stampare il config
+    def print_section(self, section_name):
+        """Stampa una sezione specifica del file INI"""
+        if section_name in self.config:
+            print(f"=== {section_name.upper()} ===")
+            for key, value in self.config[section_name].items():
+                print(f"{key} = {value}")
+            print()  # Riga vuota
+        else:
+            print(f"⚠ Sezione '{section_name}' non trovata")
+    # -----------------------------------------------
 
     # -----------------------------------------------
     # Chiusura sicura di driver, DB e GUI
@@ -941,8 +996,11 @@ class MathscinetScraper:
 # ESECUZIONE
 if __name__ == "__main__":
     try:
+        
         scraper = MathscinetScraper()
         scraper.run()
+
+        
     except Exception as e:
         print(f"Errore iniziale: {e}")
     
