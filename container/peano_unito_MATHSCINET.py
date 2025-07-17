@@ -558,11 +558,17 @@ class MathscinetScraper:
         Richiesta credenziali da terminale (headless).
         """
         self.driver.save_screenshot(os.path.join(self.application_path, "screen", "login_iniziale.png"))
-        print("Login richiesto - inserisci credenziali UNITO")
-        print(f"Questo è il link di log-in derivato da variabili.ini (uno screen della pagina è presente nella directori screen): {self.driver.current_url}")
-        username = input("Username: ")
-        password = getpass.getpass("Password (non sarà visibile a terminale): ")
-        self.validate_login_from_terminal(username, password)
+        time.sleep(1)
+        if "mathscinet-ams-org" not in self.driver.current_url:
+            print("Login richiesto - inserisci credenziali UNITO")
+            print(f"Questo è il link di log-in derivato da variabili.ini (uno screen della pagina è presente nella directori screen): {self.driver.current_url}")
+            username = input("Username: ")
+            password = getpass.getpass("Password (non sarà visibile a terminale): ")
+            self.validate_login_from_terminal(username, password)
+        else:
+            self.driver.save_screenshot(os.path.join(self.application_path, "screen", "login_url_inatteso.png"))
+            self.verbose_print(f"Non richesto login!")
+
     
     def validate_login_from_terminal(self, username, password):
         try:
