@@ -358,11 +358,7 @@ class MathscinetScraper:
 
                     indexs = self.get_header_indexes(header)
                     if not indexs:
-                        self.info(
-                            self.root,
-                            f"Nel file {file_path} le colonne non sono denominate correttamente.\nTermino.",
-                            "Error"
-                        )
+                        self.verbose_print(f"Nel file {file_path} le colonne non sono denominate correttamente.\nTermino.")
                         self.close_all(force_exit=True)
 
                     rows_read = []
@@ -454,11 +450,6 @@ class MathscinetScraper:
             row_norm = self.arriamoheader(row)
             if len(row_norm) < 3:
                 self.verbose_print(f"Riga anomala in {file_path}, forse delimitatore errato: {row_norm}")
-                self.info(
-                    self.root,
-                    f"Riga anomala in {file_path}, forse delimitatore CSV errato.",
-                    "End"
-                )
                 return False
             # Se p_issn e e_issn sono entrambe vuote
             if len(row_norm[indexsHeaders[1]]) < 1 and len(row_norm[indexsHeaders[2]]) < 3:
@@ -554,21 +545,25 @@ class MathscinetScraper:
     
     
     def loginheadless(self):
-        """
-        Richiesta credenziali da terminale (headless).
-        """
-        self.driver.save_screenshot(os.path.join(self.application_path, "screen", "login_iniziale.png"))
-        time.sleep(1)
-        if "mathscinet-ams-org" not in self.driver.current_url:
-            print("Login richiesto - inserisci credenziali UNITO")
-            print(f"Questo è il link di log-in derivato da variabili.ini (uno screen della pagina è presente nella directori screen): {self.driver.current_url}")
-            username = input("Username: ")
-            password = getpass.getpass("Password (non sarà visibile a terminale): ")
-            self.validate_login_from_terminal(username, password)
-        else:
-            self.driver.save_screenshot(os.path.join(self.application_path, "screen", "login_url_inatteso.png"))
-            self.verbose_print(f"Non richesto login!")
 
+        self.driver.save_screenshot(os.path.join(self.application_path, "screen", "login_iniziale.png"))
+        time.sleep(2)
+
+        try:
+        # Controlla se la pagina contiene il campo username
+          self.driver.find_element(By.XPATH, self.config['LINK']['username_unito'])
+        
+        # Se il campo username è visibile, allora serve login manuale
+          print("Login richiesto - inserisci credenziali UNITO")
+          print(f"Questo è il link di log-in derivato da variabili.ini (uno screen della pagina è presente nella directory screen): {self.driver.current_url}")
+        
+          username = input("Username: ")
+          password = getpass.getpass("Password (non sarà visibile a terminale): ")
+          self.validate_login_from_terminal(username, password)
+        
+        except Exception as e:
+        # Se il campo non è presente, consideriamo il login già effettuato
+          self.verbose_print("Login non richiesto: già autenticato tramite rete UniTo")
     
     def validate_login_from_terminal(self, username, password):
         try:
