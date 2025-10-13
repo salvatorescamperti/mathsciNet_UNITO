@@ -27,6 +27,8 @@ from bs4 import BeautifulSoup
 import getpass
 import logging
 import argparse
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 # Disabilita i log di selenium webdriver
 logging.getLogger('selenium').setLevel(logging.WARNING)
@@ -57,7 +59,7 @@ class MathscinetScraper:
             filemode="w",
         )
 
-
+        print(f"New version program")
         print(f"Path variabili.ini: {os.path.join(self.application_path, 'risorse','variabili.ini')}")
         if os.path.exists(os.path.join(self.application_path, 'risorse','variabili.ini')):
             self.config.read(os.path.join(self.application_path, 'risorse','variabili.ini'))
@@ -69,6 +71,7 @@ class MathscinetScraper:
         # Leggiamo dal file di config
         self.browser = self.config['DEFAULT']['browser']
         self.driverPath = ""
+        self.debug_mode = True if self.config['DEFAULT']['debug_mode'] == "True" else False
         
 
         self.tempo_singola_ricerca = float(self.config['DEFAULT']['tempo_singola_ricerca'])
@@ -844,7 +847,7 @@ class MathscinetScraper:
           - <= p4% => Q1
           -  > p4% => 'peggio di Q1'
         """
-        current_time = datetime.datetime.now()
+        current_time = datetime.now()
         today = f"{current_time.year}{current_time.month:02d}{current_time.day:02d}"
 
         base_path = os.path.join(self.outputPath, f'mathscinetWebscraping{today}')
@@ -866,11 +869,15 @@ class MathscinetScraper:
         with pd.ExcelWriter(pathFilexlsx, engine='xlsxwriter') as writer:
             for anno in self.anniSelezionati:
                 query = f"""
-                SELECT DISTINCT general.title, general.p_issn, general.e_issn, inforiviste.MCQ 
+                SELECT DISTINCT general.title
+                , general.p_issn
+                , general.e_issn
+                , CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE -1 END as MCQ
+                , CASE WHEN inforiviste.MCQ = 'Not Found' THEN 'Not Found' ELSE NULL END AS Note
                 FROM general 
                 JOIN inforiviste ON inforiviste.titolo = general.title 
-                WHERE inforiviste.anno = '{anno}' AND general.sector='{settore}' 
-                ORDER BY inforiviste.MCQ DESC
+                WHERE inforiviste.anno = '{anno}' AND general.sector='{settore}'
+                ORDER BY CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE -1 END DESC
                 """
                 self.verbose_print(f"Eseguo query backup per anno={anno}, settore={settore}\n{query}")
                 data = self.con.execute(query)
@@ -880,17 +887,19 @@ class MathscinetScraper:
                 if len(results) > 0:
                     with open(csv_path, 'w', encoding='utf-8', errors='ignore') as f:
                         wrt = csv.writer(f)
-                        wrt.writerow(['title', 'p_issn', 'e_issn', 'MCQ'])
+                        wrt.writerow(['title', 'p_issn', 'e_issn', 'MCQ','Note'])
                         wrt.writerows(results)
 
                     df = pd.read_csv(csv_path, sep=",", encoding='utf-8', on_bad_lines='skip')
                     total = len(df.index)
                     if total > 0:
-                        df['Percentile'] = df.index.map(lambda x: self.get_percentile_label(x+1, total))
+                        df['Percentile'] = df.index.map(lambda x: self.get_percentile_label(x+1, total, option = 'number'))
+                        df['Percentile'] = df.groupby('MCQ')['Percentile'].transform('mean')
+                        df['Fascia percentile MSN'] = df.index.map(lambda x: self.get_percentile_label(x+1, total))
                         df.to_csv(csv_path, index=False, sep=",", mode='w', errors="ignore")
                         df.to_excel(writer, sheet_name=str(anno), index=False)
 
-    def get_percentile_label(self, rank, total):
+    def get_percentile_label(self, rank, total, option='label'):
         """
         Inversione: Q4 > Q3 > Q2 > Q1
         Supponiamo p1 < p2 < p3 < p4 < 100:
@@ -901,7 +910,9 @@ class MathscinetScraper:
           -  > p4 => peggio di Q1
         """
         p1, p2, p3, p4 = self.percentiles
-        percentage = (rank / total) * 100
+        percentage = math.ceil((rank / total) * 10000)/100
+        if option == 'number':
+            return percentage
 
         if percentage <= p1:
             return f"top 10 perc - Q1 (<= {p1}%)"
@@ -913,6 +924,23 @@ class MathscinetScraper:
             return f"Q3 (<= {p4}%)"
         else:
             return f"Q4 (>{p4}%)"
+
+    # -----------------------------------------------
+    # CheckQuery con debug
+    # -----------------------------------------------
+
+    def check_query(self,query):
+        """
+        Esegue una query di debug e stampa i risultati.
+        """
+        try:
+            data = self.con.execute(query,("MAT01A",))
+            results = data.fetchall()
+            for row in results:
+                self.verbose_print(row)
+        except Exception as e:
+            self.verbose_print(f"Errore esecuzione query di debug: {e}")
+
 
     # -----------------------------------------------
     # Flusso di elaborazione
@@ -933,56 +961,102 @@ class MathscinetScraper:
                 if len(file_path) > 4:
                     counter +=1
             if counter > 0:
-                self.start_browser()
-                self.do_login()
+                if self.debug_mode == False:
+                    self.start_browser()
+                    self.do_login()
 
             tot_settori = len(self.files.keys())
             counter = 0
 
-            for key, file_path in self.files.items():
-                counter += 1
-                if len(file_path) > 0:
-                    self.verbose_print(f"[SETTORE={key}] Inizio elaborazione (file={file_path}) ...")
-                    # Init tabelle
-                    self.init_db()
+            # Init tabelle solo se non sono in debug mode
+            if self.debug_mode == False:
+                self.verbose_print("Debug mode disattivato: carico nuovi dati ed inizializzo db.")
+                self.init_db()
+                for key, file_path in self.files.items():
+                    counter += 1
+                    if len(file_path) > 0:
+                        self.verbose_print(f"[SETTORE={key}] Inizio caricmento (file={file_path}) ...")
 
-                    # Carichiamo dal CSV/XLSX
-                    self.load_riviste_from_file(key, file_path)
+                        # Carichiamo dal CSV/XLSX
+                        self.load_riviste_from_file(key, file_path)
+            else:
+                self.verbose_print("Debug mode attivo: salto init_db per mantenere dati precedenti.\n" \
+                "Verrà saltata l'inizializzazione ma la scrittura dei file avverrà lo stesso.\n" \
+                "Verrà lanciato il check_query se c'è una query al suo interno\n" \
+                "Inoltre non viene verificata la presenza di tutti gli input necessari.")
 
-                    # Otteniamo tutte le riviste dalla tabella general
-                    self.cur.execute("SELECT DISTINCT title, p_issn, e_issn FROM general")
-                    rows = self.cur.fetchall()
-                    num_riviste = len(rows)
+            counter = 0
 
-                    tempo_stimato_ore = round((num_riviste * self.tempo_singola_ricerca) / 3600)
-                    resto_minuti = (num_riviste * self.tempo_singola_ricerca) / 3600 - tempo_stimato_ore
-                    minuti_stimati = round(resto_minuti * 60)
 
-                    for i, row in enumerate(rows):
-                        self.verbose_print(
-                            f"[{counter}/{tot_settori}] Settore={key}: "
-                            f"Rivista {i+1}/{num_riviste}, tempo stimato rimanente={tempo_stimato_ore}h:{minuti_stimati}m"
-                        )
-                        # for _ in range(3):
-                        #     pyautogui.press('shift')
 
-                        ##########################################
-                        #Qui è da inserire che prima verifica se il giornale è già stato trovato. in quel caso si devono saltare questi passaggi
-                        ###########################################
-                        if self.search_journal(row):
-                            self.get_MCQ(row[0], row[1], row[2])
-                        elif self.search_journal_first_link_also_if_no_valid(row):
-                            #sarebbe bello inserire un dato che ci dice che è stato trovato MCQ in questo caso
-                            self.get_MCQ(row[0], row[1], row[2])
-                        else:
-                            self.inserimento_not_found([row[0], row[1], row[2]])
+            self.query = ""
+            if self.debug_mode:
+                if self.query != "":
+                    self.verbose_print("Eseguo query di debug:")
+                    self.check_query(self.query)
+                    self.verbose_print("Query di debug terminata.")
+                
+                
+                for key, file_path in self.files.items():
+                    counter += 1
+                    if len(file_path) > 0:
+                        self.backup_results(key)
+
+                
+
+
+            if self.debug_mode == False:
+                for key, file_path in self.files.items():
+                    counter += 1
+                    if len(file_path) > 0:
+                        #self.verbose_print(f"[SETTORE={key}] Inizio elaborazione (file={file_path}) ...")
+                        # Init tabelle
+                        #self.init_db()
+
+                        # Carichiamo dal CSV/XLSX
+                        #self.load_riviste_from_file(key, file_path)
+
+                        # Otteniamo tutte le riviste dalla tabella general
+                        self.cur.execute("SELECT DISTINCT title, p_issn, e_issn FROM general WHERE sector=?;", (key,))
+                        rows = self.cur.fetchall()
+                        num_riviste = len(rows)
+
+                        tempo_stimato_ore = round((num_riviste * self.tempo_singola_ricerca) / 3600)
+                        resto_minuti = (num_riviste * self.tempo_singola_ricerca) / 3600 - tempo_stimato_ore
+                        minuti_stimati = round(resto_minuti * 60)
+
+                        # Orario attuale
+                        fuso_roma = ZoneInfo("Europe/Rome")
+                        ora_inizio = datetime.now(fuso_roma)
+
+                        # Calcolo orario stimato di fine
+                        fine_stimata = ora_inizio + timedelta(hours=tempo_stimato_ore, minutes=minuti_stimati)
+
+                        for i, row in enumerate(rows):
+                            self.verbose_print(
+                                f"[{counter}/{tot_settori}] Settore={key}: "
+                                f"Rivista {i+1}/{num_riviste}, tempo stimato fine={fine_stimata.strftime('%H:%M')}, ora inizio = {ora_inizio.strftime('%H:%M')}"
+                            )
+                            # for _ in range(3):
+                            #     pyautogui.press('shift')
+
+                            ##########################################
+                            #Qui è da inserire che prima verifica se il giornale è già stato trovato. in quel caso si devono saltare questi passaggi
+                            ###########################################
+                            if self.search_journal(row):
+                                self.get_MCQ(row[0], row[1], row[2])
+                            elif self.search_journal_first_link_also_if_no_valid(row):
+                                #sarebbe bello inserire un dato che ci dice che è stato trovato MCQ in questo caso
+                                self.get_MCQ(row[0], row[1], row[2])
+                            else:
+                                self.inserimento_not_found([row[0], row[1], row[2]])
 
                     # Salvataggio e backup
                     self.backup_results(key)
 
             # Info e chiusura “pulita”
             
-            if self.settori == "" or self.anniSelezionati == [] or self.files == {} or self.outputPath == "":
+            if (self.settori == "" or self.anniSelezionati == [] or self.files == {} or self.outputPath == "") and self.debug_mode == False:
                 self.verbose_print("Il programma è terminato per il mancato inserimento di informazioni necessarie. Per far girare il programma devono essere impostati l'anno di inizio e di fine ricerca, i percentili, almeno un settore con un file di riviste e la cartella dove inserire gli output.")
                 
             else:
