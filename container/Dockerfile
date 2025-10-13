@@ -3,8 +3,10 @@ FROM python:3.10-slim
 # Evita prompt interattivi
 ENV DEBIAN_FRONTEND=noninteractive
 
+ENV TZ=Europe/Rome
+
 # Installa pacchetti di sistema necessari
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y tzdata\
     wget curl gnupg unzip \
     libnss3 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0 \
     fonts-liberation libu2f-udev xdg-utils \
