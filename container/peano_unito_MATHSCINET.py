@@ -152,6 +152,9 @@ class MathscinetScraper:
 
         for settore in self.settori:
             nomeChiave = 'InputFileFullPath' + settore
+            if nomeChiave not in self.config['InputRicerca']:
+                print(f"ERRORE: chiave '{nomeChiave}' non trovata nella sezione [InputRicerca]")
+                exit()
             if (len(self.config['InputRicerca'][nomeChiave]) > 3 ):
                 self.files[settore] = self.config['InputRicerca'][nomeChiave]
                 if not os.path.exists(self.config['InputRicerca'][nomeChiave]):
@@ -308,13 +311,24 @@ class MathscinetScraper:
         self.verbose_print("Pulizia e creazione tabelle DB...")
         with self.con:
             self.con.execute("DROP TABLE IF EXISTS general;")
+            self.con.execute("DROP TABLE IF EXISTS staging;")
+            self.con.execute("""
+                CREATE TABLE IF NOT EXISTS staging (
+                    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                    title TEXT,
+                    p_issn TEXT,
+                    e_issn TEXT,
+                    sector TEXT
+                );
+            """)
             self.con.execute("""
                 CREATE TABLE IF NOT EXISTS general (
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                     title TEXT,
                     p_issn TEXT,
                     e_issn TEXT,
-                    sector TEXT
+                    sector TEXT,
+                    Note TEXT
                 );
             """)
             self.con.execute("DROP TABLE IF EXISTS inforiviste;")
@@ -345,6 +359,37 @@ class MathscinetScraper:
     # -----------------------------------------------
     # Lettura file CSV/XLSX e caricamento su DB
     # -----------------------------------------------
+
+    def FromStagingToGeneral(self,settore):
+        """
+        Sposta i dati dalla tabella staging alla tabella general, gestendo i duplicati.
+        """
+        self.verbose_print(f"Spostamento dati da staging a general per il settore: {settore}")
+        query = f"""
+            WITH duplicati as (SELECT g1.title, 
+            CASE WHEN max(nullif(g1.p_issn,'nan')) IS NOT NULL THEN max(nullif(g1.p_issn,'nan')) ELSE max(nullif(g2.p_issn,'nan')) END  AS p_issn,
+            CASE WHEN max(nullif(g1.e_issn,'nan')) IS NOT NULL THEN max(nullif(g1.e_issn,'nan')) ELSE max(nullif(g2.e_issn,'nan')) END  AS e_issn,
+            max(g1.sector) as sector, 'Duplicato in input' AS Note  
+            from staging g1
+            INNER JOIN staging g2
+            on (g1.title = g2.title AND (g1.p_issn = g2.p_issn  OR g1.e_issn = g2.e_issn)) and g1.id != g2.id
+            GROUP BY g1.title)
+            INSERT INTO general (title, p_issn, e_issn, sector, Note)
+            SELECT title,p_issn,e_issn,sector, '' as Note
+            FROM staging
+            WHERE title NOT IN (SELECT title FROM duplicati)
+            UNION ALL
+            SELECT title,p_issn,e_issn,sector,Note FROM duplicati
+        """
+        try:
+            with self.con:
+                self.con.execute(query)
+                self.con.execute("DELETE FROM staging;")
+        except Exception as e:
+            self.verbose_print(f"Errore spostamento dati da staging a general: {e}")
+            self.close_all(force_exit=True)
+
+
     def load_riviste_from_file(self, settore, file_path):
         """
         Carica riviste da CSV/XLSX in DB 'general'.
@@ -376,10 +421,10 @@ class MathscinetScraper:
                         p_issn = self.format_issn(row[indexs[1]])
                         e_issn = self.format_issn(row[indexs[2]])
                         query = f"""
-                        INSERT INTO general (title, p_issn, e_issn, sector)
-                        VALUES ("{row[indexs[0]].replace(';','')}", "{p_issn}", "{e_issn}", "{settore}");
+                        INSERT INTO staging (title, p_issn, e_issn, sector)
+                        VALUES ("{row[indexs[0]].replace(';','').replace('"',' ').replace("'",'')}", "{p_issn}", "{e_issn}", "{settore}");
                         """
-                        self.verbose_print(f"Query insert general:\n{query}")
+                        self.verbose_print(f"Query insert staging:\n{query}")
                         with self.con:
                             self.con.execute(query)
 
@@ -410,21 +455,25 @@ class MathscinetScraper:
                     p_issn = self.format_issn(row[1])
                     e_issn = self.format_issn(row[2])
                     query = f"""
-                    INSERT INTO general (title, p_issn, e_issn, sector)
-                    VALUES ("{row[0].replace(';','')}", "{p_issn}", "{e_issn}", "{settore}");
+                    INSERT INTO staging (title, p_issn, e_issn, sector)
+                    VALUES ("{row[0].replace(';','').replace('"',' ').replace("'",'')}", "{p_issn}", "{e_issn}", "{settore}");
                     """
-                    self.verbose_print(f"Query insert general:\n{query}")
+                    self.verbose_print(f"Query insert staging:\n{query}")
                     with self.con:
                         self.con.execute(query)
 
             else:
                 self.verbose_print(f"Formato file non gestito: {file_path}")
+            
+            # Dopo aver caricato, spostiamo da staging a general
+            self.FromStagingToGeneral(settore)
 
         except Exception as e:
             self.verbose_print(f"Errore caricamento file {file_path}: {e}")
             # in caso di errore, chiudiamo tutto
             self.close_all(force_exit=True)
 
+    
     def get_header_indexes(self, header):
         """Ottiene gli indici per [colonnaTitolo, colonna_pISSN, colonna_eISSN] se esistono."""
         idx_tit = None
@@ -872,13 +921,14 @@ class MathscinetScraper:
                 SELECT DISTINCT general.title
                 , general.p_issn
                 , general.e_issn
-                , CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE -1 END as MCQ
-                , CASE WHEN inforiviste.MCQ = 'Not Found' THEN 'Not Found' ELSE NULL END AS Note
+                , CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE 0 END as MCQ
+                , CASE WHEN inforiviste.MCQ = 'Not Found' THEN 'Not Found' WHEN general.Note = 'Duplicato in input' THEN general.Note ELSE NULL END AS Note
                 FROM general 
                 JOIN inforiviste ON inforiviste.titolo = general.title 
                 WHERE inforiviste.anno = '{anno}' AND general.sector='{settore}'
-                ORDER BY CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE -1 END DESC
+                ORDER BY CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE 0 END DESC
                 """
+                
                 self.verbose_print(f"Eseguo query backup per anno={anno}, settore={settore}\n{query}")
                 data = self.con.execute(query)
                 results = data.fetchall()
@@ -894,8 +944,10 @@ class MathscinetScraper:
                     total = len(df.index)
                     if total > 0:
                         df['Percentile'] = df.index.map(lambda x: self.get_percentile_label(x+1, total, option = 'number'))
-                        df['Percentile'] = df.groupby('MCQ')['Percentile'].transform('mean')
+                        df['Percentile'] = df.groupby('MCQ')['Percentile'].transform('mean').round(3)
                         df['Fascia percentile MSN'] = df.index.map(lambda x: self.get_percentile_label(x+1, total))
+                        df['Settore'] = settore
+                        df['Anno'] = anno
                         df.to_csv(csv_path, index=False, sep=",", mode='w', errors="ignore")
                         df.to_excel(writer, sheet_name=str(anno), index=False)
 
@@ -956,14 +1008,7 @@ class MathscinetScraper:
                 - Salva su CSV/Excel
         """
         try:
-            counter = 0
-            for key, file_path in self.files.items():
-                if len(file_path) > 4:
-                    counter +=1
-            if counter > 0:
-                if self.debug_mode == False:
-                    self.start_browser()
-                    self.do_login()
+           
 
             tot_settori = len(self.files.keys())
             counter = 0
@@ -990,7 +1035,8 @@ class MathscinetScraper:
 
 
             self.query = ""
-            if self.debug_mode:
+            if self.debug_mode == True:
+                self.verbose_print("Eseguo operazioni impostate per debugmode.")
                 if self.query != "":
                     self.verbose_print("Eseguo query di debug:")
                     self.check_query(self.query)
@@ -1003,7 +1049,15 @@ class MathscinetScraper:
                         self.backup_results(key)
 
                 
-
+            counter = 0
+            for key, file_path in self.files.items():
+                if len(file_path) > 4:
+                    counter +=1
+            if counter > 0:
+                if self.debug_mode == False:
+                    self.start_browser()
+                    self.do_login()
+            counter = 0
 
             if self.debug_mode == False:
                 for key, file_path in self.files.items():
