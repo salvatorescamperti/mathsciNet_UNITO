@@ -366,24 +366,92 @@ class MathscinetScraper:
         """
         self.verbose_print(f"Spostamento dati da staging a general per il settore: {settore}")
         query = f"""
-            WITH duplicati as (SELECT g1.title, 
-            CASE WHEN max(nullif(g1.p_issn,'nan')) IS NOT NULL THEN max(nullif(g1.p_issn,'nan')) ELSE max(nullif(g2.p_issn,'nan')) END  AS p_issn,
-            CASE WHEN max(nullif(g1.e_issn,'nan')) IS NOT NULL THEN max(nullif(g1.e_issn,'nan')) ELSE max(nullif(g2.e_issn,'nan')) END  AS e_issn,
-            max(g1.sector) as sector, 'Duplicato in input' AS Note  
-            from staging g1
-            INNER JOIN staging g2
-            on (g1.title = g2.title AND (g1.p_issn = g2.p_issn  OR g1.e_issn = g2.e_issn)) and g1.id != g2.id
-            GROUP BY g1.title)
-            INSERT INTO general (title, p_issn, e_issn, sector, Note)
-            SELECT title,p_issn,e_issn,sector, '' as Note
-            FROM staging
-            WHERE title NOT IN (SELECT title FROM duplicati)
-            UNION ALL
-            SELECT title,p_issn,e_issn,sector,Note FROM duplicati
+            WITH compress_pissn as (
+                select p_issn, 
+                    MAX(nullif(e_issn,'nan')) as e_issn,
+                    max(sector) as sector,
+                    max(title) as title
+                    FROM staging
+                    where nullif(p_issn,'nan') is not null and p_issn != ''
+                    group by p_issn
+                    having count(*) > 1
+                ),
+            compress_eissn as (
+                select e_issn, 
+                    MAX(nullif(p_issn,'nan')) as p_issn,
+                    max(sector) as sector,
+                    max(title) as title
+                    FROM staging
+                    where nullif(e_issn,'nan') is not null and e_issn != ''
+                    group by e_issn
+                    having count(*) > 1
+                ),
+            unione as (
+                select title,
+                    p_issn,
+                    e_issn,
+                    sector
+                    from compress_pissn
+                    union
+                    select title,
+                    p_issn,
+                    e_issn,
+                    sector
+                    from compress_eissn
+                ),
+                finalaze as (
+                    select max(title) as title, 
+                    p_issn, 
+                    e_issn, 
+                    sector,
+                    'Duplicato in input' as Note
+                    from unione
+                    group by p_issn, e_issn
+                )
+                INSERT INTO general (title, p_issn, e_issn, sector, Note)
+                select title, 
+                ifnull(p_issn,''), 
+                ifnull(e_issn,''), 
+                sector, 
+                Note
+                from finalaze
+                union 
+                select title, 
+                ifnull(p_issn,''), 
+                ifnull(e_issn,''), 
+                sector,
+                '' 
+                from staging 
+                where
+                (
+                (
+                    nullif(p_issn,'nan') is not null 
+                    and 
+                    p_issn not in (select p_issn from finalaze) 
+                )
+                or 
+                (
+                    nullif(e_issn,'nan') is not null 
+                    and 
+                    e_issn not in (select e_issn from finalaze) 
+                )
+                ) = True
         """
+        
         try:
             with self.con:
                 self.con.execute(query)
+
+                self.verbose_print(f"Righe spostate")
+                query = "SELECT * FROM general where sector = '" + settore + "';"
+                data = self.con.execute(query)
+                results = data.fetchall()
+                col_names = [desc[0] for desc in data.description]  # nomi colonne
+
+                self.verbose_print(f"Colonne: {col_names}")
+                for row in results:
+                    self.verbose_print(row)
+
                 self.con.execute("DELETE FROM staging;")
         except Exception as e:
             self.verbose_print(f"Errore spostamento dati da staging a general: {e}")
@@ -993,7 +1061,29 @@ class MathscinetScraper:
         except Exception as e:
             self.verbose_print(f"Errore esecuzione query di debug: {e}")
 
+    def debug_mode_start(self):
+        self.query = ""
+        if self.debug_mode == True:
+            self.verbose_print("Eseguo operazioni impostate per debugmode.")
 
+            # self.init_db()
+            counter = 0
+            for key, file_path in self.files.items():
+                counter += 1
+                if len(file_path) > 0:
+                    self.verbose_print(f"[SETTORE={key}] Inizio caricmento (file={file_path}) ...")
+
+                    # Carichiamo dal CSV/XLSX
+                    self.load_riviste_from_file(key, file_path)
+
+
+            if self.query != "":
+                self.verbose_print("Eseguo query di debug:")
+                self.check_query(self.query)
+                self.verbose_print("Query di debug terminata.")
+                
+            
+           
     # -----------------------------------------------
     # Flusso di elaborazione
     # -----------------------------------------------
@@ -1030,24 +1120,7 @@ class MathscinetScraper:
                 "Verrà lanciato il check_query se c'è una query al suo interno\n" \
                 "Inoltre non viene verificata la presenza di tutti gli input necessari.")
 
-            counter = 0
-
-
-
-            self.query = ""
-            if self.debug_mode == True:
-                self.verbose_print("Eseguo operazioni impostate per debugmode.")
-                if self.query != "":
-                    self.verbose_print("Eseguo query di debug:")
-                    self.check_query(self.query)
-                    self.verbose_print("Query di debug terminata.")
-                
-                
-                for key, file_path in self.files.items():
-                    counter += 1
-                    if len(file_path) > 0:
-                        self.backup_results(key)
-
+            self.debug_mode_start()
                 
             counter = 0
             for key, file_path in self.files.items():
