@@ -338,7 +338,8 @@ class MathscinetScraper:
                     p_issn TEXT,
                     e_issn TEXT,
                     anno TEXT,
-                    MCQ TEXT
+                    MCQ TEXT,
+                    sector TEXT
                 );
             """)
 
@@ -350,8 +351,8 @@ class MathscinetScraper:
         for anno in self.anniSelezionati:
             with self.con:
                 query = f"""
-                INSERT INTO inforiviste (titolo, p_issn, e_issn, MCQ, anno)
-                VALUES ("{row[0]}", "{row[1]}", "{row[2]}", "Not Found", "{anno}");
+                INSERT INTO inforiviste (titolo, p_issn, e_issn, MCQ, anno, sector)
+                VALUES ("{row[0]}", "{row[1]}", "{row[2]}", "Not Found", "{anno}", "{row[3]}");
                 """
                 self.verbose_print(f"Query di inserimento NOT FOUND:\n{query}")
                 self.con.execute(query)
@@ -367,23 +368,27 @@ class MathscinetScraper:
         self.verbose_print(f"Spostamento dati da staging a general per il settore: {settore}")
         query = f"""
             WITH compress_pissn as (
-                select p_issn, 
-                    MAX(nullif(e_issn,'nan')) as e_issn,
+                select trim(p_issn) as p_issn, 
+                    MAX(nullif(trim(nullif(trim(e_issn),'nan')),'0000-0000')) as e_issn,
                     max(sector) as sector,
                     max(title) as title
                     FROM staging
-                    where nullif(p_issn,'nan') is not null and p_issn != ''
-                    group by p_issn
+                    where nullif(trim(p_issn),'nan') is not null 
+                    AND trim(p_issn) != '' 
+                    AND trim(p_issn) != '0000-0000'
+                    group by trim(p_issn)
                     having count(*) > 1
                 ),
             compress_eissn as (
-                select e_issn, 
-                    MAX(nullif(p_issn,'nan')) as p_issn,
+                select trim(e_issn) as e_issn, 
+                    MAX(nullif(trim(nullif(trim(p_issn),'nan')),'0000-0000')) as p_issn,
                     max(sector) as sector,
                     max(title) as title
                     FROM staging
-                    where nullif(e_issn,'nan') is not null and e_issn != ''
-                    group by e_issn
+                    where nullif(trim(e_issn),'nan') is not null 
+                    AND trim(e_issn) != '' 
+                    AND trim(e_issn) != '0000-0000'
+                    group by trim(e_issn)
                     having count(*) > 1
                 ),
             unione as (
@@ -869,19 +874,19 @@ class MathscinetScraper:
                 pass
         return None
 
-    def get_MCQ(self, titolo, p_issn, e_issn):
+    def get_MCQ(self, titolo, p_issn, e_issn, sector):
         """
         Clicca il bottone tabella, prende l'header/tabella MCQ,
         e inserisce su DB i dati per ogni anno.
         """
-        self.verbose_print(f"Ottengo MCQ per rivista: {titolo}, PISSN={p_issn}, EISSN={e_issn}")
+        self.verbose_print(f"Ottengo MCQ per rivista: {titolo}, PISSN={p_issn}, EISSN={e_issn}, Sector = {sector}")
         # Bottone tabella
         if not self.click_first_valid_xpath(
             self.config['HTML']['bottonetabella'],
             self.config['HTML']['bottonetabellasecondo'],
             self.config['HTML']['bottonetabellaterzo']
         ):
-            self.inserimento_not_found([titolo, p_issn, e_issn])
+            self.inserimento_not_found([titolo, p_issn, e_issn, sector])
             return False
 
         # Troviamo l'elemento della tabella
@@ -892,14 +897,14 @@ class MathscinetScraper:
         )
         if not table_elem:
             self.verbose_print("Tabella MCQ non trovata.")
-            self.inserimento_not_found([titolo, p_issn, e_issn])
+            self.inserimento_not_found([titolo, p_issn, e_issn, sector])
             return False
 
         html_table = table_elem.get_attribute('innerHTML')
         table = self.parse_html_table(html_table)
         if len(table) < 2:
             self.verbose_print("Tabella MCQ vuota o parsing fallito.")
-            self.inserimento_not_found([titolo, p_issn, e_issn])
+            self.inserimento_not_found([titolo, p_issn, e_issn,sector])
             return False
 
         # Header -> cerchiamo indici
@@ -909,7 +914,7 @@ class MathscinetScraper:
             index_mcq = header.index("MCQ")
         except ValueError:
             self.verbose_print("Colonne 'Year' e/o 'MCQ' non trovate.")
-            self.inserimento_not_found([titolo, p_issn, e_issn])
+            self.inserimento_not_found([titolo, p_issn, e_issn,sector])
             return False
 
         # Raccolta e inserimento
@@ -924,8 +929,8 @@ class MathscinetScraper:
                 anniTrovati.append(anno_val)
                 if self.is_float(mcq_val):
                     query = f"""
-                    INSERT INTO inforiviste (titolo, p_issn, e_issn, MCQ, anno)
-                    VALUES ("{titolo}", "{p_issn}", "{e_issn}", "{mcq_val}", "{anno_val}");
+                    INSERT INTO inforiviste (titolo, p_issn, e_issn, MCQ, anno, sector)
+                    VALUES ("{titolo}", "{p_issn}", "{e_issn}", "{mcq_val}", "{anno_val}", "{sector}");
                     """
                     self.verbose_print(query)
                     with self.con:
@@ -935,8 +940,8 @@ class MathscinetScraper:
         for anno in self.anniSelezionati:
             if str(anno) not in anniTrovati:
                 query = f"""
-                INSERT INTO inforiviste (titolo, p_issn, e_issn, MCQ, anno)
-                VALUES ("{titolo}", "{p_issn}", "{e_issn}", "Not Found", "{anno}");
+                INSERT INTO inforiviste (titolo, p_issn, e_issn, MCQ, anno,sector)
+                VALUES ("{titolo}", "{p_issn}", "{e_issn}", "Not Found", "{anno}", "{sector}");
                 """
                 self.verbose_print(query)
                 with self.con:
@@ -993,7 +998,9 @@ class MathscinetScraper:
                 , CASE WHEN inforiviste.MCQ = 'Not Found' THEN 'Not Found' WHEN general.Note = 'Duplicato in input' THEN general.Note ELSE NULL END AS Note
                 FROM general 
                 JOIN inforiviste ON inforiviste.titolo = general.title 
-                WHERE inforiviste.anno = '{anno}' AND general.sector='{settore}'
+                AND general.sector='{settore}' 
+                AND inforiviste.sector = general.sector 
+                AND inforiviste.anno = '{anno}'
                 ORDER BY CASE WHEN inforiviste.MCQ != 'Not Found' THEN cast(inforiviste.MCQ as float) ELSE 0 END DESC
                 """
                 
@@ -1066,7 +1073,7 @@ class MathscinetScraper:
         if self.debug_mode == True:
             self.verbose_print("Eseguo operazioni impostate per debugmode.")
 
-            # self.init_db()
+            self.init_db()
             counter = 0
             for key, file_path in self.files.items():
                 counter += 1
@@ -1077,7 +1084,7 @@ class MathscinetScraper:
                     self.load_riviste_from_file(key, file_path)
 
 
-            if self.query != "":
+            if self.query != "SELECT * FROM general":
                 self.verbose_print("Eseguo query di debug:")
                 self.check_query(self.query)
                 self.verbose_print("Query di debug terminata.")
@@ -1171,12 +1178,12 @@ class MathscinetScraper:
                             #Qui è da inserire che prima verifica se il giornale è già stato trovato. in quel caso si devono saltare questi passaggi
                             ###########################################
                             if self.search_journal(row):
-                                self.get_MCQ(row[0], row[1], row[2])
+                                self.get_MCQ(row[0], row[1], row[2], key)
                             elif self.search_journal_first_link_also_if_no_valid(row):
                                 #sarebbe bello inserire un dato che ci dice che è stato trovato MCQ in questo caso
-                                self.get_MCQ(row[0], row[1], row[2])
+                                self.get_MCQ(row[0], row[1], row[2],key)
                             else:
-                                self.inserimento_not_found([row[0], row[1], row[2]])
+                                self.inserimento_not_found([row[0], row[1], row[2],key])
 
                     # Salvataggio e backup
                     self.backup_results(key)
